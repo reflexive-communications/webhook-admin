@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<menu>
+  <item>
+    <path>civicrm/extension/webhook/paypal</path>
+    <page_callback>CRM_Webhook_Page_Dispatcher</page_callback>
+    <page_arguments>processor=CRM_Webhook_Processor_JSON,handler=CRM_Webhook_Handler_PayPal</page_arguments>
+    <access_callback>1</access_callback>
+    <access_arguments></access_arguments>
+    <is_public>true</is_public>
+    <is_ssl>true</is_ssl>
+    <comment>PayPal webhook</comment>
+    <desc>Endpoint for handling PayPal webhooks</desc>
+  </item>
+</menu>

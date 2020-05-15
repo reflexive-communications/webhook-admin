@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<menu>
+  <item>
+    <path>civicrm/extension/webhooks/list</path>
+    <page_callback>CRM_Webhook_Page_Webhooks</page_callback>
+    <title>Webhooks</title>
+    <access_arguments>access CiviCRM</access_arguments>
+  </item>
+</menu>
