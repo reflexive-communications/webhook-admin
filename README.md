@@ -4,7 +4,9 @@ This extension creates additional webhook endpoints where CiviCRM listens for in
 
 A PayPal webhook handler and a general handler included as an example.
 
-This extension is designed to be easily extended to process any further webhook, though some coding is required to implement these.
+This extension is designed to be easily extended to handle any further webhooks, though some coding is required to implement these.
+
+Currently it can process JSON and standard url-encoded-form data.
 
 The extension is licensed under [AGPL-3.0](LICENSE.txt).
 

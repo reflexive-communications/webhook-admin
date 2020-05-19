@@ -1,5 +1,7 @@
 <?php
 
+use Civi\API\Exception\NotImplementedException;
+
 /**
  * Main webhook Dispatcher
  */
@@ -33,6 +35,8 @@ class CRM_Webhook_Page_Dispatcher extends CRM_Core_Page
 
   /**
    * Run Controller
+   *
+   * @throws \Civi\API\Exception\NotImplementedException
    */
   public function run()
   {
@@ -43,6 +47,25 @@ class CRM_Webhook_Page_Dispatcher extends CRM_Core_Page
     $args = func_get_args();
     $processor_class = trim($args[1]['processor'] ?? '');
     $handler_class = trim($args[1]['handler'] ?? '');
+
+    // No explicit processor defined --> AUTO-DETECT
+    if ($processor_class == '') {
+      switch ($_SERVER['CONTENT_TYPE']) {
+        case 'application/json':
+        case 'application/javascript':
+          $processor_class = CRM_Webhook_Processor_JSON::class;
+          break;
+        case 'text/xml':
+        case 'application/xml':
+          $processor_class = CRM_Webhook_Processor_XML::class;
+          break;
+        case 'application/x-www-form-urlencoded':
+          $processor_class = CRM_Webhook_Processor_UrlEncodedForm::class;
+          break;
+        default:
+          throw new NotImplementedException(ts('Unsupported content-type.'));
+      }
+    }
 
     // Instantiate Processor & Handler
     $processor = $this->createProcessor($processor_class);
