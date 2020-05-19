@@ -6,7 +6,7 @@ A PayPal webhook handler and a general handler included as an example.
 
 This extension is designed to be easily extended to handle any further webhooks, though some coding is required to implement these.
 
-Currently it can process JSON and standard url-encoded-form data.
+Currently it can process JSON, XML and standard URL encoded form data.
 
 The extension is licensed under [AGPL-3.0](LICENSE.txt).
 
