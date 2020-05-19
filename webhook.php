@@ -30,7 +30,8 @@ function webhook_civicrm_xmlMenu(&$files) {
 function webhook_civicrm_install() {
   _webhook_civix_civicrm_install();
 
-  // $installer=new CRM_Webhook_Upgrader();
+  $installer=_webhook_civix_upgrader();
+  $installer->install();
 }
 
 /**
@@ -49,6 +50,9 @@ function webhook_civicrm_postInstall() {
  */
 function webhook_civicrm_uninstall() {
   _webhook_civix_civicrm_uninstall();
+
+  $installer=_webhook_civix_upgrader();
+  $installer->uninstall();
 }
 
 /**
@@ -143,17 +147,6 @@ function webhook_civicrm_entityTypes(&$entityTypes) {
 function webhook_civicrm_themes(&$themes) {
   _webhook_civix_civicrm_themes($themes);
 }
-
-// --- Functions below this ship commented out. Uncomment as required. ---
-
-/**
- * Implements hook_civicrm_preProcess().
- *
- * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_preProcess
- *
-function webhook_civicrm_preProcess($formName, &$form) {
-
-} // */
 
 /**
  * Implements hook_civicrm_navigationMenu().

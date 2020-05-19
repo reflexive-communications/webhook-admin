@@ -1,15 +1,17 @@
 # hu.es-progress.webhook
 
-![Screenshot](/images/screenshot.png)
+This extension creates additional webhook endpoints where CiviCRM listens for incoming request and processes them according to the needs.
 
-(*FIXME: In one or two paragraphs, describe what the extension does and why one would download it. *)
+A PayPal webhook handler and a general handler included as an example.
+
+This extension is designed to be easily extended to process any further webhook, though some coding is required to implement these.
 
 The extension is licensed under [AGPL-3.0](LICENSE.txt).
 
 ## Requirements
 
 * PHP v7.0+
-* CiviCRM (*FIXME: Version number*)
+* CiviCRM (5.22, 5.25) (might work below, not tested)
 
 ## Installation (Web UI)
 
@@ -22,7 +24,7 @@ install it with the command-line tool [cv](https://github.com/civicrm/cv).
 
 ```bash
 cd <extension-dir>
-cv dl hu.es-progress.webhook@https://github.com/FIXME/hu.es-progress.webhook/archive/master.zip
+cv dl hu.es-progress.webhook@https://github.com/semseysandor/hu.es-progress.webhook/archive/master.zip
 ```
 
 ## Installation (CLI, Git)
@@ -31,14 +33,20 @@ Sysadmins and developers may clone the [Git](https://en.wikipedia.org/wiki/Git) 
 install it with the command-line tool [cv](https://github.com/civicrm/cv).
 
 ```bash
-git clone https://github.com/FIXME/hu.es-progress.webhook.git
+git clone https://github.com/semseysandor/hu.es-progress.webhook.git
 cv en webhook
 ```
 
 ## Usage
 
-(* FIXME: Where would a new user navigate to get started? What changes would they see? *)
+There will be new endpoints for receiving webhooks:
+
+www.example.com/civicrm/extension/webhook/paypal
+
+or
+
+YOUR_SITE/civicrm/extension/webhook/civi
 
 ## Known Issues
 
-(* FIXME *)
+No GUI
