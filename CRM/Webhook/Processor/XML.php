@@ -16,6 +16,8 @@ class CRM_Webhook_Processor_XML extends CRM_Webhook_Processor_Base
       // Get contents from raw POST data
       $input = file_get_contents('php://input');
 
+      // Disable external entity parsing to prevent XEE attack
+      libxml_disable_entity_loader(true);
       // Load XML
       $xml = new SimpleXMLElement($input);
 
