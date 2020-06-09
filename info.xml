@@ -9,7 +9,8 @@
     <email>semseysandor@gmail.com</email>
   </maintainer>
   <urls>
-    <url desc="Main Extension Page">https://github.com/semseysandor/hu.es-progress.webhook</url>
+    <url desc="Main Extension Page">https://gitlab.com/semseysandor/hu.es-progress.webhook</url>
+    <url desc="Licensing">http://www.gnu.org/licenses/agpl-3.0.html</url>
   </urls>
   <releaseDate>2020-05-15</releaseDate>
   <version>0.6</version>
@@ -17,7 +18,6 @@
   <compatibility>
     <ver>5.0</ver>
   </compatibility>
-  <comments>This is a new, undeveloped module</comments>
   <classloader>
     <psr4 prefix="Civi\" path="Civi"/>
   </classloader>
