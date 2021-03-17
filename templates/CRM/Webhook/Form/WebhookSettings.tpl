@@ -1,7 +1,7 @@
 <div id="webhook-main-wrapper" class="crm-container">
     <div class="crm-block crm-form-block">
         <div class="action-link">
-            <a class="button new-option crm-popup webhook-action" href="#">
+            <a class="button new-option crm-popup webhook-action" href="{$newItemForm}">
                 <span><i class="crm-i fa-plus-circle"></i> {ts}Add New Webhook{/ts}</span>
             </a>
         </div>
@@ -36,3 +36,27 @@
         </table>
     </div>
 </div>
+<script type="text/javascript">
+// Form in pop-up dialog
+CRM.$(function ($) {
+    'use strict';
+    $(".wrapi-action").on('crmPopupFormSuccess', CRM.refreshParent);
+});
+
+// Send action in AJAX
+CRM.$(function ($) {
+    'use strict';
+    $(".wrapi-ajax-action").click(function (event) {
+
+        // Button clicked
+        let button = this;
+
+        event.preventDefault();
+
+        // Send AJAX request, expect JSON return
+        $.getJSON(button.href, {}, function () {
+            CRM.refreshParent(button);
+        });
+    });
+});
+</script>

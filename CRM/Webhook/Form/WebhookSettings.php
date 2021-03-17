@@ -34,6 +34,10 @@ class CRM_Webhook_Form_WebhookSettings extends CRM_Core_Form {
         // get the current configuration object
         $config = $this->config->get();
 
+        // Add new route button
+        $newItemForm = CRM_Utils_System::url("civicrm/admin/webhooks/form");
+        $this->assign("newItemForm", $newItemForm);
+
         // Export webhooks to template
         $this->assign("webhooks", $config["webhooks"]);
 

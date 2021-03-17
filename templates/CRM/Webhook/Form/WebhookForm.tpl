@@ -1,27 +1,37 @@
-{* HEADER *}
-
-<div class="crm-submit-buttons">
-{include file="CRM/common/formButtons.tpl" location="top"}
-</div>
-
-{* FIELD EXAMPLE: OPTION 1 (AUTOMATIC LAYOUT) *}
-
-{foreach from=$elementNames item=elementName}
-  <div class="crm-section">
-    <div class="label">{$form.$elementName.label}</div>
-    <div class="content">{$form.$elementName.html}</div>
-    <div class="clear"></div>
-  </div>
-{/foreach}
-
-{* FIELD EXAMPLE: OPTION 2 (MANUAL LAYOUT)
-
-  <div>
-    <span>{$form.favorite_color.label}</span>
-    <span>{$form.favorite_color.html}</span>
-  </div>
-
-{* FOOTER *}
-<div class="crm-submit-buttons">
-{include file="CRM/common/formButtons.tpl" location="bottom"}
+<div class="crm-block crm-form-block">
+    <table class="form-layout">
+        <tr>
+            <td class="label">{$form.name.label}</td>
+            <td class="content">{$form.name.html}<br/>
+                <span class="description">{ts}Name of the webhook{/ts}</span>
+            </td>
+        </tr>
+        <tr>
+            <td class="label">{$form.label.label}</td>
+            <td class="content">{$form.label.html}<br/>
+                <span class="description">{ts}Label of the webhook{/ts}</span>
+            </td>
+        </tr>
+        <tr>
+            <td class="label">{$form.selector.label}</td>
+            <td class="content">{$form.selector.html}<br/>
+                <span class="description">{ts}Selector - routing is based on this parameter{/ts}</span>
+            </td>
+        </tr>
+        <tr>
+            <td class="label">{$form.handler.label}</td>
+            <td class="content">{$form.handler.html}<br/>
+                <span class="description">{ts}Class name of the handler that will handle this request{/ts}</span>
+            </td>
+        </tr>
+        <tr>
+            <td class="label">{$form.description.label}</td>
+            <td class="content">{$form.description.html}<br/>
+                <span class="description">{ts}Description of the webhook{/ts}</span>
+            </td>
+        </tr>
+    </table>
+    <div class="crm-submit-buttons">
+        {include file="CRM/common/formButtons.tpl" location="bottom"}
+    </div>
 </div>
