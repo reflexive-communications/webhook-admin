@@ -8,6 +8,14 @@
   <filter>
     <whitelist>
       <directory suffix=".php">./</directory>
+      <exclude>
+        <!-- Skip the test directory -->
+        <directory>./tests</directory>
+        <!-- Skip the generated files -->
+        <file>./webhook.php</file>
+        <file>./webhook.civix.php</file>
+        <file>./CRM/Webhook/Upgrader/Base.php</file>
+      </exclude>
     </whitelist>
   </filter>
   <listeners>
