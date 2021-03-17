@@ -1,27 +1,38 @@
-{* HEADER *}
+<div id="webhook-main-wrapper" class="crm-container">
+    <div class="crm-block crm-form-block">
+        <div class="action-link">
+            <a class="button new-option crm-popup webhook-action" href="#">
+                <span><i class="crm-i fa-plus-circle"></i> {ts}Add New Webhook{/ts}</span>
+            </a>
+        </div>
+    </div>
 
-<div class="crm-submit-buttons">
-{include file="CRM/common/formButtons.tpl" location="top"}
-</div>
-
-{* FIELD EXAMPLE: OPTION 1 (AUTOMATIC LAYOUT) *}
-
-{foreach from=$elementNames item=elementName}
-  <div class="crm-section">
-    <div class="label">{$form.$elementName.label}</div>
-    <div class="content">{$form.$elementName.html}</div>
-    <div class="clear"></div>
-  </div>
-{/foreach}
-
-{* FIELD EXAMPLE: OPTION 2 (MANUAL LAYOUT)
-
-  <div>
-    <span>{$form.favorite_color.label}</span>
-    <span>{$form.favorite_color.html}</span>
-  </div>
-
-{* FOOTER *}
-<div class="crm-submit-buttons">
-{include file="CRM/common/formButtons.tpl" location="bottom"}
+    <h3>Webhooks</h3>
+    <div class="crm-search-results">
+        {include file="CRM/common/jsortable.tpl"}
+        <table id="webhook-routes" class="row-highlight display">
+            <thead class="sticky">
+            <tr>
+                <th id="sortable">{ts}ID{/ts}</th>
+                <th id="sortable">{ts}Name{/ts}</th>
+                <th id="sortable">{ts}Selector{/ts}</th>
+                <th id="sortable">{ts}Handler{/ts}</th>
+                <th id="sortable">{ts}Description{/ts}</th>
+                <th id="sortable">{ts}Label{/ts}</th>
+            </tr>
+            </thead>
+            <tbody>
+            {foreach from=$webhooks key=id item=webhook}
+                <tr class="crm-entity {cycle values="odd-row,even-row"}">
+                    <td class="centered">{$id}</td>
+                    <td class="centered">{$webhook.name}</td>
+                    <td class="centered">{$webhook.selector}</td>
+                    <td class="centered">{$webhook.handler}</td>
+                    <td class="centered">{$webhook.description}</td>
+                    <td class="centered">{$webhook.label}</td>
+                </tr>
+            {/foreach}
+            </tbody>
+        </table>
+    </div>
 </div>
