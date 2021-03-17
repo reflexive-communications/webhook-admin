@@ -12,4 +12,10 @@
     <title>WebhookSettings</title>
     <access_arguments>access CiviCRM</access_arguments>
   </item>
+  <item>
+    <path>civicrm/admin/webhooks/form</path>
+    <page_callback>CRM_Webhook_Form_WebhookForm</page_callback>
+    <title>WebhookForm</title>
+    <access_arguments>access CiviCRM</access_arguments>
+  </item>
 </menu>
