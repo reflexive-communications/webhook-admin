@@ -55,8 +55,7 @@ class CRM_Webhook_Form_WebhookForm extends CRM_Webhook_Form_WebhookBase {
      *
      * @return array|bool
      */
-    protected function validateSelector($values, $files, $options)
-    {
+    public function validateSelector($values, $files, $options) {
         $errors = [];
         // Update configuration to latest values
         $options["config"]->load();
