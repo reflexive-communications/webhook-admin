@@ -7,11 +7,7 @@ use CRM_Webhook_ExtensionUtil as E;
  *
  * @see https://docs.civicrm.org/dev/en/latest/framework/quickform/
  */
-class CRM_Webhook_Form_WebhookForm extends CRM_Core_Form {
-
-    public function preProcess() {
-        parent::preProcess();
-    }
+class CRM_Webhook_Form_WebhookForm extends CRM_Webhook_Form_WebhookBase {
 
     public function buildQuickForm() {
         parent::buildQuickForm();

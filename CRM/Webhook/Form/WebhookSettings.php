@@ -7,26 +7,7 @@ use CRM_Webhook_ExtensionUtil as E;
  *
  * @see https://docs.civicrm.org/dev/en/latest/framework/quickform/
  */
-class CRM_Webhook_Form_WebhookSettings extends CRM_Core_Form {
-
-    /**
-     * Configdb
-     *
-     * @var CRM_Civalpa_Config
-     */
-    private $config;
-
-    /**
-     * Preprocess form
-     *
-     * @throws CRM_Core_Exception
-     */
-    public function preProcess()
-    {
-        // Get current settings
-        $this->config = new CRM_Webhook_Config(E::LONG_NAME);
-        $this->config->load();
-    }
+class CRM_Webhook_Form_WebhookSettings extends CRM_Webhook_Form_WebhookBase {
 
     public function buildQuickForm() {
         parent::buildQuickForm();
