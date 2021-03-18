@@ -1,21 +1,15 @@
 <?xml version="1.0"?>
 <menu>
-  <item>
-    <path>civicrm/extension/webhooks/list</path>
-    <page_callback>CRM_Webhook_Page_Webhooks</page_callback>
-    <title>Webhooks</title>
-    <access_arguments>administer CiviCRM</access_arguments>
-  </item>
-  <item>
-    <path>civicrm/admin/webhooks</path>
-    <page_callback>CRM_Webhook_Form_WebhookSettings</page_callback>
-    <title>WebhookSettings</title>
-    <access_arguments>administer CiviCRM</access_arguments>
-  </item>
-  <item>
-    <path>civicrm/admin/webhooks/form</path>
-    <page_callback>CRM_Webhook_Form_WebhookForm</page_callback>
-    <title>WebhookForm</title>
-    <access_arguments>administer CiviCRM</access_arguments>
-  </item>
+    <item>
+        <path>civicrm/admin/webhooks/settings</path>
+        <page_callback>CRM_Webhook_Form_WebhookSettings</page_callback>
+        <title>WebhookSettings</title>
+        <access_arguments>administer CiviCRM</access_arguments>
+    </item>
+    <item>
+        <path>civicrm/admin/webhooks/form</path>
+        <page_callback>CRM_Webhook_Form_WebhookForm</page_callback>
+        <title>WebhookForm</title>
+        <access_arguments>administer CiviCRM</access_arguments>
+    </item>
 </menu>

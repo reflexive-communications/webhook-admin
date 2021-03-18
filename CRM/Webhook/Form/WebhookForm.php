@@ -9,6 +9,10 @@ use CRM_Webhook_ExtensionUtil as E;
  */
 class CRM_Webhook_Form_WebhookForm extends CRM_Core_Form {
 
+    public function preProcess() {
+        parent::preProcess();
+    }
+
     public function buildQuickForm() {
         parent::buildQuickForm();
 
