@@ -158,7 +158,7 @@ function webhook_civicrm_navigationMenu(&$menu) {
       'label' => E::ts('Webhooks'),
       'name' => 'webhooks',
       'url' => 'civicrm/admin/webhooks',
-      'permission' => 'access CiviCRM',
+      'permission' => 'administer CiviCRM',
       'separator' => 2,
       'active' => 1,
     ]);
