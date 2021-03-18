@@ -13,7 +13,7 @@ class CRM_Webhook_Form_WebhookBase extends CRM_Core_Form {
      *
      * @var CRM_Webhook_Config
      */
-    private $config;
+    protected $config;
 
     /**
      * Preprocess form
