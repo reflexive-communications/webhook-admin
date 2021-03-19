@@ -46,9 +46,10 @@ class CRM_Webhook_Form_WebhookSettingsTest extends CRM_Webhook_Form_TestBase {
     public function testLinks() {
         $this->setupTestConfig();
         $form = new CRM_Webhook_Form_WebhookSettings();
+        self::assertEmpty($form->preProcess(), "PreProcess supposed to be empty.");
         try {
             $list = $form->links();
-            selt::assertEquals(2, count($links), "Invalid link length.");
+            self::assertEquals(2, count($list), "Invalid link length.");
         } catch (Exception $e) {
             self::fail("It shouldn't throw exception.");
         }
