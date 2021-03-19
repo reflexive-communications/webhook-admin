@@ -118,4 +118,31 @@ class CRM_Webhook_Config {
         }
         return $this->configuration;
     }
+
+    /**
+     * Inserts a new webhook.
+     *
+     * @param array $webhook the data to save
+     *
+     * @return bool the status of the insert process.
+     *
+     * @throws CRM_Core_Exception.
+     */
+    public function addWebhook(array $webhook): bool {
+        // load latest config
+        $this->load();
+        // duplication check - in case of duplication throws exception
+        foreach ($this->configuration["webhooks"] as $hook) {
+            if ($hook["selector"] == $webhook["selector"]) {
+                throw new CRM_Core_Exception($webhook["selector"]." selector is duplicated.");
+            }
+        }
+        // get the id and increment the global one
+        $id = $this->configuration["sequence"];
+        $this->configuration["sequence"] += 1;
+        // save hook under the id.
+        $webhook["id"] = $id;
+        $this->configuration["webhooks"][$id] = $webhook;
+        return $this->update($this->configuration);
+    }
 }

@@ -109,9 +109,46 @@ class CRM_Webhook_ConfigHeadlessTest extends \PHPUnit\Framework\TestCase impleme
         $cfgLoaded = $otherConfig->get();
         self::assertEquals($cfg, $cfgLoaded, "Invalid loaded configuration.");
 
-        $missingConfig = new CRM_Webhook_Config("civalpa_test_missing_config");
+        $missingConfig = new CRM_Webhook_Config("webhook_test_missing_config");
         self::expectException(CRM_Core_Exception::class, "Invalid exception class.");
-        self::expectExceptionMessage("civalpa_test_missing_config_configuration config invalid.", "Invalid exception message.");
+        self::expectExceptionMessage("webhook_test_missing_config_configuration config invalid.", "Invalid exception message.");
         self::assertEmpty($missingConfig->load(), "Load result supposed to be empty.");
+    }
+
+    /**
+     * It checks that the addWebhook function works well.
+     */
+    public function testAddWebhookNoDuplication() {
+        $config = new CRM_Webhook_Config("webhook_test");
+        self::assertTrue($config->create(), "Create config has to be successful.");
+        $cfg = $config->get();
+        $newHook = [
+            "name" => CRM_Webhook_Config::DEFAULT_HOOK_NAME,
+            "label" => CRM_Webhook_Config::DEFAULT_HOOK_LABEL,
+            "description" => CRM_Webhook_Config::DEFAULT_HOOK_DESC,
+            "handler" => CRM_Webhook_Config::DEFAULT_HOOK_HANDLER,
+            "selector" => CRM_Webhook_Config::DEFAULT_HOOK_SELECTOR."_something_different",
+        ];
+        $cfg["webhooks"][1] = $newHook;
+        $cfg["webhooks"][1]["id"] = 1;
+        $cfg["sequence"] += 1;
+        self::assertTrue($config->addWebhook($newHook), "Add Webhook has to be successful.");
+        $cfgUpdated = $config->get();
+        self::assertEquals($cfg, $cfgUpdated, "Invalid updated configuration.");
+    }
+    public function testAddWebhookWithDuplication() {
+        $config = new CRM_Webhook_Config("webhook_test");
+        self::assertTrue($config->create(), "Create config has to be successful.");
+        $cfg = $config->get();
+        $newHook = [
+            "name" => CRM_Webhook_Config::DEFAULT_HOOK_NAME,
+            "label" => CRM_Webhook_Config::DEFAULT_HOOK_LABEL,
+            "description" => CRM_Webhook_Config::DEFAULT_HOOK_DESC,
+            "handler" => CRM_Webhook_Config::DEFAULT_HOOK_HANDLER,
+            "selector" => CRM_Webhook_Config::DEFAULT_HOOK_SELECTOR,
+        ];
+        self::expectException(CRM_Core_Exception::class, "Invalid exception class.");
+        self::expectExceptionMessage(CRM_Webhook_Config::DEFAULT_HOOK_SELECTOR." selector is duplicated.", "Invalid exception message.");
+        $config->addWebhook($newHook);
     }
 }
