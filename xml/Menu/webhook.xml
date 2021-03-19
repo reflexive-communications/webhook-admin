@@ -18,4 +18,12 @@
         <title>WebhookDelete</title>
         <access_arguments>administer CiviCRM</access_arguments>
     </item>
+    <item>
+        <path>civicrm/webhooks/listener</path>
+        <page_callback>CRM_Webhook_Page_Dispatcher</page_callback>
+        <title>Webhook Listener</title>
+        <access_arguments/>
+        <access_callback>1</access_callback>
+        <is_public>true</is_public>
+    </item>
 </menu>
