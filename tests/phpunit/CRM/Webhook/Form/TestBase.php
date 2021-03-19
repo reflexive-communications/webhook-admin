@@ -39,6 +39,7 @@ class CRM_Webhook_Form_TestBase extends \PHPUnit\Framework\TestCase implements H
 
     protected function setupTestConfig() {
         $config = new CRM_Webhook_Config(E::LONG_NAME);
+        $config->create();
         self::assertTrue($config->update(self::TEST_SETTINGS), "Config update has to be successful.");
     }
 }

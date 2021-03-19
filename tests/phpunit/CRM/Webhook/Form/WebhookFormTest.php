@@ -68,9 +68,38 @@ class CRM_Webhook_Form_WebhookFormTest extends CRM_Webhook_Form_TestBase {
     }
 
     /**
-     * Post Process test case. It does nothing.
+     * Post Process test cases.
      */
-    public function testPostProcess() {
+    public function testPostProcessDeletedConfig() {
+        $_POST["name"] = self::TEST_SETTINGS["webhooks"][0]["name"];
+        $_POST["label"] = self::TEST_SETTINGS["webhooks"][0]["label"];
+        $_POST["description"] = self::TEST_SETTINGS["webhooks"][0]["description"];
+        $_POST["handler"] = self::TEST_SETTINGS["webhooks"][0]["handler"];
+        $_POST["selector"] = self::TEST_SETTINGS["webhooks"][0]["selector"]."_something_else";
+        $this->setupTestConfig();
+        $form = new CRM_Webhook_Form_WebhookForm();
+        self::assertEmpty($form->preProcess(), "PreProcess supposed to be empty.");
+        $config = new CRM_Webhook_Config(E::LONG_NAME);
+        $config->remove();
+        self::assertEmpty($form->postProcess());
+    }
+    public function testPostProcessDuplicatedInput() {
+        $_POST["name"] = self::TEST_SETTINGS["webhooks"][0]["name"];
+        $_POST["label"] = self::TEST_SETTINGS["webhooks"][0]["label"];
+        $_POST["description"] = self::TEST_SETTINGS["webhooks"][0]["description"];
+        $_POST["handler"] = self::TEST_SETTINGS["webhooks"][0]["handler"];
+        $_POST["selector"] = self::TEST_SETTINGS["webhooks"][0]["selector"];
+        $this->setupTestConfig();
+        $form = new CRM_Webhook_Form_WebhookForm();
+        self::assertEmpty($form->preProcess(), "PreProcess supposed to be empty.");
+        self::assertEmpty($form->postProcess());
+    }
+    public function testPostProcessValidInput() {
+        $_POST["name"] = self::TEST_SETTINGS["webhooks"][0]["name"];
+        $_POST["label"] = self::TEST_SETTINGS["webhooks"][0]["label"];
+        $_POST["description"] = self::TEST_SETTINGS["webhooks"][0]["description"];
+        $_POST["handler"] = self::TEST_SETTINGS["webhooks"][0]["handler"];
+        $_POST["selector"] = self::TEST_SETTINGS["webhooks"][0]["selector"]."_something_else";
         $this->setupTestConfig();
         $form = new CRM_Webhook_Form_WebhookForm();
         self::assertEmpty($form->preProcess(), "PreProcess supposed to be empty.");
@@ -79,5 +108,8 @@ class CRM_Webhook_Form_WebhookFormTest extends CRM_Webhook_Form_TestBase {
         } catch (Exception $e) {
             self::fail("It shouldn't throw exception.");
         }
+        $config = new CRM_Webhook_Config(E::LONG_NAME);
+        $config->load();
+        self::assertEquals(2, count($config->get()["webhooks"]));
     }
 }

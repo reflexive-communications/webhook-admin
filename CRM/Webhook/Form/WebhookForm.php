@@ -80,5 +80,22 @@ class CRM_Webhook_Form_WebhookForm extends CRM_Webhook_Form_WebhookBase {
 
     public function postProcess() {
         parent::postProcess();
+        $hook = [
+            "name" => $this->_submitValues["name"],
+            "selector" => $this->_submitValues["selector"],
+            "handler" => $this->_submitValues["handler"],
+            "description" => $this->_submitValues["description"],
+            "label" => $this->_submitValues["label"],
+        ];
+        try {
+            if (!$this->config->addWebhook($hook)) {
+                CRM_Core_Session::setStatus(ts("Error during save process"), "Webhook", "error");
+                return;
+            }
+        } catch (CRM_Core_Exception $e) {
+            CRM_Core_Session::setStatus(ts($e->getMessage()), "Webhook", "error");
+            return;
+        }
+        CRM_Core_Session::setStatus(ts("Webhook inserted."), "Webhook", "success", ["expires" => 5000,]);
     }
 }
