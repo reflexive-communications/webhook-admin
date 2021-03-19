@@ -153,4 +153,23 @@ class CRM_Webhook_Form_WebhookFormTest extends CRM_Webhook_Form_TestBase {
         $config->load();
         self::assertEquals(2, count($config->get()["webhooks"]));
     }
+    public function testPostProcessValidInputEdition() {
+        $_POST["id"] = 0;
+        $_POST["name"] = self::TEST_SETTINGS["webhooks"][0]["name"];
+        $_POST["label"] = self::TEST_SETTINGS["webhooks"][0]["label"];
+        $_POST["description"] = self::TEST_SETTINGS["webhooks"][0]["description"];
+        $_POST["handler"] = self::TEST_SETTINGS["webhooks"][0]["handler"];
+        $_POST["selector"] = self::TEST_SETTINGS["webhooks"][0]["selector"]."_something_else";
+        $this->setupTestConfig();
+        $form = new CRM_Webhook_Form_WebhookForm();
+        self::assertEmpty($form->preProcess(), "PreProcess supposed to be empty.");
+        try {
+            self::assertEmpty($form->postProcess());
+        } catch (Exception $e) {
+            self::fail("It shouldn't throw exception.");
+        }
+        $config = new CRM_Webhook_Config(E::LONG_NAME);
+        $config->load();
+        self::assertEquals(1, count($config->get()["webhooks"]));
+    }
 }

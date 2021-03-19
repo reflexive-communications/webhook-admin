@@ -151,7 +151,14 @@ class CRM_Webhook_Form_WebhookForm extends CRM_Webhook_Form_WebhookBase {
             "label" => $this->_submitValues["label"],
         ];
         try {
-            if (!$this->config->addWebhook($hook)) {
+            $status = true;
+            if (!is_null($this->id)) {
+                $hook["id"] = $this->id;
+                $status = $this->config->updateWebhook($hook);
+            } else {
+                $status = $this->config->addWebhook($hook);
+            }
+            if (!$status) {
                 CRM_Core_Session::setStatus(ts("Error during save process"), "Webhook", "error");
                 return;
             }
