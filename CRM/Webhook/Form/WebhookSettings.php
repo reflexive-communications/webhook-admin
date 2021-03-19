@@ -33,10 +33,10 @@ class CRM_Webhook_Form_WebhookSettings extends CRM_Webhook_Form_WebhookBase {
         // Export webhooks to template
         $this->assign("webhooks", $config["webhooks"]);
 
-        $this->setTitle(ts('Webhook Settings'));
+        $this->setTitle(ts("Webhook Settings"));
 
         // Add js functions. It seems the jquery $ sign and the smarty template $ sign conflicts.
-        Civi::resources()->addScriptFile(E::LONG_NAME, 'js/Form/popup.js');
+        Civi::resources()->addScriptFile(E::LONG_NAME, "js/Form/popup.js");
     }
 
     /**
@@ -47,18 +47,18 @@ class CRM_Webhook_Form_WebhookSettings extends CRM_Webhook_Form_WebhookBase {
     public function links(): array {
         return [
             CRM_Core_Action::UPDATE => [
-                'name' => ts('Edit'),
-                'url' => 'civicrm/webhook/form',
-                'qs' => 'id=%%id%%',
-                'title' => ts('Edit webhook'),
-                'class' => 'crm-popup webhook-action',
+                "name" => ts("Edit"),
+                "url" => "civicrm/admin/webhooks/form",
+                "qs" => "id=%%id%%",
+                "title" => ts("Edit webhook"),
+                "class" => "crm-popup webhook-action",
             ],
             CRM_Core_Action::DELETE => [
-                'name' => ts('Delete'),
-                'url' => 'civicrm/webhook/delete',
-                'qs' => 'id=%%id%%',
-                'title' => ts('Delete webhook'),
-                'class' => 'crm-popup webhook-action',
+                "name" => ts("Delete"),
+                "url" => "civicrm/admin/webhooks/delete",
+                "qs" => "id=%%id%%",
+                "title" => ts("Delete webhook"),
+                "class" => "crm-popup webhook-action",
             ],
         ];
     }
