@@ -73,30 +73,30 @@ class CRM_Webhook_Form_WebhookForm extends CRM_Webhook_Form_WebhookBase {
         parent::buildQuickForm();
 
         // Add form elements
-        $this->add('text', 'name', ts('Webhook Name'), [], true);
-        $this->add('text', 'selector', ts('Selector'), [], true);
-        $this->add('text', 'handler', ts('Handler Class'), [], true);
-        $this->add('text', 'description', ts('Description'), [], true);
-        $this->add('text', 'label', ts('Label'), [], true);
+        $this->add("text", "name", ts("Webhook Name"), [], true);
+        $this->add("text", "selector", ts("Selector"), [], true);
+        $this->add("text", "handler", ts("Handler Class"), [], true);
+        $this->add("text", "description", ts("Description"), [], true);
+        $this->add("text", "label", ts("Label"), [], true);
         if (!is_null($this->id)) {
-            $this->add('hidden', 'id');
+            $this->add("hidden", "id");
         }
 
         // Submit buttons
         $this->addButtons(
             [
                 [
-                    'type' => 'done',
-                    'name' => ts('Save'),
-                    'isDefault' => true,
+                    "type" => "done",
+                    "name" => ts("Save"),
+                    "isDefault" => true,
                 ],
                 [
-                    'type' => 'cancel',
-                    'name' => ts('Cancel'),
+                    "type" => "cancel",
+                    "name" => ts("Cancel"),
                 ],
             ]
         );
-        $this->setTitle(ts('Webhook Form'));
+        $this->setTitle(ts("Webhook Form"));
     }
 
     /**
@@ -105,7 +105,7 @@ class CRM_Webhook_Form_WebhookForm extends CRM_Webhook_Form_WebhookBase {
     public function addRules() {
         $this->addFormRule(
             ["CRM_Webhook_Form_WebhookForm", "validateSelector"],
-            ['config' => $this->config,]
+            ["config" => $this->config,]
         );
     }
 
