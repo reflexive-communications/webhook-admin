@@ -38,4 +38,19 @@ class CRM_Webhook_Form_WebhookSettingsTest extends CRM_Webhook_Form_TestBase {
             self::fail("It shouldn't throw exception.");
         }
     }
+
+    /**
+     * Links test case.
+     * It shouldn't throw exception.
+     */
+    public function testLinks() {
+        $this->setupTestConfig();
+        $form = new CRM_Webhook_Form_WebhookSettings();
+        try {
+            $list = $form->links();
+            selt::assertEquals(2, count($links), "Invalid link length.");
+        } catch (Exception $e) {
+            self::fail("It shouldn't throw exception.");
+        }
+    }
 }

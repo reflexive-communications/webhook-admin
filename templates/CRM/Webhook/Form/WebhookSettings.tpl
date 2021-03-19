@@ -19,17 +19,19 @@
                 <th id="sortable">{ts}Handler{/ts}</th>
                 <th id="sortable">{ts}Description{/ts}</th>
                 <th id="sortable">{ts}Label{/ts}</th>
+                <th id="sortable">{ts}Actions{/ts}</th>
             </tr>
             </thead>
             <tbody>
             {foreach from=$webhooks key=id item=webhook}
                 <tr class="crm-entity {cycle values="odd-row,even-row"}">
-                    <td class="centered">{$id}</td>
-                    <td class="centered">{$webhook.name}</td>
-                    <td class="centered">{$webhook.selector}</td>
-                    <td class="centered">{$webhook.handler}</td>
-                    <td class="centered">{$webhook.description}</td>
-                    <td class="centered">{$webhook.label}</td>
+                    <td>{$id}</td>
+                    <td>{$webhook.name}</td>
+                    <td>{$webhook.selector}</td>
+                    <td>{$webhook.handler}</td>
+                    <td>{$webhook.description}</td>
+                    <td>{$webhook.label}</td>
+                    <td>{$webhook.actions}</td>
                 </tr>
             {/foreach}
             </tbody>
