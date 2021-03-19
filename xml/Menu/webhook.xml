@@ -12,4 +12,10 @@
         <title>WebhookForm</title>
         <access_arguments>administer CiviCRM</access_arguments>
     </item>
+    <item>
+        <path>civicrm/admin/webhooks/delete</path>
+        <page_callback>CRM_Webhook_Form_WebhookDelete</page_callback>
+        <title>WebhookDelete</title>
+        <access_arguments>access CiviCRM</access_arguments>
+    </item>
 </menu>
