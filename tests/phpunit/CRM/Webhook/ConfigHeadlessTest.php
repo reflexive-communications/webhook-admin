@@ -151,4 +151,44 @@ class CRM_Webhook_ConfigHeadlessTest extends \PHPUnit\Framework\TestCase impleme
         self::expectExceptionMessage(CRM_Webhook_Config::DEFAULT_HOOK_SELECTOR." selector is duplicated.", "Invalid exception message.");
         $config->addWebhook($newHook);
     }
+    /**
+     * It checks that the updateWebhook function works well.
+     * Without duplication the update should be successful.
+     * On case of duplication exception is expected.
+     */
+    public function testUpdateWebhookNoDuplication() {
+        $config = new CRM_Webhook_Config("webhook_test");
+        self::assertTrue($config->create(), "Create config has to be successful.");
+        $cfg = $config->get();
+        $newHook = [
+            "id" => 0,
+            "name" => CRM_Webhook_Config::DEFAULT_HOOK_NAME,
+            "label" => CRM_Webhook_Config::DEFAULT_HOOK_LABEL,
+            "description" => CRM_Webhook_Config::DEFAULT_HOOK_DESC,
+            "handler" => CRM_Webhook_Config::DEFAULT_HOOK_HANDLER,
+            "selector" => CRM_Webhook_Config::DEFAULT_HOOK_SELECTOR."_something_different",
+        ];
+        $cfg["webhooks"][0]["selector"] = CRM_Webhook_Config::DEFAULT_HOOK_SELECTOR."_something_different";
+        self::assertTrue($config->updateWebhook($newHook), "Update Webhook has to be successful.");
+        $cfgUpdated = $config->get();
+        self::assertEquals($cfg, $cfgUpdated, "Invalid updated configuration.");
+    }
+    public function testUpdateWebhookWithDuplication() {
+        $config = new CRM_Webhook_Config("webhook_test");
+        self::assertTrue($config->create(), "Create config has to be successful.");
+        $cfg = $config->get();
+        $newHook = [
+            "name" => CRM_Webhook_Config::DEFAULT_HOOK_NAME,
+            "label" => CRM_Webhook_Config::DEFAULT_HOOK_LABEL,
+            "description" => CRM_Webhook_Config::DEFAULT_HOOK_DESC,
+            "handler" => CRM_Webhook_Config::DEFAULT_HOOK_HANDLER,
+            "selector" => CRM_Webhook_Config::DEFAULT_HOOK_SELECTOR."_something_different",
+        ];
+        self::assertTrue($config->addWebhook($newHook), "Add Webhook has to be successful.");
+        $newHook["id"] = 1;
+        $newHook["selector"] = CRM_Webhook_Config::DEFAULT_HOOK_SELECTOR;
+        self::expectException(CRM_Core_Exception::class, "Invalid exception class.");
+        self::expectExceptionMessage(CRM_Webhook_Config::DEFAULT_HOOK_SELECTOR." selector is duplicated.", "Invalid exception message.");
+        $config->updateWebhook($newHook);
+    }
 }

@@ -145,4 +145,26 @@ class CRM_Webhook_Config {
         $this->configuration["webhooks"][$id] = $webhook;
         return $this->update($this->configuration);
     }
+
+    /**
+     * Updates an existing webhook.
+     *
+     * @param array $webhook the data to save
+     *
+     * @return bool the status of the update process.
+     *
+     * @throws CRM_Core_Exception.
+     */
+    public function updateWebhook(array $webhook): bool {
+        // load latest config
+        $this->load();
+        // duplication check - in case of duplication throws exception
+        foreach ($this->configuration["webhooks"] as $hook) {
+            if ($hook["selector"] == $webhook["selector"] && $webhook["id"] != $hook["id"]) {
+                throw new CRM_Core_Exception($webhook["selector"]." selector is duplicated.");
+            }
+        }
+        $this->configuration["webhooks"][$webhook["id"]] = $webhook;
+        return $this->update($this->configuration);
+    }
 }
