@@ -7,7 +7,7 @@ use CRM_Webhook_ExtensionUtil as E;
  *
  * @see https://docs.civicrm.org/dev/en/latest/framework/quickform/
  */
-class CRM_Webhook_Form_WebhookDelete extends CRM_Core_Form {
+class CRM_Webhook_Form_WebhookDelete extends CRM_Webhook_Form_WebhookBase {
 
     public function buildQuickForm() {
         parent::buildQuickForm();
@@ -29,7 +29,7 @@ class CRM_Webhook_Form_WebhookDelete extends CRM_Core_Form {
         $this->assign("hookName", $hook["name"]);
         $this->assign("hookSelector", $hook["selector"]);
 
-        $this->setTitle(ts("Delete webhook"));
+        $this->setTitle(ts("Webhook Delete"));
     }
 
     public function postProcess() {

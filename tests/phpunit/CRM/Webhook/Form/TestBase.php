@@ -24,6 +24,12 @@ class CRM_Webhook_Form_TestBase extends \PHPUnit\Framework\TestCase implements H
         ],
     ];
 
+    protected function setGlobals(string $key, $value) {
+        $_GET[$key] = $value;
+        $_POST[$key] = $value;
+        $_REQUEST[$key] = $value;
+    }
+
     public function setUpHeadless() {
         return \Civi\Test::headless()
             ->installMe(__DIR__)
