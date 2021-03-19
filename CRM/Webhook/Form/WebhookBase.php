@@ -9,6 +9,13 @@ use CRM_Webhook_ExtensionUtil as E;
  */
 class CRM_Webhook_Form_WebhookBase extends CRM_Core_Form {
     /**
+     * Route ID
+     *
+     * @var int|null
+     */
+    protected $id;
+
+    /**
      * Configdb
      *
      * @var CRM_Webhook_Config
@@ -24,5 +31,8 @@ class CRM_Webhook_Form_WebhookBase extends CRM_Core_Form {
         // Get current settings
         $this->config = new CRM_Webhook_Config(E::LONG_NAME);
         $this->config->load();
+
+        // Get route ID from request
+        $this->id = CRM_Utils_Request::retrieve('id', 'Positive');
     }
 }

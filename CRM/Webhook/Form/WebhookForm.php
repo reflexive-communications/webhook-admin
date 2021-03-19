@@ -10,22 +10,12 @@ use CRM_Webhook_ExtensionUtil as E;
 class CRM_Webhook_Form_WebhookForm extends CRM_Webhook_Form_WebhookBase {
 
     /**
-     * Route ID
-     *
-     * @var int|null
-     */
-    private $id;
-
-    /**
      * Preprocess form
      *
      * @throws CRM_Core_Exception
      */
     public function preProcess() {
         parent::preProcess();
-
-        // Get route ID from request
-        $this->id = CRM_Utils_Request::retrieve('id', 'Positive');
     }
 
     /**
