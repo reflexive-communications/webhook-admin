@@ -9,6 +9,66 @@ use CRM_Webhook_ExtensionUtil as E;
  */
 class CRM_Webhook_Form_WebhookForm extends CRM_Webhook_Form_WebhookBase {
 
+    /**
+     * Route ID
+     *
+     * @var int|null
+     */
+    private $id;
+
+    /**
+     * Preprocess form
+     *
+     * @throws CRM_Core_Exception
+     */
+    public function preProcess() {
+        parent::preProcess();
+
+        // Get route ID from request
+        $this->id = CRM_Utils_Request::retrieve('id', 'Positive');
+    }
+
+    /**
+     * Returns the webhook that connects to the id
+     *
+     * @param int $id webhook id
+     *
+     * @return array
+     */
+    public function getWebhook(int $id) {
+        $config = $this->config->get();
+        if (isset($config["webhooks"][$id])) {
+            return $config["webhooks"][$id];
+        }
+        return [];
+    }
+
+    /**
+     * Set default values
+     *
+     * @return array
+     */
+    public function setDefaultValues() {
+        // new item - no defaults
+        if (is_null($this->id)) {
+            return [];
+        }
+        $webhook = $this->getWebhook($this->id);
+
+        if (empty($webhook)) {
+            return [];
+        }
+        // Set defaults
+        $this->_defaults["name"] = $webhook["name"];
+        $this->_defaults["selector"] = $webhook["selector"];
+        $this->_defaults["handler"] = $webhook["handler"];
+        $this->_defaults["description"] = $webhook["description"];
+        $this->_defaults["label"] = $webhook["label"];
+        $this->_defaults["id"] = $this->id;
+
+        return $this->_defaults;
+    }
+
     public function buildQuickForm() {
         parent::buildQuickForm();
 
@@ -18,6 +78,9 @@ class CRM_Webhook_Form_WebhookForm extends CRM_Webhook_Form_WebhookBase {
         $this->add('text', 'handler', ts('Handler Class'), [], true);
         $this->add('text', 'description', ts('Description'), [], true);
         $this->add('text', 'label', ts('Label'), [], true);
+        if (!is_null($this->id)) {
+            $this->add('hidden', 'id');
+        }
 
         // Submit buttons
         $this->addButtons(

@@ -10,12 +10,12 @@ use CRM_Webhook_ExtensionUtil as E;
 class CRM_Webhook_Form_WebhookFormTest extends CRM_Webhook_Form_TestBase {
 
     /**
-     * Build quick form test case.
+     * Build quick form test cases.
      * Setup test configuration, preProcess then call the function.
      * It shouldn't throw exception.
      * The title should be set.
      */
-    public function testBuildQuickForm() {
+    public function testBuildQuickFormWithoutId() {
         $this->setupTestConfig();
         $form = new CRM_Webhook_Form_WebhookForm();
         self::assertEmpty($form->preProcess(), "PreProcess supposed to be empty.");
@@ -25,6 +25,47 @@ class CRM_Webhook_Form_WebhookFormTest extends CRM_Webhook_Form_TestBase {
             self::fail("It shouldn't throw exception.");
         }
         self::assertEquals("Webhook Form", $form->getTitle(), "Invalid form title.");
+    }
+    public function testBuildQuickFormWithId() {
+        $_GET["id"] = self::TEST_SETTINGS["webhooks"][0]["id"];
+        $this->setupTestConfig();
+        $form = new CRM_Webhook_Form_WebhookForm();
+        self::assertEmpty($form->preProcess(), "PreProcess supposed to be empty.");
+        try {
+            self::assertEmpty($form->buildQuickForm());
+        } catch (Exception $e) {
+            self::fail("It shouldn't throw exception.");
+        }
+        self::assertEquals("Webhook Form", $form->getTitle(), "Invalid form title.");
+    }
+
+    /**
+     * Default values test cases.
+     * Without id - no defaults.
+     * With not existing id - no defaults.
+     * existing id - defaults.
+     */
+    public function testSetDefaultValuesNoId() {
+        $this->setupTestConfig();
+        $form = new CRM_Webhook_Form_WebhookForm();
+        self::assertEmpty($form->preProcess(), "PreProcess supposed to be empty.");
+        $defaults = $form->setDefaultValues();
+        self::assertEquals([], $defaults, "Should be empty without id.");
+    }
+    public function testSetDefaultValuesNotExistingId() {
+        $_GET["id"] = self::TEST_SETTINGS["sequence"];
+        $this->setupTestConfig();
+        $form = new CRM_Webhook_Form_WebhookForm();
+        self::assertEmpty($form->preProcess(), "PreProcess supposed to be empty.");
+        $defaults = $form->setDefaultValues();
+        self::assertEquals([], $defaults, "Should be empty with not existing id.");
+    }
+    public function testSetDefaultValuesGoodId() {
+        $_GET["id"] = self::TEST_SETTINGS["webhooks"][0]["id"];
+        $this->setupTestConfig();
+        $form = new CRM_Webhook_Form_WebhookForm();
+        self::assertEmpty($form->preProcess(), "PreProcess supposed to be empty.");
+        self::assertEquals(self::TEST_SETTINGS["webhooks"][self::TEST_SETTINGS["webhooks"][0]["id"]], $defaults, "Should be the same.");
     }
 
     /**
