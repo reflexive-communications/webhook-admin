@@ -191,4 +191,19 @@ class CRM_Webhook_ConfigHeadlessTest extends \PHPUnit\Framework\TestCase impleme
         self::expectExceptionMessage(CRM_Webhook_Config::DEFAULT_HOOK_SELECTOR." selector is duplicated.", "Invalid exception message.");
         $config->updateWebhook($newHook);
     }
+    /**
+     * It checks that the deleteWebhook function works well.
+     */
+    public function testDeleteWebhook() {
+        $config = new CRM_Webhook_Config("webhook_test");
+        self::assertTrue($config->create(), "Create config has to be successful.");
+        $cfg = $config->get();
+        self::assertEquals(1, count($cfg["webhooks"]), "Invalid default configuration.");
+        $config->deleteWebhook(1);
+        $cfg = $config->get();
+        self::assertEquals(1, count($cfg["webhooks"]), "Invalid number of webhooks after deleting a non existing config.");
+        $config->deleteWebhook(0);
+        $cfg = $config->get();
+        self::assertEquals(0, count($cfg["webhooks"]), "Invalid updated configuration.");
+    }
 }

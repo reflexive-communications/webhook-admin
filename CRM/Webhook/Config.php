@@ -167,4 +167,20 @@ class CRM_Webhook_Config {
         $this->configuration["webhooks"][$webhook["id"]] = $webhook;
         return $this->update($this->configuration);
     }
+
+    /**
+     * Deletes an existing webhook.
+     *
+     * @param int $webhook the id that we want to delete.
+     *
+     * @return bool the status of the deletion process.
+     *
+     * @throws CRM_Core_Exception.
+     */
+    public function deleteWebhook(int $webhook): bool {
+        // load latest config
+        $this->load();
+        unset($this->configuration["webhooks"][$webhook]);
+        return $this->update($this->configuration);
+    }
 }
