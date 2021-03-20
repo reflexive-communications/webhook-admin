@@ -26,8 +26,8 @@ class CRM_Webhook_Processor_Dummy extends CRM_Webhook_Processor_Base {
         $inputRaw = file_get_contents("php://input");
         $get = $_GET;
         $post = $_POST;
-        $headers = self::getHeaders();
+        $headers = $this->getHeaders();
 
-        return [ "raw" => $inputRaw, "get" => $get, "post" => $post, "header" => $header ];
+        return [ "raw" => $inputRaw, "get" => $get, "post" => $post, "header" => $headers ];
     }
 }

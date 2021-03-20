@@ -24,13 +24,11 @@ class CRM_Webhook_Processor_DummyTest extends \PHPUnit\Framework\TestCase {
      * Input test case.
      */
     public function testInput() {
+        $_POST = [];
+        $_GET = [];
         $dummy = new CRM_Webhook_Processor_Dummy();
-        try {
-            $input = $dummy->input();
-            self::assertEquals([ "raw" => "", "get" => [], "post" => [], "header" => []], $input, "Input supposed to be empty in this case.");
-        } catch (Exception $e) {
-            self::fail("It shouldn't throw exception. ".$e->getMessage());
-        }
+        $input = $dummy->input();
+        self::assertEquals([ "raw" => "", "get" => [], "post" => [], "header" => []], $input, "Input supposed to be empty in this case.");
     }
 
 }
