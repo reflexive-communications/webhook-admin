@@ -116,7 +116,6 @@ class CRM_Webhook_Form_WebhookFormTest extends CRM_Webhook_Form_TestBase {
     public function testPostProcessDeletedConfig() {
         $this->setGlobals("id", null);
         $_POST["name"] = self::TEST_SETTINGS["webhooks"][0]["name"];
-        $_POST["label"] = self::TEST_SETTINGS["webhooks"][0]["label"];
         $_POST["description"] = self::TEST_SETTINGS["webhooks"][0]["description"];
         $_POST["handler"] = self::TEST_SETTINGS["webhooks"][0]["handler"];
         $_POST["selector"] = self::TEST_SETTINGS["webhooks"][0]["selector"]."_something_else";
@@ -130,7 +129,6 @@ class CRM_Webhook_Form_WebhookFormTest extends CRM_Webhook_Form_TestBase {
     public function testPostProcessDuplicatedInput() {
         $this->setGlobals("id", null);
         $_POST["name"] = self::TEST_SETTINGS["webhooks"][0]["name"];
-        $_POST["label"] = self::TEST_SETTINGS["webhooks"][0]["label"];
         $_POST["description"] = self::TEST_SETTINGS["webhooks"][0]["description"];
         $_POST["handler"] = self::TEST_SETTINGS["webhooks"][0]["handler"];
         $_POST["selector"] = self::TEST_SETTINGS["webhooks"][0]["selector"];
@@ -142,7 +140,6 @@ class CRM_Webhook_Form_WebhookFormTest extends CRM_Webhook_Form_TestBase {
     public function testPostProcessValidInput() {
         $this->setGlobals("id", null);
         $_POST["name"] = self::TEST_SETTINGS["webhooks"][0]["name"];
-        $_POST["label"] = self::TEST_SETTINGS["webhooks"][0]["label"];
         $_POST["description"] = self::TEST_SETTINGS["webhooks"][0]["description"];
         $_POST["handler"] = self::TEST_SETTINGS["webhooks"][0]["handler"];
         $_POST["selector"] = self::TEST_SETTINGS["webhooks"][0]["selector"]."_something_else";
@@ -161,7 +158,6 @@ class CRM_Webhook_Form_WebhookFormTest extends CRM_Webhook_Form_TestBase {
     public function testPostProcessValidInputEdition() {
         $this->setGlobals("id", self::TEST_SETTINGS["webhooks"][0]["id"]);
         $_POST["name"] = self::TEST_SETTINGS["webhooks"][0]["name"];
-        $_POST["label"] = self::TEST_SETTINGS["webhooks"][0]["label"];
         $_POST["description"] = self::TEST_SETTINGS["webhooks"][0]["description"];
         $_POST["handler"] = self::TEST_SETTINGS["webhooks"][0]["handler"];
         $_POST["selector"] = self::TEST_SETTINGS["webhooks"][0]["selector"]."_something_else";
