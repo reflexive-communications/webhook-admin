@@ -29,6 +29,8 @@ class CRM_Webhook_ConfigHeadlessTest extends \PHPUnit\Framework\TestCase impleme
     private function isDefaultConfiguration(array $cfg) {
         self::assertTrue(array_key_exists("sequence", $cfg), "sequence key is missing from the config.");
         self::assertEquals(1, $cfg["sequence"], "Invalid sequence initial value.");
+        self::assertTrue(array_key_exists("logs", $cfg), "logs key is missing from the config.");
+        self::assertEquals([], $cfg["logs"], "Invalid logs initial value.");
         self::assertTrue(array_key_exists("webhooks", $cfg), "webhooks key is missing from the config.");
         self::assertEquals(1, count($cfg["webhooks"]), "Invalid initial number of webhooks.");
         self::assertTrue(array_key_exists("name", $cfg["webhooks"][0]), "webhooks[0].name key is missing from the config.");
@@ -205,5 +207,35 @@ class CRM_Webhook_ConfigHeadlessTest extends \PHPUnit\Framework\TestCase impleme
         $config->deleteWebhook(0);
         $cfg = $config->get();
         self::assertEquals(0, count($cfg["webhooks"]), "Invalid updated configuration.");
+    }
+    /**
+     * It checks that the insertLog function works well.
+     */
+    public function testInsertLog() {
+        $config = new CRM_Webhook_Config("webhook_test");
+        self::assertTrue($config->create(), "Create config has to be successful.");
+        $cfg = $config->get();
+        self::assertEquals(0, count($cfg["logs"]), "Invalid default configuration.");
+        $config->insertLog(["k"=>"v"]);
+        $cfg = $config->get();
+        self::assertEquals(1, count($cfg["logs"]), "Invalid number of logs after insert.");
+        $config->insertLog(["k"=>"v"]);
+        $cfg = $config->get();
+        self::assertEquals(2, count($cfg["logs"]), "Invalid number of logs after insert.");
+    }
+    /**
+     * It checks that the deleteLogs function works well.
+     */
+    public function testDeleteLogs() {
+        $config = new CRM_Webhook_Config("webhook_test");
+        self::assertTrue($config->create(), "Create config has to be successful.");
+        $cfg = $config->get();
+        self::assertEquals(0, count($cfg["logs"]), "Invalid default configuration.");
+        $config->insertLog(["k"=>"v"]);
+        $cfg = $config->get();
+        self::assertEquals(1, count($cfg["logs"]), "Invalid number of logs after insert.");
+        $config->deleteLogs();
+        $cfg = $config->get();
+        self::assertEquals(0, count($cfg["logs"]), "Invalid number of logs after deletion.");
     }
 }

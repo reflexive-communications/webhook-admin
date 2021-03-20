@@ -29,6 +29,8 @@ class CRM_Webhook_ConfigTest extends \PHPUnit\Framework\TestCase {
         $cfg = $config->get();
         self::assertTrue(array_key_exists("sequence", $cfg), "sequence key is missing from the config.");
         self::assertEquals(1, $cfg["sequence"], "Invalid sequence initial value.");
+        self::assertTrue(array_key_exists("logs", $cfg), "logs key is missing from the config.");
+        self::assertEquals([], $cfg["logs"], "Invalid logs initial value.");
         self::assertTrue(array_key_exists("webhooks", $cfg), "webhooks key is missing from the config.");
         self::assertEquals(1, count($cfg["webhooks"]), "Invalid initial number of webhooks.");
         self::assertTrue(array_key_exists("name", $cfg["webhooks"][0]), "webhooks[0].name key is missing from the config.");

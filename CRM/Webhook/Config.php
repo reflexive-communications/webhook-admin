@@ -28,6 +28,7 @@ class CRM_Webhook_Config {
     private function defaultConfiguration(): array {
         return [
             "sequence" => 1,
+            "logs" => [],
             "webhooks" => [
                 0 => [
                     "name" => self::DEFAULT_HOOK_NAME,
@@ -181,6 +182,35 @@ class CRM_Webhook_Config {
         // load latest config
         $this->load();
         unset($this->configuration["webhooks"][$webhook]);
+        return $this->update($this->configuration);
+    }
+
+    /**
+     * Delete the log entries.
+     *
+     * @return bool the status of the deletion process.
+     */
+    public function deleteLogs(): bool {
+        // load latest config
+        $this->load();
+        $this->configuration["logs"] = [];
+        return $this->update($this->configuration);
+    }
+
+    /**
+     * Inserts a new log entry.
+     *
+     * @param array $data the data to store.
+     *
+     * @return bool the status of the insertion process.
+     */
+    public function insertLog(array $data): bool {
+        // load latest config
+        $this->load();
+        $this->configuration["logs"][] = [
+            "data" => $data,
+            "timestamp" => time(),
+        ];
         return $this->update($this->configuration);
     }
 }
