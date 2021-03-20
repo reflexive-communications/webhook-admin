@@ -53,7 +53,6 @@ class CRM_Webhook_Form_WebhookForm extends CRM_Webhook_Form_WebhookBase {
         $this->_defaults["selector"] = $webhook["selector"];
         $this->_defaults["handler"] = $webhook["handler"];
         $this->_defaults["description"] = $webhook["description"];
-        $this->_defaults["label"] = $webhook["label"];
         $this->_defaults["id"] = $this->id;
 
         return $this->_defaults;
@@ -67,7 +66,6 @@ class CRM_Webhook_Form_WebhookForm extends CRM_Webhook_Form_WebhookBase {
         $this->add("text", "selector", ts("Selector"), [], true);
         $this->add("text", "handler", ts("Handler Class"), [], true);
         $this->add("text", "description", ts("Description"), [], true);
-        $this->add("text", "label", ts("Label"), [], true);
         if (!is_null($this->id)) {
             $this->add("hidden", "id");
         }
@@ -138,7 +136,6 @@ class CRM_Webhook_Form_WebhookForm extends CRM_Webhook_Form_WebhookBase {
             "selector" => $this->_submitValues["selector"],
             "handler" => $this->_submitValues["handler"],
             "description" => $this->_submitValues["description"],
-            "label" => $this->_submitValues["label"],
         ];
         try {
             $status = true;
