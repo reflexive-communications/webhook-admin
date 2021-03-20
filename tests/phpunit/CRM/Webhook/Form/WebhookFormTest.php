@@ -119,6 +119,7 @@ class CRM_Webhook_Form_WebhookFormTest extends CRM_Webhook_Form_TestBase {
         $_POST["description"] = self::TEST_SETTINGS["webhooks"][0]["description"];
         $_POST["handler"] = self::TEST_SETTINGS["webhooks"][0]["handler"];
         $_POST["selector"] = self::TEST_SETTINGS["webhooks"][0]["selector"]."_something_else";
+        $_POST["processor"] = self::TEST_SETTINGS["webhooks"][0]["processor"];
         $this->setupTestConfig();
         $form = new CRM_Webhook_Form_WebhookForm();
         self::assertEmpty($form->preProcess(), "PreProcess supposed to be empty.");
@@ -132,6 +133,7 @@ class CRM_Webhook_Form_WebhookFormTest extends CRM_Webhook_Form_TestBase {
         $_POST["description"] = self::TEST_SETTINGS["webhooks"][0]["description"];
         $_POST["handler"] = self::TEST_SETTINGS["webhooks"][0]["handler"];
         $_POST["selector"] = self::TEST_SETTINGS["webhooks"][0]["selector"];
+        $_POST["processor"] = self::TEST_SETTINGS["webhooks"][0]["processor"];
         $this->setupTestConfig();
         $form = new CRM_Webhook_Form_WebhookForm();
         self::assertEmpty($form->preProcess(), "PreProcess supposed to be empty.");
@@ -143,6 +145,7 @@ class CRM_Webhook_Form_WebhookFormTest extends CRM_Webhook_Form_TestBase {
         $_POST["description"] = self::TEST_SETTINGS["webhooks"][0]["description"];
         $_POST["handler"] = self::TEST_SETTINGS["webhooks"][0]["handler"];
         $_POST["selector"] = self::TEST_SETTINGS["webhooks"][0]["selector"]."_something_else";
+        $_POST["processor"] = self::TEST_SETTINGS["webhooks"][0]["processor"];
         $this->setupTestConfig();
         $form = new CRM_Webhook_Form_WebhookForm();
         self::assertEmpty($form->preProcess(), "PreProcess supposed to be empty.");
@@ -161,6 +164,7 @@ class CRM_Webhook_Form_WebhookFormTest extends CRM_Webhook_Form_TestBase {
         $_POST["description"] = self::TEST_SETTINGS["webhooks"][0]["description"];
         $_POST["handler"] = self::TEST_SETTINGS["webhooks"][0]["handler"];
         $_POST["selector"] = self::TEST_SETTINGS["webhooks"][0]["selector"]."_something_else";
+        $_POST["processor"] = self::TEST_SETTINGS["webhooks"][0]["processor"];
         $this->setupTestConfig();
         $form = new CRM_Webhook_Form_WebhookForm();
         $config = new CRM_Webhook_Config(E::LONG_NAME);

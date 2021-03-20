@@ -19,6 +19,7 @@ class CRM_Webhook_Form_TestBase extends \PHPUnit\Framework\TestCase implements H
                 "description" => "test description",
                 "handler" => "test_handler",
                 "selector" => "test-selector",
+                "processor" => "test-processor",
             ],
         ],
     ];
