@@ -2,7 +2,6 @@
 
 class CRM_Webhook_Config {
     const DEFAULT_HOOK_NAME = "Logger webhook";
-    const DEFAULT_HOOK_LABEL = "Logger webhook";
     const DEFAULT_HOOK_DESC = "This webhook could be used for testing purposes. It logs the received data.";
     const DEFAULT_HOOK_HANDLER = "CRM_Webhook_Whatever";
     const DEFAULT_HOOK_SELECTOR = "logger-hook";
@@ -31,7 +30,6 @@ class CRM_Webhook_Config {
             "webhooks" => [
                 0 => [
                     "name" => self::DEFAULT_HOOK_NAME,
-                    "label" => self::DEFAULT_HOOK_LABEL,
                     "description" => self::DEFAULT_HOOK_DESC,
                     "handler" => self::DEFAULT_HOOK_HANDLER,
                     "selector" => self::DEFAULT_HOOK_SELECTOR,

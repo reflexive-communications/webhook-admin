@@ -33,8 +33,6 @@ class CRM_Webhook_ConfigHeadlessTest extends \PHPUnit\Framework\TestCase impleme
         self::assertEquals(1, count($cfg["webhooks"]), "Invalid initial number of webhooks.");
         self::assertTrue(array_key_exists("name", $cfg["webhooks"][0]), "webhooks[0].name key is missing from the config.");
         self::assertEquals(CRM_Webhook_Config::DEFAULT_HOOK_NAME, $cfg["webhooks"][0]["name"], "Invalid webhooks[0].name.");
-        self::assertTrue(array_key_exists("label", $cfg["webhooks"][0]), "webhooks[0].label key is missing from the config.");
-        self::assertEquals(CRM_Webhook_Config::DEFAULT_HOOK_LABEL, $cfg["webhooks"][0]["label"], "Invalid webhooks[0].label.");
         self::assertTrue(array_key_exists("description", $cfg["webhooks"][0]), "webhooks[0].description key is missing from the config.");
         self::assertEquals(CRM_Webhook_Config::DEFAULT_HOOK_DESC, $cfg["webhooks"][0]["description"], "Invalid webhooks[0].description.");
         self::assertTrue(array_key_exists("handler", $cfg["webhooks"][0]), "webhooks[0].handler key is missing from the config.");
@@ -124,7 +122,6 @@ class CRM_Webhook_ConfigHeadlessTest extends \PHPUnit\Framework\TestCase impleme
         $cfg = $config->get();
         $newHook = [
             "name" => CRM_Webhook_Config::DEFAULT_HOOK_NAME,
-            "label" => CRM_Webhook_Config::DEFAULT_HOOK_LABEL,
             "description" => CRM_Webhook_Config::DEFAULT_HOOK_DESC,
             "handler" => CRM_Webhook_Config::DEFAULT_HOOK_HANDLER,
             "selector" => CRM_Webhook_Config::DEFAULT_HOOK_SELECTOR."_something_different",
@@ -142,7 +139,6 @@ class CRM_Webhook_ConfigHeadlessTest extends \PHPUnit\Framework\TestCase impleme
         $cfg = $config->get();
         $newHook = [
             "name" => CRM_Webhook_Config::DEFAULT_HOOK_NAME,
-            "label" => CRM_Webhook_Config::DEFAULT_HOOK_LABEL,
             "description" => CRM_Webhook_Config::DEFAULT_HOOK_DESC,
             "handler" => CRM_Webhook_Config::DEFAULT_HOOK_HANDLER,
             "selector" => CRM_Webhook_Config::DEFAULT_HOOK_SELECTOR,
@@ -163,7 +159,6 @@ class CRM_Webhook_ConfigHeadlessTest extends \PHPUnit\Framework\TestCase impleme
         $newHook = [
             "id" => 0,
             "name" => CRM_Webhook_Config::DEFAULT_HOOK_NAME,
-            "label" => CRM_Webhook_Config::DEFAULT_HOOK_LABEL,
             "description" => CRM_Webhook_Config::DEFAULT_HOOK_DESC,
             "handler" => CRM_Webhook_Config::DEFAULT_HOOK_HANDLER,
             "selector" => CRM_Webhook_Config::DEFAULT_HOOK_SELECTOR."_something_different",
@@ -179,7 +174,6 @@ class CRM_Webhook_ConfigHeadlessTest extends \PHPUnit\Framework\TestCase impleme
         $cfg = $config->get();
         $newHook = [
             "name" => CRM_Webhook_Config::DEFAULT_HOOK_NAME,
-            "label" => CRM_Webhook_Config::DEFAULT_HOOK_LABEL,
             "description" => CRM_Webhook_Config::DEFAULT_HOOK_DESC,
             "handler" => CRM_Webhook_Config::DEFAULT_HOOK_HANDLER,
             "selector" => CRM_Webhook_Config::DEFAULT_HOOK_SELECTOR."_something_different",
