@@ -5,6 +5,7 @@ class CRM_Webhook_Config {
     const DEFAULT_HOOK_DESC = "This webhook could be used for testing purposes. It logs the received data.";
     const DEFAULT_HOOK_HANDLER = "CRM_Webhook_Whatever";
     const DEFAULT_HOOK_SELECTOR = "logger-hook";
+    const DEFAULT_HOOK_PROCESSOR = "dummy";
 
     private $configName;
     private $configuration;
@@ -33,6 +34,7 @@ class CRM_Webhook_Config {
                     "description" => self::DEFAULT_HOOK_DESC,
                     "handler" => self::DEFAULT_HOOK_HANDLER,
                     "selector" => self::DEFAULT_HOOK_SELECTOR,
+                    "processor" => self::DEFAULT_HOOK_PROCESSOR,
                     "id" => 0,
                 ],
             ],
