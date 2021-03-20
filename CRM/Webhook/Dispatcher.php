@@ -36,12 +36,12 @@ class CRM_Webhook_Dispatcher {
     public function run() {
         // Get the listener param from the get object
         // listener has to be a get param.
-        $listener = $_GET["listener"];
-        if (empty($listener)) {
+        if (!isset($_GET["listener"])) {
             http_response_code(400);
             echo "Missing listener.";
             exit();
         }
+        $listener = $_GET["listener"];
         // Load configs
         CRM_Core_Config::singleton();
         $config = new CRM_Webhook_Config(E::LONG_NAME);
