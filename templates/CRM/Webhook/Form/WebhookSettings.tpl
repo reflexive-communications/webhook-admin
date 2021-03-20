@@ -18,7 +18,6 @@
                 <th id="sortable">{ts}Selector{/ts}</th>
                 <th id="sortable">{ts}Handler{/ts}</th>
                 <th id="sortable">{ts}Description{/ts}</th>
-                <th id="sortable">{ts}Label{/ts}</th>
                 <th id="sortable">{ts}Actions{/ts}</th>
             </tr>
             </thead>
@@ -30,7 +29,6 @@
                     <td>{$webhook.selector}</td>
                     <td>{$webhook.handler}</td>
                     <td>{$webhook.description}</td>
-                    <td>{$webhook.label}</td>
                     <td>{$webhook.actions}</td>
                 </tr>
             {/foreach}

@@ -7,12 +7,6 @@
             </td>
         </tr>
         <tr>
-            <td class="label">{$form.label.label}</td>
-            <td class="content">{$form.label.html}<br/>
-                <span class="description">{ts}Label of the webhook{/ts}</span>
-            </td>
-        </tr>
-        <tr>
             <td class="label">{$form.selector.label}</td>
             <td class="content">{$form.selector.html}<br/>
                 <span class="description">{ts}Selector - routing is based on this parameter{/ts}</span>
