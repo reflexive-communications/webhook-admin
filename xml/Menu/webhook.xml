@@ -18,4 +18,10 @@
         <title>WebhookDelete</title>
         <access_arguments>administer CiviCRM</access_arguments>
     </item>
+    <item>
+        <path>civicrm/admin/webhooks/logs</path>
+        <page_callback>CRM_Webhook_Form_LogTable</page_callback>
+        <title>LogTable</title>
+        <access_arguments>administer CiviCRM</access_arguments>
+    </item>
 </menu>
