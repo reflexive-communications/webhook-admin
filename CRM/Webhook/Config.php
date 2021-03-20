@@ -3,9 +3,9 @@
 class CRM_Webhook_Config {
     const DEFAULT_HOOK_NAME = "Logger webhook";
     const DEFAULT_HOOK_DESC = "This webhook could be used for testing purposes. It logs the received data.";
-    const DEFAULT_HOOK_HANDLER = "CRM_Webhook_Whatever";
+    const DEFAULT_HOOK_HANDLER = "CRM_Webhook_Handler_Logger";
     const DEFAULT_HOOK_SELECTOR = "logger-hook";
-    const DEFAULT_HOOK_PROCESSOR = "dummy";
+    const DEFAULT_HOOK_PROCESSOR = "CRM_Webhook_Processor_Dummy";
 
     private $configName;
     private $configuration;
