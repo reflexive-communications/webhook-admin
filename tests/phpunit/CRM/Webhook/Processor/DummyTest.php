@@ -27,7 +27,7 @@ class CRM_Webhook_Processor_DummyTest extends \PHPUnit\Framework\TestCase {
         $dummy = new CRM_Webhook_Processor_Dummy();
         try {
             $input = $dummy->input();
-            self::assertEquals(["data"=>"",], $input, "Input supposed to be empty in this case.");
+            self::assertEquals([ "raw" => "", "get" => [], "post" => [], "header" => []], $input, "Input supposed to be empty in this case.");
         } catch (Exception $e) {
             self::fail("It shouldn't throw exception. ".$e->getMessage());
         }

@@ -3,8 +3,19 @@
 /**
  * Webhook Dummy input Processor
  */
-class CRM_Webhook_Processor_Dummy extends CRM_Webhook_Processor_Base
-{
+class CRM_Webhook_Processor_Dummy extends CRM_Webhook_Processor_Base {
+
+    private function getHeaders(): array {
+        $headers = [];
+        foreach($_SERVER as $key => $value) {
+            if (substr($key, 0, 5) <> 'HTTP_') {
+                continue;
+            }
+            $header = substr($key, 5);
+            $headers[$header] = $value;
+        }
+        return $headers;
+    }
     /**
      * Process input
      *
@@ -12,8 +23,11 @@ class CRM_Webhook_Processor_Dummy extends CRM_Webhook_Processor_Base
      */
     public function input() {
         // Get contents from raw POST data
-        $input = file_get_contents('php://input');
+        $inputRaw = file_get_contents('php://input');
+        $get = $_GET;
+        $post = $_POST;
+        $headers = self::getHeaders();
 
-        return $input === false ? null : [ "data" => $input ];
+        return [ "raw" => $inputRaw, "get" => $get, "post" => $post, "header" => $header ];
     }
 }
