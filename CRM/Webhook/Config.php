@@ -36,6 +36,7 @@ class CRM_Webhook_Config {
                     "handler" => self::DEFAULT_HOOK_HANDLER,
                     "selector" => self::DEFAULT_HOOK_SELECTOR,
                     "processor" => self::DEFAULT_HOOK_PROCESSOR,
+                    "options" => [],
                     "id" => 0,
                 ],
             ],

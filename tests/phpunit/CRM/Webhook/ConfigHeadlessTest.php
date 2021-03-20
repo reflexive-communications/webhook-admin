@@ -45,6 +45,8 @@ class CRM_Webhook_ConfigHeadlessTest extends \PHPUnit\Framework\TestCase impleme
         self::assertEquals(CRM_Webhook_Config::DEFAULT_HOOK_PROCESSOR, $cfg["webhooks"][0]["processor"], "Invalid webhooks[0].processor.");
         self::assertTrue(array_key_exists("id", $cfg["webhooks"][0]), "webhooks[0].id key is missing from the config.");
         self::assertEquals(0, $cfg["webhooks"][0]["id"], "Invalid webhooks[0].id.");
+        self::assertTrue(array_key_exists("options", $cfg["webhooks"][0]), "webhooks[0].options key is missing from the config.");
+        self::assertEquals([], $cfg["webhooks"][0]["options"], "Invalid webhooks[0].options.");
     }
     /**
      * It checks that the create function works well.
@@ -130,6 +132,7 @@ class CRM_Webhook_ConfigHeadlessTest extends \PHPUnit\Framework\TestCase impleme
             "handler" => CRM_Webhook_Config::DEFAULT_HOOK_HANDLER,
             "selector" => CRM_Webhook_Config::DEFAULT_HOOK_SELECTOR."_something_different",
             "processor" => CRM_Webhook_Config::DEFAULT_HOOK_PROCESSOR,
+            "options" => [],
         ];
         $cfg["webhooks"][1] = $newHook;
         $cfg["webhooks"][1]["id"] = 1;
@@ -148,6 +151,7 @@ class CRM_Webhook_ConfigHeadlessTest extends \PHPUnit\Framework\TestCase impleme
             "handler" => CRM_Webhook_Config::DEFAULT_HOOK_HANDLER,
             "selector" => CRM_Webhook_Config::DEFAULT_HOOK_SELECTOR,
             "processor" => CRM_Webhook_Config::DEFAULT_HOOK_PROCESSOR,
+            "options" => [],
         ];
         self::expectException(CRM_Core_Exception::class, "Invalid exception class.");
         self::expectExceptionMessage(CRM_Webhook_Config::DEFAULT_HOOK_SELECTOR." selector is duplicated.", "Invalid exception message.");
@@ -169,6 +173,7 @@ class CRM_Webhook_ConfigHeadlessTest extends \PHPUnit\Framework\TestCase impleme
             "handler" => CRM_Webhook_Config::DEFAULT_HOOK_HANDLER,
             "selector" => CRM_Webhook_Config::DEFAULT_HOOK_SELECTOR."_something_different",
             "processor" => CRM_Webhook_Config::DEFAULT_HOOK_PROCESSOR,
+            "options" => [],
         ];
         $cfg["webhooks"][0]["selector"] = CRM_Webhook_Config::DEFAULT_HOOK_SELECTOR."_something_different";
         self::assertTrue($config->updateWebhook($newHook), "Update Webhook has to be successful.");
@@ -185,6 +190,7 @@ class CRM_Webhook_ConfigHeadlessTest extends \PHPUnit\Framework\TestCase impleme
             "handler" => CRM_Webhook_Config::DEFAULT_HOOK_HANDLER,
             "selector" => CRM_Webhook_Config::DEFAULT_HOOK_SELECTOR."_something_different",
             "processor" => CRM_Webhook_Config::DEFAULT_HOOK_PROCESSOR,
+            "options" => [],
         ];
         self::assertTrue($config->addWebhook($newHook), "Add Webhook has to be successful.");
         $newHook["id"] = 1;

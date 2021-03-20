@@ -45,5 +45,7 @@ class CRM_Webhook_ConfigTest extends \PHPUnit\Framework\TestCase {
         self::assertEquals($config::DEFAULT_HOOK_PROCESSOR, $cfg["webhooks"][0]["processor"], "Invalid webhooks[0].processor.");
         self::assertTrue(array_key_exists("id", $cfg["webhooks"][0]), "webhooks[0].id key is missing from the config.");
         self::assertEquals(0, $cfg["webhooks"][0]["id"], "Invalid webhooks[0].id.");
+        self::assertTrue(array_key_exists("options", $cfg["webhooks"][0]), "webhooks[0].options key is missing from the config.");
+        self::assertEquals([], $cfg["webhooks"][0]["options"], "Invalid webhooks[0].options.");
     }
 }
