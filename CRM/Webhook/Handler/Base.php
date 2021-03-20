@@ -61,9 +61,7 @@ abstract class CRM_Webhook_Handler_Base {
      */
     public function handle() {
         $this->processInput();
-
         $this->validate();
-
         $this->authenticate();
     }
 }

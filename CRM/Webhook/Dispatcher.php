@@ -24,6 +24,8 @@ class CRM_Webhook_Dispatcher {
      *
      * @param \CRM_Webhook_Processor_Base $processor Webhook Processor
      *
+     * @param array $options additional options to handler
+     *
      * @return \CRM_Webhook_Handler_Base
      */
     protected function createHandler(string $handler_class, CRM_Webhook_Processor_Base $processor, array $options = []) {

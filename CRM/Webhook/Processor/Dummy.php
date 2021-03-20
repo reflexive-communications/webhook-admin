@@ -8,7 +8,7 @@ class CRM_Webhook_Processor_Dummy extends CRM_Webhook_Processor_Base {
     private function getHeaders(): array {
         $headers = [];
         foreach($_SERVER as $key => $value) {
-            if (substr($key, 0, 5) <> 'HTTP_') {
+            if (substr($key, 0, 5) <> "HTTP_") {
                 continue;
             }
             $header = substr($key, 5);
@@ -23,7 +23,7 @@ class CRM_Webhook_Processor_Dummy extends CRM_Webhook_Processor_Base {
      */
     public function input() {
         // Get contents from raw POST data
-        $inputRaw = file_get_contents('php://input');
+        $inputRaw = file_get_contents("php://input");
         $get = $_GET;
         $post = $_POST;
         $headers = self::getHeaders();
