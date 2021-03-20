@@ -16,6 +16,7 @@
                 <th id="sortable">{ts}ID{/ts}</th>
                 <th id="sortable">{ts}Name{/ts}</th>
                 <th id="sortable">{ts}Selector{/ts}</th>
+                <th id="sortable">{ts}Processor{/ts}</th>
                 <th id="sortable">{ts}Handler{/ts}</th>
                 <th id="sortable">{ts}Description{/ts}</th>
                 <th id="sortable">{ts}Actions{/ts}</th>
@@ -27,6 +28,7 @@
                     <td>{$id}</td>
                     <td>{$webhook.name}</td>
                     <td>{$webhook.selector}</td>
+                    <td>{$webhook.processor}</td>
                     <td>{$webhook.handler}</td>
                     <td>{$webhook.description}</td>
                     <td>{$webhook.actions}</td>

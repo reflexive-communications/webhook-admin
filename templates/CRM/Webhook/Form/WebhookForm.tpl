@@ -13,6 +13,12 @@
             </td>
         </tr>
         <tr>
+            <td class="label">{$form.processor.label}</td>
+            <td class="content">{$form.processor.html}<br/>
+                <span class="description">{ts}Class name of the processor that will use to handle this request{/ts}</span>
+            </td>
+        </tr>
+        <tr>
             <td class="label">{$form.handler.label}</td>
             <td class="content">{$form.handler.html}<br/>
                 <span class="description">{ts}Class name of the handler that will handle this request{/ts}</span>
