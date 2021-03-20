@@ -35,7 +35,7 @@ class CRM_Webhook_Form_LogTable extends CRM_Core_Form {
         // get the current configuration object
         $config = $this->config->get();
         foreach ($config["logs"] as $k => $v) {
-            $config["logs"][$k]["timestamp"] = date("Y-m-d H:i:s", $config[$k]["timestamp"]);
+            $config["logs"][$k]["timestamp"] = date("Y-m-d H:i:s", $config["logs"][$k]["timestamp"]);
         }
 
         // Export webhooks to template

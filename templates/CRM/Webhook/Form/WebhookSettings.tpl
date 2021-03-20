@@ -4,6 +4,11 @@
             <a class="button new-option crm-popup webhook-action" href="{$newItemForm}">
                 <span><i class="crm-i fa-plus-circle"></i> {ts}Add New Webhook{/ts}</span>
             </a>
+            {if isset($logTable)}
+            <a class="button new-option" href="{$logTable}">
+                <span><i class="crm-i fa-search"></i> {ts}Check Logs{/ts}</span>
+            </a>
+            {/if}
         </div>
     </div>
 

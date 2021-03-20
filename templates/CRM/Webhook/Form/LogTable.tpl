@@ -36,7 +36,7 @@
                     <td>
                         <ul>
                         {foreach from=$entry.data.header key=hid item=headerentry}
-                            <li>{$headerentry}</li>
+                            <li>{$hid} : {$headerentry}</li>
                         {/foreach}
                         <ul>
                     </td>
