@@ -1,6 +1,6 @@
 <?php
 
-use Civi\API\Exception\NotImplementedException;
+use CRM_Webhook_ExtensionUtil as E;
 
 /**
  * Main webhook Dispatcher
@@ -32,16 +32,39 @@ class CRM_Webhook_Dispatcher {
 
     /**
      * Run Controller
-     *
-     * @throws \Civi\API\Exception\NotImplementedException
      */
     public function run() {
+        // Get the listener param from the get object
+        // listener has to be a get param.
+        $listener = $_GET["listener"];
+        if (empty($listener)) {
+            http_response_code(400);
+            echo "Missing listener.";
+            exit();
+        }
         // Load configs
         CRM_Core_Config::singleton();
+        $config = new CRM_Webhook_Config(E::LONG_NAME);
+        $config->load();
+        $webhooks = $config->get()["webhooks"];
+        $processorClass = "";
+        $handlerClass = "";
+        foreach ($webhooks as $hook) {
+            if ($hook["selector"] == $listener) {
+                $processorClass = $hook["processor"];
+                $handlerClass = $hook["handler"];
+                break;
+            }
+        }
+        if ($processorClass == "" || $handlerClass == "") {
+            http_response_code(400);
+            echo "Invalid listener.";
+            exit();
+        }
 
         // Instantiate Processor & Handler
-        $processor = $this->createProcessor(CRM_Webhook_Processor_Dummy::class);
-        $handler = $this->createHandler(CRM_Webhook_Handler_Logger::class, $processor, []);
+        $processor = $this->createProcessor($processorClass);
+        $handler = $this->createHandler($handlerClass, $processor, []);
 
         // Handle request
         $handler->handle();
