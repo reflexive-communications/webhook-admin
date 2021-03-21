@@ -46,6 +46,7 @@ class CRM_Webhook_DispatcherHeadlessTest extends \PHPUnit\Framework\TestCase imp
             self::fail("Shouldn't throw exception.");
         }
          */
+        self::markTestIncomplete("This test has not been implemented yet.");
     }
     public function testRunInvalidListener() {
         // It has to be skipped, due to the exit function is called inside the 
@@ -59,6 +60,7 @@ class CRM_Webhook_DispatcherHeadlessTest extends \PHPUnit\Framework\TestCase imp
             self::fail("Shouldn't throw exception.");
         }
          */
+        self::markTestIncomplete("This test has not been implemented yet.");
     }
     public function testRunValidListener() {
         $config = new CRM_Webhook_Config(E::LONG_NAME);

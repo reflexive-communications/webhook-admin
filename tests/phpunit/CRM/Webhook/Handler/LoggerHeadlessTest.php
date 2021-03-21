@@ -33,9 +33,9 @@ class CRM_Webhook_Handler_LoggerHeadlessTest extends \PHPUnit\Framework\TestCase
      */
     public function testHandle() {
         $processor = new CRM_Webhook_Processor_Dummy();
-        $logger = new CRM_Webhook_Handler_Logger($processor);
+        $handler = new CRM_Webhook_Handler_Logger($processor);
         try {
-            self::assertEmpty($stub->handle(), "It should be empty.");
+            self::assertEmpty($handler->handle(), "It should be empty.");
         } catch (Exception $e) {
             self::fail("Shouldn't throw exception. ".$e->getMessage());
         }
