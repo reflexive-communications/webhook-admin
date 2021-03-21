@@ -9,6 +9,7 @@ use CRM_Webhook_ExtensionUtil as E;
  */
 class CRM_Webhook_Form_WebhookForm extends CRM_Webhook_Form_WebhookBase {
 
+    private $optionValues;
     /**
      * Preprocess form
      *
@@ -16,6 +17,7 @@ class CRM_Webhook_Form_WebhookForm extends CRM_Webhook_Form_WebhookBase {
      */
     public function preProcess() {
         parent::preProcess();
+        $this->setOptionValues();
     }
 
     /**
@@ -31,6 +33,22 @@ class CRM_Webhook_Form_WebhookForm extends CRM_Webhook_Form_WebhookBase {
             return $config["webhooks"][$id];
         }
         return [];
+    }
+
+    /**
+     * Set option values
+     */
+    public function setOptionValues() {
+        $optionValues = [
+            "processors" => [],
+            "handlers" => [],
+        ];
+        $optionValues["processors"]["CRM_Webhook_Processor_Dummy"] = "Dummy processor for testing";
+        $optionValues["processors"]["CRM_Webhook_Processor_JSON"] = "JSON";
+        $optionValues["processors"]["CRM_Webhook_Processor_UrlEncodedForm"] = "Url Encoded Form";
+        $optionValues["processors"]["CRM_Webhook_Processor_XML"] = "XML";
+        $optionValues["handlers"]["CRM_Webhook_Handler_Logger"] = "DB Logger";
+        $this->optionValues = $optionValues;
     }
 
     /**
@@ -58,6 +76,18 @@ class CRM_Webhook_Form_WebhookForm extends CRM_Webhook_Form_WebhookBase {
 
         return $this->_defaults;
     }
+    /**
+     * Processor + handler options
+     *
+     * @return array
+     */
+    private function getOptionsFor(string $name) {
+        $opts = [ "" => ts("- select -") ];
+        foreach($this->optionValues[$name] as $k => $v) {
+            $opts[$k] = $v;
+        }
+        return $opts;
+    }
 
     public function buildQuickForm() {
         parent::buildQuickForm();
@@ -65,8 +95,8 @@ class CRM_Webhook_Form_WebhookForm extends CRM_Webhook_Form_WebhookBase {
         // Add form elements
         $this->add("text", "name", ts("Webhook Name"), [], true);
         $this->add("text", "selector", ts("Selector"), [], true);
-        $this->add("text", "processor", ts("Processor"), [], true);
-        $this->add("text", "handler", ts("Handler Class"), [], true);
+        $this->add("select", "processor", ts("Processor"), $this->getOptionsFor("processors"), true);
+        $this->add("select", "handler", ts("Handler Class"), $this->getOptionsFor("handlers"), true);
         $this->add("text", "description", ts("Description"), [], true);
         if (!is_null($this->id)) {
             $this->add("hidden", "id");

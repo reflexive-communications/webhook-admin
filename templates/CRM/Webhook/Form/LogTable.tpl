@@ -22,14 +22,14 @@
                     <td>
                         <ul>
                         {foreach from=$entry.data.get key=gid item=getentry}
-                            <li>{$getentry}</li>
+                            <li>{$gid} : {$getentry}</li>
                         {/foreach}
                         <ul>
                     </td>
                     <td>
                         <ul>
                         {foreach from=$entry.data.post key=pid item=postentry}
-                            <li>{$postentry}</li>
+                            <li>{$pid} : {$postentry}</li>
                         {/foreach}
                         <ul>
                     </td>
