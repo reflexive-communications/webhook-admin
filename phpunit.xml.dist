@@ -15,6 +15,10 @@
         <file>./webhook.php</file>
         <file>./webhook.civix.php</file>
         <file>./CRM/Webhook/Upgrader/Base.php</file>
+        <!-- Skip the civicrm config file -->
+        <file>./civicrm.config.php</file>
+        <!-- Skip the listener application -->
+        <file>./external/Listener.php</file>
       </exclude>
     </whitelist>
   </filter>
