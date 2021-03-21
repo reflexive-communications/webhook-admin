@@ -12,6 +12,21 @@ use Civi\Test\TransactionalInterface;
  */
 class CRM_Webhook_Form_LogTableHeadlessTest extends \PHPUnit\Framework\TestCase implements HeadlessInterface, HookInterface, TransactionalInterface {
 
+    const TEST_SETTINGS = [
+        "sequence" => 1,
+        "webhooks" => [
+            0 => [
+                "id" => 0,
+                "name" => "test name",
+                "description" => "test description",
+                "handler" => "test_handler",
+                "selector" => "test-selector",
+                "processor" => "test-processor",
+            ],
+        ],
+        "logs" => [],
+    ];
+
     public function setUpHeadless() {
         return \Civi\Test::headless()
             ->installMe(__DIR__)
@@ -24,6 +39,11 @@ class CRM_Webhook_Form_LogTableHeadlessTest extends \PHPUnit\Framework\TestCase 
 
     public function tearDown(): void {
         parent::tearDown();
+    }
+    protected function setupTestConfig() {
+        $config = new CRM_Webhook_Config(E::LONG_NAME);
+        $config->create();
+        self::assertTrue($config->update(self::TEST_SETTINGS), "Config update has to be successful.");
     }
     /**
      * PreProcess test case with existing config.
