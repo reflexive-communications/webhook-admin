@@ -22,6 +22,7 @@ class CRM_Webhook_Form_TestBase extends \PHPUnit\Framework\TestCase implements H
                 "processor" => "test-processor",
             ],
         ],
+        "logs" => [],
     ];
 
     protected function setGlobals(string $key, $value) {

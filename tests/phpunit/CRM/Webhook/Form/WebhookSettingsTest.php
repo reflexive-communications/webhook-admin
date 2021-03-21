@@ -20,7 +20,7 @@ class CRM_Webhook_Form_WebhookSettingsTest extends CRM_Webhook_Form_TestBase {
         try {
             self::assertEmpty($form->buildQuickForm());
         } catch (Exception $e) {
-            self::fail("It shouldn't throw exception.");
+            self::fail("It shouldn't throw exception. ".$e->getMessage());
         }
         self::assertEquals("Webhook Settings", $form->getTitle(), "Invalid form title.");
     }
