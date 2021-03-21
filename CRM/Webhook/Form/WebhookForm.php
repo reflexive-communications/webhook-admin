@@ -36,13 +36,21 @@ class CRM_Webhook_Form_WebhookForm extends CRM_Webhook_Form_WebhookBase {
     }
 
     /**
-     * Set option values
+     * Set option values.
+     * It could be extended with the hook_civicrm_webhookOptionValues hook.
      */
     public function setOptionValues() {
         $optionValues = [
             "processors" => [],
             "handlers" => [],
         ];
+        // Fire hook event.
+        Civi::dispatcher()->dispatch("hook_civicrm_webhookOptionValues",
+            Civi\Core\Event\GenericHookEvent::create([
+                "options" => &$optionValues,
+            ])
+        );
+
         $optionValues["processors"]["CRM_Webhook_Processor_Dummy"] = "Dummy processor for testing";
         $optionValues["processors"]["CRM_Webhook_Processor_JSON"] = "JSON";
         $optionValues["processors"]["CRM_Webhook_Processor_UrlEncodedForm"] = "Url Encoded Form";
