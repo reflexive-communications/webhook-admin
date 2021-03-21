@@ -37,9 +37,12 @@ cv en webhook
 
 ### Setup new hook
 
-    Go to the `Administer > Webhooks` menu. It will lead you to the `civicrm/admin/webhooks/settings` form.
+Go to the `Administer > Webhooks` menu. It will lead you to the `civicrm/admin/webhooks/settings` form.
+
 ![webhooks settings](./assets/webhook-settings.png)
+
 Click to the `Add New Webhook` button. On the popup fill in the form. The selector has to be uniq. Save your changes with clicking to the `Save` button.
+
 ![webhooks form new](./assets/webhook-form-new.png)
 
 ### Edit hook
