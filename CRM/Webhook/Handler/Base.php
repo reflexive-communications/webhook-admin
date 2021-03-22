@@ -16,14 +16,14 @@ abstract class CRM_Webhook_Handler_Base {
      *
      * @var array
      */
-    protected array $options;
+    protected $options;
 
     /**
      * Request data
      *
      * @var array|null
      */
-    protected ?array $data;
+    protected $data;
 
     /**
      * CRM_Webhook_Handler_Base constructor.
