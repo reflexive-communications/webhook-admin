@@ -29,7 +29,7 @@ jobs:
     - name: Setup PHP and the extensions also the tools
       uses: shivammathur/setup-php@v2
       with:
-        php-version: '7.4'
+        php-version: '7.3'
         tools: composer:v1, phpunit:8.5.0
         extensions: cli fpm mysql json opcache mbstring xml gd curl intl xdebug
         coverage: xdebug
