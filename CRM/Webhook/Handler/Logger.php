@@ -5,8 +5,7 @@ use CRM_Webhook_ExtensionUtil as E;
 /**
  * Webhook Handler for Logger
  */
-class CRM_Webhook_Handler_Logger extends CRM_Webhook_Handler_Base
-{
+class CRM_Webhook_Handler_Logger extends CRM_Webhook_Handler_Base {
     /**
      * Authenticate request
      * Logger authenticates everything.
