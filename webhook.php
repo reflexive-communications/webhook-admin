@@ -156,9 +156,9 @@ function webhook_civicrm_themes(&$themes) {
 function webhook_civicrm_navigationMenu(&$menu) {
   _webhook_civix_insert_navigation_menu($menu, 'Administer', [
       'label' => E::ts('Webhooks'),
-      'name' => 'webhooks_list',
-      'url' => 'civicrm/extension/webhooks/list',
-      'permission' => 'access CiviCRM',
+      'name' => 'webhooks',
+      'url' => 'civicrm/admin/webhooks/settings',
+      'permission' => 'administer CiviCRM',
       'separator' => 2,
       'active' => 1,
     ]);

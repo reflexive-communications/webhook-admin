@@ -1,27 +1,29 @@
 <?xml version="1.0"?>
 <extension key="hu.es-progress.webhook" type="module">
-  <file>webhook</file>
-  <name>CiviCRM webhooks</name>
-  <description>Additional webhook listeners</description>
-  <license>AGPL-3.0</license>
-  <maintainer>
-    <author>Sandor Semsey</author>
-    <email>semseysandor@gmail.com</email>
-  </maintainer>
-  <urls>
-    <url desc="Main Extension Page">https://gitlab.com/semseysandor/hu.es-progress.webhook</url>
-    <url desc="Licensing">http://www.gnu.org/licenses/agpl-3.0.html</url>
-  </urls>
-  <releaseDate>2020-05-15</releaseDate>
-  <version>0.6</version>
-  <develStage>alpha</develStage>
-  <compatibility>
-    <ver>5.0</ver>
-  </compatibility>
-  <classloader>
-    <psr4 prefix="Civi\" path="Civi"/>
-  </classloader>
-  <civix>
-    <namespace>CRM/Webhook</namespace>
-  </civix>
+    <file>webhook</file>
+    <name>CiviCRM webhooks</name>
+    <description>Admin form for registering webhook listener applications.</description>
+    <license>AGPL-3.0</license>
+    <maintainer>
+        <author>Sandor Semsey</author>
+        <email>semseysandor@gmail.com</email>
+    </maintainer>
+    <urls>
+        <url desc="Main Extension Page">https://github.com/reflexive-communications/hu.es-progress.webhook</url>
+        <url desc="Documentation">https://github.com/reflexive-communications/hu.es-progress.webhook</url>
+        <url desc="Support">https://github.com/reflexive-communications/hu.es-progress.webhook/issues</url>
+        <url desc="Licensing">http://www.gnu.org/licenses/agpl-3.0.html</url>
+    </urls>
+    <releaseDate>2020-05-15</releaseDate>
+    <version>0.7</version>
+    <develStage>alpha</develStage>
+    <compatibility>
+        <ver>5.0</ver>
+    </compatibility>
+    <classloader>
+        <psr4 prefix="Civi\" path="Civi"/>
+    </classloader>
+    <civix>
+        <namespace>CRM/Webhook</namespace>
+    </civix>
 </extension>
