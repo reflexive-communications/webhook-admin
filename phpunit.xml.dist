@@ -18,7 +18,7 @@
         <!-- Skip the civicrm config file -->
         <file>./civicrm.config.php</file>
         <!-- Skip the listener application -->
-        <file>./external/Listener.php</file>
+        <file>./external/listener.php</file>
       </exclude>
     </whitelist>
   </filter>
