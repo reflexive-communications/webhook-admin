@@ -9,7 +9,7 @@ abstract class CRM_Webhook_Handler_Base {
      *
      * @var \CRM_Webhook_Processor_Base
      */
-    protected CRM_Webhook_Processor_Base $processor;
+    protected $processor;
 
     /**
      * Handler options
