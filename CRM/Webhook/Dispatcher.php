@@ -40,8 +40,7 @@ class CRM_Webhook_Dispatcher {
         // listener has to be a get param.
         if (!isset($_GET["listener"])) {
             http_response_code(400);
-            echo "Missing listener.";
-            exit();
+            throw new Exception("Missing listener.");
         }
         $listener = $_GET["listener"];
         // Load configs
@@ -60,8 +59,7 @@ class CRM_Webhook_Dispatcher {
         }
         if ($processorClass == "" || $handlerClass == "") {
             http_response_code(400);
-            echo "Invalid listener.";
-            exit();
+            throw new Exception("Invalid listener.");
         }
 
         // Instantiate Processor & Handler

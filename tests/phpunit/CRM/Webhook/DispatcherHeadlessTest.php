@@ -33,34 +33,20 @@ class CRM_Webhook_DispatcherHeadlessTest extends \PHPUnit\Framework\TestCase imp
      * Add valid config and test against it.
      */
     public function testRunMissingListener() {
-        // It has to be skipped, due to the exit function is called inside the 
-        // tested branch
-        /*
         if (isset($_GET["listener"])) {
             unset($_GET["listener"]);
         }
         $d = new CRM_Webhook_Dispatcher();
-        try {
-            self::assertEmpty($d->run(), "Run supposed to be empty.");
-        } catch (Exception $e) {
-            self::fail("Shouldn't throw exception.");
-        }
-         */
-        self::markTestIncomplete("This test has not been implemented yet.");
+        self::expectException(Exception::class, "Invalid exception class.");
+        self::expectExceptionMessage("Missing listener.", "Invalid exception message.");
+        self::assertEmpty($d->run(), "Run supposed to be empty.");
     }
     public function testRunInvalidListener() {
-        // It has to be skipped, due to the exit function is called inside the 
-        // tested branch
-        /*
         $_GET["listener"] = "not-existing-listener";
         $d = new CRM_Webhook_Dispatcher();
-        try {
-            self::assertEmpty($d->run(), "Run supposed to be empty.");
-        } catch (Exception $e) {
-            self::fail("Shouldn't throw exception.");
-        }
-         */
-        self::markTestIncomplete("This test has not been implemented yet.");
+        self::expectException(Exception::class, "Invalid exception class.");
+        self::expectExceptionMessage("Invalid listener.", "Invalid exception message.");
+        self::assertEmpty($d->run(), "Run supposed to be empty.");
     }
     public function testRunValidListener() {
         $config = new CRM_Webhook_Config(E::LONG_NAME);
