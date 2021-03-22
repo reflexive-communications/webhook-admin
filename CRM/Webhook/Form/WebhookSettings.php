@@ -18,9 +18,7 @@ class CRM_Webhook_Form_WebhookSettings extends CRM_Webhook_Form_WebhookBase {
         // Add new route button
         $newItemForm = CRM_Utils_System::url("civicrm/admin/webhooks/form");
         $this->assign("newItemForm", $newItemForm);
-        if (count($config["logs"]) > 0) {
-            $this->assign("logTable", CRM_Utils_System::url("civicrm/admin/webhooks/logs"));
-        }
+        $this->assign("logTable", CRM_Utils_System::url("civicrm/admin/webhooks/logs"));
 
         // Add actions links
         foreach ($config["webhooks"] as $id => $webhook) {
