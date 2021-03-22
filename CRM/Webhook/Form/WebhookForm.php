@@ -155,6 +155,10 @@ class CRM_Webhook_Form_WebhookForm extends CRM_Webhook_Form_WebhookBase {
         // Loop through existing webhooks for duplication checking
         foreach ($config["webhooks"] as $hook) {
 
+            // skip the current item from duplication checking
+            if (isset($values["id"]) && $hook["id"] == $values["id"]) {
+                continue;
+            }
             // Handle duplication
             if ($hook["selector"] == $values["selector"]) {
                 $errors["selector"] = ts(
