@@ -7,9 +7,11 @@ use CRM_Webhook_ExtensionUtil as E;
  *
  * @see https://docs.civicrm.org/dev/en/latest/framework/quickform/
  */
-class CRM_Webhook_Form_WebhookSettings extends CRM_Webhook_Form_WebhookBase {
+class CRM_Webhook_Form_WebhookSettings extends CRM_Webhook_Form_WebhookBase
+{
 
-    public function buildQuickForm() {
+    public function buildQuickForm()
+    {
         parent::buildQuickForm();
 
         // get the current configuration object
@@ -45,7 +47,8 @@ class CRM_Webhook_Form_WebhookSettings extends CRM_Webhook_Form_WebhookBase {
      *
      * @return array Action links
      */
-    public function links(): array {
+    public function links(): array
+    {
         return [
             CRM_Core_Action::UPDATE => [
                 "name" => ts("Edit"),
@@ -64,7 +67,8 @@ class CRM_Webhook_Form_WebhookSettings extends CRM_Webhook_Form_WebhookBase {
         ];
     }
 
-    public function postProcess() {
+    public function postProcess()
+    {
         parent::postProcess();
     }
 }
