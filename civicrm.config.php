@@ -11,7 +11,8 @@
 /**
  * Locate civicrm.settings.php configuration file
  */
-function find_civi_settings_file(): string {
+function find_civi_settings_file(): string
+{
     // Candidates
     $candidates[] = '../../sites/default';
     $candidates[] = '../../../sites/default';
