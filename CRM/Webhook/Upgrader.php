@@ -4,14 +4,16 @@ use CRM_Webhook_ExtensionUtil as E;
 /**
  * Collection of upgrade steps.
  */
-class CRM_Webhook_Upgrader extends CRM_Webhook_Upgrader_Base {
+class CRM_Webhook_Upgrader extends CRM_Webhook_Upgrader_Base
+{
 
     /**
      * Install process. Init database.
      *
      * @throws CRM_Core_Exception
      */
-    public function install() {
+    public function install()
+    {
         $config = new CRM_Webhook_Config($this->extensionName);
         // Create default configs
         if (!$config->create()) {
@@ -24,7 +26,8 @@ class CRM_Webhook_Upgrader extends CRM_Webhook_Upgrader_Base {
      *
      * @throws CRM_Core_Exception
      */
-    public function uninstall() {
+    public function uninstall()
+    {
         $config = new CRM_Webhook_Config($this->extensionName);
         // delete current configs
         if (!$config->remove()) {
@@ -144,5 +147,4 @@ class CRM_Webhook_Upgrader extends CRM_Webhook_Upgrader_Base {
   //   }
   //   return TRUE;
   // }
-
 }
