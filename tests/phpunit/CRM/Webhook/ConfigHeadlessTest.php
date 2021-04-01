@@ -10,23 +10,28 @@ use Civi\Test\TransactionalInterface;
  *
  * @group headless
  */
-class CRM_Webhook_ConfigHeadlessTest extends \PHPUnit\Framework\TestCase implements HeadlessInterface, HookInterface, TransactionalInterface {
+class CRM_Webhook_ConfigHeadlessTest extends \PHPUnit\Framework\TestCase implements HeadlessInterface, HookInterface, TransactionalInterface
+{
 
-    public function setUpHeadless() {
+    public function setUpHeadless()
+    {
         return \Civi\Test::headless()
             ->installMe(__DIR__)
             ->apply();
     }
 
-    public function setUp(): void {
+    public function setUp(): void
+    {
         parent::setUp();
     }
 
-    public function tearDown(): void {
+    public function tearDown(): void
+    {
         parent::tearDown();
     }
 
-    private function isDefaultConfiguration(array $cfg) {
+    private function isDefaultConfiguration(array $cfg)
+    {
         self::assertTrue(array_key_exists("sequence", $cfg), "sequence key is missing from the config.");
         self::assertEquals(1, $cfg["sequence"], "Invalid sequence initial value.");
         self::assertTrue(array_key_exists("logs", $cfg), "logs key is missing from the config.");
@@ -51,7 +56,8 @@ class CRM_Webhook_ConfigHeadlessTest extends \PHPUnit\Framework\TestCase impleme
     /**
      * It checks that the create function works well.
      */
-    public function testCreate() {
+    public function testCreate()
+    {
         $config = new CRM_Webhook_Config("webhook_test");
         self::assertTrue($config->create(), "Create config has to be successful.");
         $cfg = $config->get();
@@ -61,7 +67,8 @@ class CRM_Webhook_ConfigHeadlessTest extends \PHPUnit\Framework\TestCase impleme
     /**
      * It checks that the remove function works well.
      */
-    public function testRemove() {
+    public function testRemove()
+    {
         $config = new CRM_Webhook_Config("webhook_test");
         self::assertTrue($config->create(), "Create config has to be successful.");
         self::assertTrue($config->remove(), "Remove config has to be successful.");
@@ -70,7 +77,8 @@ class CRM_Webhook_ConfigHeadlessTest extends \PHPUnit\Framework\TestCase impleme
     /**
      * It checks that the get function works well.
      */
-    public function testGet() {
+    public function testGet()
+    {
         $config = new CRM_Webhook_Config("webhook_test");
         self::assertTrue($config->create(), "Create config has to be successful.");
         $config = new CRM_Webhook_Config("webhook_test");
@@ -86,7 +94,8 @@ class CRM_Webhook_ConfigHeadlessTest extends \PHPUnit\Framework\TestCase impleme
     /**
      * It checks that the update function works well.
      */
-    public function testUpdate() {
+    public function testUpdate()
+    {
         $config = new CRM_Webhook_Config("webhook_test");
         self::assertTrue($config->create(), "Create config has to be successful.");
         $cfg = $config->get();
@@ -99,7 +108,8 @@ class CRM_Webhook_ConfigHeadlessTest extends \PHPUnit\Framework\TestCase impleme
     /**
      * It checks that the load function works well.
      */
-    public function testLoad() {
+    public function testLoad()
+    {
         $config = new CRM_Webhook_Config("webhook_test");
         self::assertTrue($config->create(), "Create config has to be successful.");
         $cfg = $config->get();
@@ -122,7 +132,8 @@ class CRM_Webhook_ConfigHeadlessTest extends \PHPUnit\Framework\TestCase impleme
     /**
      * It checks that the addWebhook function works well.
      */
-    public function testAddWebhookNoDuplication() {
+    public function testAddWebhookNoDuplication()
+    {
         $config = new CRM_Webhook_Config("webhook_test");
         self::assertTrue($config->create(), "Create config has to be successful.");
         $cfg = $config->get();
@@ -141,7 +152,8 @@ class CRM_Webhook_ConfigHeadlessTest extends \PHPUnit\Framework\TestCase impleme
         $cfgUpdated = $config->get();
         self::assertEquals($cfg, $cfgUpdated, "Invalid updated configuration.");
     }
-    public function testAddWebhookWithDuplication() {
+    public function testAddWebhookWithDuplication()
+    {
         $config = new CRM_Webhook_Config("webhook_test");
         self::assertTrue($config->create(), "Create config has to be successful.");
         $cfg = $config->get();
@@ -162,7 +174,8 @@ class CRM_Webhook_ConfigHeadlessTest extends \PHPUnit\Framework\TestCase impleme
      * Without duplication the update should be successful.
      * On case of duplication exception is expected.
      */
-    public function testUpdateWebhookNoDuplication() {
+    public function testUpdateWebhookNoDuplication()
+    {
         $config = new CRM_Webhook_Config("webhook_test");
         self::assertTrue($config->create(), "Create config has to be successful.");
         $cfg = $config->get();
@@ -180,7 +193,8 @@ class CRM_Webhook_ConfigHeadlessTest extends \PHPUnit\Framework\TestCase impleme
         $cfgUpdated = $config->get();
         self::assertEquals($cfg, $cfgUpdated, "Invalid updated configuration.");
     }
-    public function testUpdateWebhookWithDuplication() {
+    public function testUpdateWebhookWithDuplication()
+    {
         $config = new CRM_Webhook_Config("webhook_test");
         self::assertTrue($config->create(), "Create config has to be successful.");
         $cfg = $config->get();
@@ -202,7 +216,8 @@ class CRM_Webhook_ConfigHeadlessTest extends \PHPUnit\Framework\TestCase impleme
     /**
      * It checks that the deleteWebhook function works well.
      */
-    public function testDeleteWebhook() {
+    public function testDeleteWebhook()
+    {
         $config = new CRM_Webhook_Config("webhook_test");
         self::assertTrue($config->create(), "Create config has to be successful.");
         $cfg = $config->get();
@@ -217,7 +232,8 @@ class CRM_Webhook_ConfigHeadlessTest extends \PHPUnit\Framework\TestCase impleme
     /**
      * It checks that the insertLog function works well.
      */
-    public function testInsertLog() {
+    public function testInsertLog()
+    {
         $config = new CRM_Webhook_Config("webhook_test");
         self::assertTrue($config->create(), "Create config has to be successful.");
         $cfg = $config->get();
@@ -232,7 +248,8 @@ class CRM_Webhook_ConfigHeadlessTest extends \PHPUnit\Framework\TestCase impleme
     /**
      * It checks that the deleteLogs function works well.
      */
-    public function testDeleteLogs() {
+    public function testDeleteLogs()
+    {
         $config = new CRM_Webhook_Config("webhook_test");
         self::assertTrue($config->create(), "Create config has to be successful.");
         $cfg = $config->get();

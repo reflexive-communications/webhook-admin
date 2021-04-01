@@ -7,14 +7,16 @@ use CRM_Webhook_ExtensionUtil as E;
  *
  * @group headless
  */
-class CRM_Webhook_Form_WebhookBaseTest extends CRM_Webhook_Form_TestBase {
+class CRM_Webhook_Form_WebhookBaseTest extends CRM_Webhook_Form_TestBase
+{
 
     /**
      * PreProcess test case with existing config.
      * Setup test configuration then call the function.
      * It shouldn't throw exception.
      */
-    public function testPreProcessExistingConfig() {
+    public function testPreProcessExistingConfig()
+    {
         $this->setupTestConfig();
         $form = new CRM_Webhook_Form_WebhookBase();
         try {
@@ -29,7 +31,8 @@ class CRM_Webhook_Form_WebhookBaseTest extends CRM_Webhook_Form_TestBase {
      * Setup test configuration then call the function.
      * It should throw exception.
      */
-    public function testPreProcessMissingConfig() {
+    public function testPreProcessMissingConfig()
+    {
         $form = new CRM_Webhook_Form_WebhookBase();
         $config = new CRM_Webhook_Config(E::LONG_NAME);
         $config->remove();

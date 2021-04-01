@@ -10,7 +10,8 @@ use Civi\Test\TransactionalInterface;
  *
  * @group headless
  */
-class CRM_Webhook_Form_WebhookDeleteTest extends CRM_Webhook_Form_TestBase {
+class CRM_Webhook_Form_WebhookDeleteTest extends CRM_Webhook_Form_TestBase
+{
 
     /**
      * Build quick form test cases.
@@ -18,7 +19,8 @@ class CRM_Webhook_Form_WebhookDeleteTest extends CRM_Webhook_Form_TestBase {
      * It shouldn't throw exception.
      * The title should be set.
      */
-    public function testBuildQuickFormWithId() {
+    public function testBuildQuickFormWithId()
+    {
         $this->setGlobals("id", self::TEST_SETTINGS["webhooks"][0]["id"]);
         $this->setupTestConfig();
         $form = new CRM_Webhook_Form_WebhookDelete();
@@ -31,7 +33,8 @@ class CRM_Webhook_Form_WebhookDeleteTest extends CRM_Webhook_Form_TestBase {
         self::assertEquals("Webhook Delete", $form->getTitle(), "Invalid form title.");
     }
 
-    public function testPostProcessValidId() {
+    public function testPostProcessValidId()
+    {
         $this->setGlobals("id", self::TEST_SETTINGS["webhooks"][0]["id"]);
         $this->setupTestConfig();
         $form = new CRM_Webhook_Form_WebhookDelete();

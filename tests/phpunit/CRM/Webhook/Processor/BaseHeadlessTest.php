@@ -10,26 +10,31 @@ use Civi\Test\TransactionalInterface;
  *
  * @group headless
  */
-class CRM_Webhook_Processor_BaseHeadlessTest extends \PHPUnit\Framework\TestCase implements HeadlessInterface, HookInterface, TransactionalInterface {
+class CRM_Webhook_Processor_BaseHeadlessTest extends \PHPUnit\Framework\TestCase implements HeadlessInterface, HookInterface, TransactionalInterface
+{
 
-    public function setUpHeadless() {
+    public function setUpHeadless()
+    {
         return \Civi\Test::headless()
             ->installMe(__DIR__)
             ->apply();
     }
 
-    public function setUp(): void {
+    public function setUp(): void
+    {
         parent::setUp();
     }
 
-    public function tearDown(): void {
+    public function tearDown(): void
+    {
         parent::tearDown();
     }
 
     /**
      * Output test case.
      */
-    public function testOutput() {
+    public function testOutput()
+    {
         $stub = $this->getMockForAbstractClass('CRM_Webhook_Processor_Base');
         $testData = ["key"=>"value"];
         self::expectException(CRM_Core_Exception_PrematureExitException::class, "Invalid exception class.");
@@ -38,10 +43,12 @@ class CRM_Webhook_Processor_BaseHeadlessTest extends \PHPUnit\Framework\TestCase
     /**
      * Error test case.
      */
-    public function testErrorWithOutput() {
+    public function testErrorWithOutput()
+    {
         self::markTestIncomplete("This test has not been implemented yet.");
     }
-    public function testErrorWithoutOutput() {
+    public function testErrorWithoutOutput()
+    {
         self::markTestIncomplete("This test has not been implemented yet.");
     }
 }
