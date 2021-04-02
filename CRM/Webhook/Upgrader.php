@@ -54,7 +54,7 @@ class CRM_Webhook_Upgrader extends CRM_Webhook_Upgrader_Base
         $this->install();
         // Update the db with the currentConfig
         $config = new CRM_Webhook_Config($this->extensionName);
-        if(!$config->update($currentConfig)) {
+        if (!$config->update($currentConfig)) {
             return false;
         }
         // delete the content from the oldSuffixedName config.
