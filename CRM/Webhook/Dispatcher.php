@@ -5,7 +5,8 @@ use CRM_Webhook_ExtensionUtil as E;
 /**
  * Main webhook Dispatcher
  */
-class CRM_Webhook_Dispatcher {
+class CRM_Webhook_Dispatcher
+{
     /**
      * Instantiate Processor
      *
@@ -13,7 +14,8 @@ class CRM_Webhook_Dispatcher {
      *
      * @return \CRM_Webhook_Processor_Base
      */
-    protected function createProcessor(string $processor_class) {
+    protected function createProcessor(string $processor_class)
+    {
         return new $processor_class();
     }
 
@@ -28,14 +30,16 @@ class CRM_Webhook_Dispatcher {
      *
      * @return \CRM_Webhook_Handler_Base
      */
-    protected function createHandler(string $handler_class, CRM_Webhook_Processor_Base $processor, array $options = []) {
+    protected function createHandler(string $handler_class, CRM_Webhook_Processor_Base $processor, array $options = [])
+    {
         return new $handler_class($processor, $options);
     }
 
     /**
      * Run Controller
      */
-    public function run() {
+    public function run()
+    {
         // Get the listener param from the get object
         // listener has to be a get param.
         if (!isset($_GET["listener"])) {

@@ -10,7 +10,8 @@ use Civi\Test\TransactionalInterface;
  *
  * @group headless
  */
-class CRM_Webhook_Form_LogTableHeadlessTest extends \PHPUnit\Framework\TestCase implements HeadlessInterface, HookInterface, TransactionalInterface {
+class CRM_Webhook_Form_LogTableHeadlessTest extends \PHPUnit\Framework\TestCase implements HeadlessInterface, HookInterface, TransactionalInterface
+{
 
     const TEST_SETTINGS = [
         "sequence" => 1,
@@ -27,20 +28,24 @@ class CRM_Webhook_Form_LogTableHeadlessTest extends \PHPUnit\Framework\TestCase 
         "logs" => [],
     ];
 
-    public function setUpHeadless() {
+    public function setUpHeadless()
+    {
         return \Civi\Test::headless()
             ->installMe(__DIR__)
             ->apply();
     }
 
-    public function setUp(): void {
+    public function setUp(): void
+    {
         parent::setUp();
     }
 
-    public function tearDown(): void {
+    public function tearDown(): void
+    {
         parent::tearDown();
     }
-    protected function setupTestConfig() {
+    protected function setupTestConfig()
+    {
         $config = new CRM_Webhook_Config(E::LONG_NAME);
         $config->create();
         self::assertTrue($config->update(self::TEST_SETTINGS), "Config update has to be successful.");
@@ -50,7 +55,8 @@ class CRM_Webhook_Form_LogTableHeadlessTest extends \PHPUnit\Framework\TestCase 
      * Setup test configuration then call the function.
      * It shouldn't throw exception.
      */
-    public function testPreProcessExistingConfig() {
+    public function testPreProcessExistingConfig()
+    {
         $this->setupTestConfig();
         $form = new CRM_Webhook_Form_LogTable();
         try {
@@ -65,7 +71,8 @@ class CRM_Webhook_Form_LogTableHeadlessTest extends \PHPUnit\Framework\TestCase 
      * Setup test configuration then call the function.
      * It should throw exception.
      */
-    public function testPreProcessMissingConfig() {
+    public function testPreProcessMissingConfig()
+    {
         $form = new CRM_Webhook_Form_LogTable();
         $config = new CRM_Webhook_Config(E::LONG_NAME);
         $config->remove();
@@ -80,7 +87,8 @@ class CRM_Webhook_Form_LogTableHeadlessTest extends \PHPUnit\Framework\TestCase 
      * It shouldn't throw exception.
      * The title should be set.
      */
-    public function testBuildQuickFormWithoutLogs() {
+    public function testBuildQuickFormWithoutLogs()
+    {
         $this->setupTestConfig();
         $form = new CRM_Webhook_Form_LogTable();
         self::assertEmpty($form->preProcess(), "PreProcess supposed to be empty.");
@@ -91,7 +99,8 @@ class CRM_Webhook_Form_LogTableHeadlessTest extends \PHPUnit\Framework\TestCase 
         }
         self::assertEquals("Webhook Logs", $form->getTitle(), "Invalid form title.");
     }
-    public function testBuildQuickFormWithLogs() {
+    public function testBuildQuickFormWithLogs()
+    {
         $this->setupTestConfig();
         $config = new CRM_Webhook_Config(E::LONG_NAME);
         $config->insertLog([ "raw" => "", "get" => [], "post" => [], "header" => []]);
@@ -108,7 +117,8 @@ class CRM_Webhook_Form_LogTableHeadlessTest extends \PHPUnit\Framework\TestCase 
     /**
      * Post Process test case. Config should be empty.
      */
-    public function testPostProcess() {
+    public function testPostProcess()
+    {
         $this->setupTestConfig();
         $form = new CRM_Webhook_Form_LogTable();
         $config = new CRM_Webhook_Config(E::LONG_NAME);

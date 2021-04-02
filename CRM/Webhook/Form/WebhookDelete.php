@@ -7,9 +7,11 @@ use CRM_Webhook_ExtensionUtil as E;
  *
  * @see https://docs.civicrm.org/dev/en/latest/framework/quickform/
  */
-class CRM_Webhook_Form_WebhookDelete extends CRM_Webhook_Form_WebhookBase {
+class CRM_Webhook_Form_WebhookDelete extends CRM_Webhook_Form_WebhookBase
+{
 
-    public function buildQuickForm() {
+    public function buildQuickForm()
+    {
         parent::buildQuickForm();
 
         $this->addButtons(
@@ -32,7 +34,8 @@ class CRM_Webhook_Form_WebhookDelete extends CRM_Webhook_Form_WebhookBase {
         $this->setTitle(ts("Webhook Delete"));
     }
 
-    public function postProcess() {
+    public function postProcess()
+    {
         parent::postProcess();
         if (!$this->config->deleteWebhook($this->id)) {
             CRM_Core_Session::setStatus(ts("Error while updating the configuration."), "Webhook", "error");

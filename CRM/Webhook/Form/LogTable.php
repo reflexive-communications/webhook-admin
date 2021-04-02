@@ -7,7 +7,8 @@ use CRM_Webhook_ExtensionUtil as E;
  *
  * @see https://docs.civicrm.org/dev/en/latest/framework/quickform/
  */
-class CRM_Webhook_Form_LogTable extends CRM_Core_Form {
+class CRM_Webhook_Form_LogTable extends CRM_Core_Form
+{
     /**
      * Configdb
      *
@@ -20,7 +21,8 @@ class CRM_Webhook_Form_LogTable extends CRM_Core_Form {
      *
      * @throws CRM_Core_Exception
      */
-    public function preProcess() {
+    public function preProcess()
+    {
         // Get current settings
         $this->config = new CRM_Webhook_Config(E::LONG_NAME);
         $this->config->load();
@@ -29,7 +31,8 @@ class CRM_Webhook_Form_LogTable extends CRM_Core_Form {
     /**
      * Build form
      */
-    public function buildQuickForm() {
+    public function buildQuickForm()
+    {
         parent::buildQuickForm();
 
         // get the current configuration object
@@ -57,7 +60,8 @@ class CRM_Webhook_Form_LogTable extends CRM_Core_Form {
     /**
      * Post process
      */
-    public function postProcess() {
+    public function postProcess()
+    {
         parent::postProcess();
         if (!$this->config->deleteLogs()) {
                 CRM_Core_Session::setStatus(ts("Error during log deletion"), "Webhook", "error");

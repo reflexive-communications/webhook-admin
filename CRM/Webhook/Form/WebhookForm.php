@@ -7,7 +7,8 @@ use CRM_Webhook_ExtensionUtil as E;
  *
  * @see https://docs.civicrm.org/dev/en/latest/framework/quickform/
  */
-class CRM_Webhook_Form_WebhookForm extends CRM_Webhook_Form_WebhookBase {
+class CRM_Webhook_Form_WebhookForm extends CRM_Webhook_Form_WebhookBase
+{
 
     private $optionValues;
     /**
@@ -15,7 +16,8 @@ class CRM_Webhook_Form_WebhookForm extends CRM_Webhook_Form_WebhookBase {
      *
      * @throws CRM_Core_Exception
      */
-    public function preProcess() {
+    public function preProcess()
+    {
         parent::preProcess();
         $this->setOptionValues();
     }
@@ -27,7 +29,8 @@ class CRM_Webhook_Form_WebhookForm extends CRM_Webhook_Form_WebhookBase {
      *
      * @return array
      */
-    public function getWebhook(int $id) {
+    public function getWebhook(int $id)
+    {
         $config = $this->config->get();
         if (isset($config["webhooks"][$id])) {
             return $config["webhooks"][$id];
@@ -39,13 +42,15 @@ class CRM_Webhook_Form_WebhookForm extends CRM_Webhook_Form_WebhookBase {
      * Set option values.
      * It could be extended with the hook_civicrm_webhookOptionValues hook.
      */
-    public function setOptionValues() {
+    public function setOptionValues()
+    {
         $optionValues = [
             "processors" => [],
             "handlers" => [],
         ];
         // Fire hook event.
-        Civi::dispatcher()->dispatch("hook_civicrm_webhookOptionValues",
+        Civi::dispatcher()->dispatch(
+            "hook_civicrm_webhookOptionValues",
             Civi\Core\Event\GenericHookEvent::create([
                 "options" => &$optionValues,
             ])
@@ -64,7 +69,8 @@ class CRM_Webhook_Form_WebhookForm extends CRM_Webhook_Form_WebhookBase {
      *
      * @return array
      */
-    public function setDefaultValues() {
+    public function setDefaultValues()
+    {
         // new item - no defaults
         if (is_null($this->id)) {
             return [];
@@ -89,15 +95,17 @@ class CRM_Webhook_Form_WebhookForm extends CRM_Webhook_Form_WebhookBase {
      *
      * @return array
      */
-    private function getOptionsFor(string $name) {
+    private function getOptionsFor(string $name)
+    {
         $opts = [ "" => ts("- select -") ];
-        foreach($this->optionValues[$name] as $k => $v) {
+        foreach ($this->optionValues[$name] as $k => $v) {
             $opts[$k] = $v;
         }
         return $opts;
     }
 
-    public function buildQuickForm() {
+    public function buildQuickForm()
+    {
         parent::buildQuickForm();
 
         // Add form elements
@@ -130,7 +138,8 @@ class CRM_Webhook_Form_WebhookForm extends CRM_Webhook_Form_WebhookBase {
     /**
      * Add form validation rules
      */
-    public function addRules() {
+    public function addRules()
+    {
         $this->addFormRule(
             ["CRM_Webhook_Form_WebhookForm", "validateSelector"],
             ["config" => $this->config,]
@@ -146,7 +155,8 @@ class CRM_Webhook_Form_WebhookForm extends CRM_Webhook_Form_WebhookBase {
      *
      * @return array|bool
      */
-    public function validateSelector($values, $files, $options) {
+    public function validateSelector($values, $files, $options)
+    {
         $errors = [];
         // Update configuration to latest values
         $options["config"]->load();
@@ -154,7 +164,6 @@ class CRM_Webhook_Form_WebhookForm extends CRM_Webhook_Form_WebhookBase {
 
         // Loop through existing webhooks for duplication checking
         foreach ($config["webhooks"] as $hook) {
-
             // skip the current item from duplication checking
             if (isset($values["id"]) && $hook["id"] == $values["id"]) {
                 continue;
@@ -173,7 +182,8 @@ class CRM_Webhook_Form_WebhookForm extends CRM_Webhook_Form_WebhookBase {
         return true;
     }
 
-    public function postProcess() {
+    public function postProcess()
+    {
         parent::postProcess();
         $hook = [
             "name" => $this->_submitValues["name"],

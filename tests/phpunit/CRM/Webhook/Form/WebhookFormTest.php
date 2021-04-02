@@ -7,7 +7,8 @@ use CRM_Webhook_ExtensionUtil as E;
  *
  * @group headless
  */
-class CRM_Webhook_Form_WebhookFormTest extends CRM_Webhook_Form_TestBase {
+class CRM_Webhook_Form_WebhookFormTest extends CRM_Webhook_Form_TestBase
+{
 
     /**
      * Build quick form test cases.
@@ -15,7 +16,8 @@ class CRM_Webhook_Form_WebhookFormTest extends CRM_Webhook_Form_TestBase {
      * It shouldn't throw exception.
      * The title should be set.
      */
-    public function testBuildQuickFormWithoutId() {
+    public function testBuildQuickFormWithoutId()
+    {
         $this->setupTestConfig();
         $form = new CRM_Webhook_Form_WebhookForm();
         self::assertEmpty($form->preProcess(), "PreProcess supposed to be empty.");
@@ -26,7 +28,8 @@ class CRM_Webhook_Form_WebhookFormTest extends CRM_Webhook_Form_TestBase {
         }
         self::assertEquals("Webhook Form", $form->getTitle(), "Invalid form title.");
     }
-    public function testBuildQuickFormWithId() {
+    public function testBuildQuickFormWithId()
+    {
         $this->setGlobals("id", self::TEST_SETTINGS["webhooks"][0]["id"]);
         $this->setupTestConfig();
         $form = new CRM_Webhook_Form_WebhookForm();
@@ -45,7 +48,8 @@ class CRM_Webhook_Form_WebhookFormTest extends CRM_Webhook_Form_TestBase {
      * With not existing id - no defaults.
      * existing id - defaults.
      */
-    public function testSetDefaultValuesNoId() {
+    public function testSetDefaultValuesNoId()
+    {
         $this->setGlobals("id", null);
         $this->setupTestConfig();
         $form = new CRM_Webhook_Form_WebhookForm();
@@ -53,7 +57,8 @@ class CRM_Webhook_Form_WebhookFormTest extends CRM_Webhook_Form_TestBase {
         $defaults = $form->setDefaultValues();
         self::assertEquals([], $defaults, "Should be empty without id.");
     }
-    public function testSetDefaultValuesNotExistingId() {
+    public function testSetDefaultValuesNotExistingId()
+    {
         $this->setGlobals("id", self::TEST_SETTINGS["sequence"]);
         $this->setupTestConfig();
         $form = new CRM_Webhook_Form_WebhookForm();
@@ -61,7 +66,8 @@ class CRM_Webhook_Form_WebhookFormTest extends CRM_Webhook_Form_TestBase {
         $defaults = $form->setDefaultValues();
         self::assertEquals([], $defaults, "Should be empty with not existing id.");
     }
-    public function testSetDefaultValuesGoodId() {
+    public function testSetDefaultValuesGoodId()
+    {
         $this->setGlobals("id", self::TEST_SETTINGS["webhooks"][0]["id"]);
         $this->setupTestConfig();
         $form = new CRM_Webhook_Form_WebhookForm();
@@ -74,7 +80,8 @@ class CRM_Webhook_Form_WebhookFormTest extends CRM_Webhook_Form_TestBase {
      * Add Rules test case.
      * It shouldn't throw exception.
      */
-    public function testAddRules() {
+    public function testAddRules()
+    {
         $this->setupTestConfig();
         $form = new CRM_Webhook_Form_WebhookForm();
         try {
@@ -87,7 +94,8 @@ class CRM_Webhook_Form_WebhookFormTest extends CRM_Webhook_Form_TestBase {
     /**
      * Config Validator test cases.
      */
-    public function testConfigValidator() {
+    public function testConfigValidator()
+    {
         $testData = [
             [
                 "data" => [
@@ -113,7 +121,8 @@ class CRM_Webhook_Form_WebhookFormTest extends CRM_Webhook_Form_TestBase {
     /**
      * Post Process test cases.
      */
-    public function testPostProcessDeletedConfig() {
+    public function testPostProcessDeletedConfig()
+    {
         $this->setGlobals("id", null);
         $_POST["name"] = self::TEST_SETTINGS["webhooks"][0]["name"];
         $_POST["description"] = self::TEST_SETTINGS["webhooks"][0]["description"];
@@ -127,7 +136,8 @@ class CRM_Webhook_Form_WebhookFormTest extends CRM_Webhook_Form_TestBase {
         $config->remove();
         self::assertEmpty($form->postProcess());
     }
-    public function testPostProcessDuplicatedInput() {
+    public function testPostProcessDuplicatedInput()
+    {
         $this->setGlobals("id", null);
         $_POST["name"] = self::TEST_SETTINGS["webhooks"][0]["name"];
         $_POST["description"] = self::TEST_SETTINGS["webhooks"][0]["description"];
@@ -139,7 +149,8 @@ class CRM_Webhook_Form_WebhookFormTest extends CRM_Webhook_Form_TestBase {
         self::assertEmpty($form->preProcess(), "PreProcess supposed to be empty.");
         self::assertEmpty($form->postProcess());
     }
-    public function testPostProcessValidInput() {
+    public function testPostProcessValidInput()
+    {
         $this->setGlobals("id", null);
         $_POST["name"] = self::TEST_SETTINGS["webhooks"][0]["name"];
         $_POST["description"] = self::TEST_SETTINGS["webhooks"][0]["description"];
@@ -158,7 +169,8 @@ class CRM_Webhook_Form_WebhookFormTest extends CRM_Webhook_Form_TestBase {
         $config->load();
         self::assertEquals(2, count($config->get()["webhooks"]));
     }
-    public function testPostProcessValidInputEdition() {
+    public function testPostProcessValidInputEdition()
+    {
         $this->setGlobals("id", self::TEST_SETTINGS["webhooks"][0]["id"]);
         $_POST["name"] = self::TEST_SETTINGS["webhooks"][0]["name"];
         $_POST["description"] = self::TEST_SETTINGS["webhooks"][0]["description"];

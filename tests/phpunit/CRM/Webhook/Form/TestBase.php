@@ -8,7 +8,8 @@ use Civi\Test\TransactionalInterface;
 /**
  * Base class for the form tests.
  */
-class CRM_Webhook_Form_TestBase extends \PHPUnit\Framework\TestCase implements HeadlessInterface, HookInterface, TransactionalInterface {
+class CRM_Webhook_Form_TestBase extends \PHPUnit\Framework\TestCase implements HeadlessInterface, HookInterface, TransactionalInterface
+{
 
     const TEST_SETTINGS = [
         "sequence" => 1,
@@ -25,27 +26,32 @@ class CRM_Webhook_Form_TestBase extends \PHPUnit\Framework\TestCase implements H
         "logs" => [],
     ];
 
-    protected function setGlobals(string $key, $value) {
+    protected function setGlobals(string $key, $value)
+    {
         $_GET[$key] = $value;
         $_POST[$key] = $value;
         $_REQUEST[$key] = $value;
     }
 
-    public function setUpHeadless() {
+    public function setUpHeadless()
+    {
         return \Civi\Test::headless()
             ->installMe(__DIR__)
             ->apply();
     }
 
-    public function setUp(): void {
+    public function setUp(): void
+    {
         parent::setUp();
     }
 
-    public function tearDown(): void {
+    public function tearDown(): void
+    {
         parent::tearDown();
     }
 
-    protected function setupTestConfig() {
+    protected function setupTestConfig()
+    {
         $config = new CRM_Webhook_Config(E::LONG_NAME);
         $config->create();
         self::assertTrue($config->update(self::TEST_SETTINGS), "Config update has to be successful.");
