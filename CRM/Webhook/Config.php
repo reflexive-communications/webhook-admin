@@ -1,6 +1,7 @@
 <?php
 
-class CRM_Webhook_Config {
+class CRM_Webhook_Config
+{
     const DEFAULT_HOOK_NAME = "Logger webhook";
     const DEFAULT_HOOK_DESC = "This webhook could be used for testing purposes. It logs the received data.";
     const DEFAULT_HOOK_HANDLER = "CRM_Webhook_Handler_Logger";
@@ -15,7 +16,8 @@ class CRM_Webhook_Config {
      *
      * @param string $extensionName prefix for db.
      */
-    public function __construct(string $extensionName) {
+    public function __construct(string $extensionName)
+    {
         $this->configName = $extensionName."_configuration";
         $this->configuration = $this->defaultConfiguration();
     }
@@ -25,7 +27,8 @@ class CRM_Webhook_Config {
      *
      * @return array the default configuration object.
      */
-    private function defaultConfiguration(): array {
+    private function defaultConfiguration(): array
+    {
         return [
             "sequence" => 1,
             "logs" => [],
@@ -48,7 +51,8 @@ class CRM_Webhook_Config {
      *
      * @return bool the status of the db write process.
      */
-    public function create(): bool {
+    public function create(): bool
+    {
         Civi::settings()->add([$this->configName => $this->configuration]);
         // check the save process with loading the saved content and compare
         // it with the current configuration
@@ -61,7 +65,8 @@ class CRM_Webhook_Config {
      *
      * @return bool the status of the deletion process.
      */
-    public function remove(): bool {
+    public function remove(): bool
+    {
         Civi::settings()->revert($this->configName);
         // check the deletion process with loading the saved content and compare
         // it with null.
@@ -79,7 +84,8 @@ class CRM_Webhook_Config {
      *
      * @throws CRM_Core_Exception.
      */
-    public function load(): void {
+    public function load(): void
+    {
         $conf = Civi::settings()->get($this->configName);
         // if not loaded well, it throws exception.
         if (is_null($conf) || !is_array($conf)) {
@@ -95,7 +101,8 @@ class CRM_Webhook_Config {
      *
      * @return bool the status of the update process.
      */
-    public function update(array $newConfig): bool {
+    public function update(array $newConfig): bool
+    {
         Civi::settings()->set($this->configName, $newConfig);
         // check the save process with loading the saved content and compare
         // it with the newConfig configuration
@@ -114,7 +121,8 @@ class CRM_Webhook_Config {
      *
      * @throws CRM_Core_Exception.
      */
-    public function get(): array {
+    public function get(): array
+    {
         if (is_null($this->configuration)) {
             throw new CRM_Core_Exception($this->configName." config is missing.");
         }
@@ -130,7 +138,8 @@ class CRM_Webhook_Config {
      *
      * @throws CRM_Core_Exception.
      */
-    public function addWebhook(array $webhook): bool {
+    public function addWebhook(array $webhook): bool
+    {
         // load latest config
         $this->load();
         // duplication check - in case of duplication throws exception
@@ -157,7 +166,8 @@ class CRM_Webhook_Config {
      *
      * @throws CRM_Core_Exception.
      */
-    public function updateWebhook(array $webhook): bool {
+    public function updateWebhook(array $webhook): bool
+    {
         // load latest config
         $this->load();
         // duplication check - in case of duplication throws exception
@@ -179,7 +189,8 @@ class CRM_Webhook_Config {
      *
      * @throws CRM_Core_Exception.
      */
-    public function deleteWebhook(int $webhook): bool {
+    public function deleteWebhook(int $webhook): bool
+    {
         // load latest config
         $this->load();
         unset($this->configuration["webhooks"][$webhook]);
@@ -191,7 +202,8 @@ class CRM_Webhook_Config {
      *
      * @return bool the status of the deletion process.
      */
-    public function deleteLogs(): bool {
+    public function deleteLogs(): bool
+    {
         // load latest config
         $this->load();
         $this->configuration["logs"] = [];
@@ -205,7 +217,8 @@ class CRM_Webhook_Config {
      *
      * @return bool the status of the insertion process.
      */
-    public function insertLog(array $data): bool {
+    public function insertLog(array $data): bool
+    {
         // load latest config
         $this->load();
         $this->configuration["logs"][] = [

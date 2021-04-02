@@ -3,12 +3,14 @@
 /**
  * This is a generic test class for the extension (implemented with PHPUnit).
  */
-class CRM_Webhook_ConfigTest extends \PHPUnit\Framework\TestCase {
+class CRM_Webhook_ConfigTest extends \PHPUnit\Framework\TestCase
+{
 
     /**
      * The setup() method is executed before the test is executed (optional).
      */
-    public function setUp(): void {
+    public function setUp(): void
+    {
         parent::setUp();
     }
 
@@ -16,7 +18,8 @@ class CRM_Webhook_ConfigTest extends \PHPUnit\Framework\TestCase {
      * The tearDown() method is executed after the test was executed (optional)
      * This can be used for cleanup.
      */
-    public function tearDown(): void {
+    public function tearDown(): void
+    {
         parent::tearDown();
     }
 
@@ -24,7 +27,8 @@ class CRM_Webhook_ConfigTest extends \PHPUnit\Framework\TestCase {
      * Default configuration test case.
      *
      */
-    public function testConfigAfterConstructor() {
+    public function testConfigAfterConstructor()
+    {
         $config = new CRM_Webhook_Config("webhook_test");
         $cfg = $config->get();
         self::assertTrue(array_key_exists("sequence", $cfg), "sequence key is missing from the config.");

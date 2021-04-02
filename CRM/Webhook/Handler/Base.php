@@ -3,7 +3,8 @@
 /**
  * Webhook Handler Base
  */
-abstract class CRM_Webhook_Handler_Base {
+abstract class CRM_Webhook_Handler_Base
+{
     /**
      * Webhook Processor
      *
@@ -32,7 +33,8 @@ abstract class CRM_Webhook_Handler_Base {
      *
      * @param array $options Webhook options
      */
-    public function __construct(CRM_Webhook_Processor_Base $processor, array $options = []) {
+    public function __construct(CRM_Webhook_Processor_Base $processor, array $options = [])
+    {
         $this->processor = $processor;
         $this->options = $options;
     }
@@ -40,7 +42,8 @@ abstract class CRM_Webhook_Handler_Base {
     /**
      * Process input
      */
-    protected function processInput() {
+    protected function processInput()
+    {
         $this->data = $this->processor->input();
     }
 
@@ -61,7 +64,8 @@ abstract class CRM_Webhook_Handler_Base {
     /**
      * Handle request
      */
-    public function handle() {
+    public function handle()
+    {
         $this->processInput();
         $this->validate();
         $this->authenticate();

@@ -5,7 +5,8 @@
  *
  * @group headless
  */
-class CRM_Webhook_Form_WebhookSettingsTest extends CRM_Webhook_Form_TestBase {
+class CRM_Webhook_Form_WebhookSettingsTest extends CRM_Webhook_Form_TestBase
+{
 
     /**
      * Build quick form test case.
@@ -13,7 +14,8 @@ class CRM_Webhook_Form_WebhookSettingsTest extends CRM_Webhook_Form_TestBase {
      * It shouldn't throw exception.
      * The title should be set.
      */
-    public function testBuildQuickForm() {
+    public function testBuildQuickForm()
+    {
         $this->setupTestConfig();
         $form = new CRM_Webhook_Form_WebhookSettings();
         self::assertEmpty($form->preProcess(), "PreProcess supposed to be empty.");
@@ -28,7 +30,8 @@ class CRM_Webhook_Form_WebhookSettingsTest extends CRM_Webhook_Form_TestBase {
     /**
      * Post Process test case. It does nothing.
      */
-    public function testPostProcess() {
+    public function testPostProcess()
+    {
         $this->setupTestConfig();
         $form = new CRM_Webhook_Form_WebhookSettings();
         self::assertEmpty($form->preProcess(), "PreProcess supposed to be empty.");
@@ -43,7 +46,8 @@ class CRM_Webhook_Form_WebhookSettingsTest extends CRM_Webhook_Form_TestBase {
      * Links test case.
      * It shouldn't throw exception.
      */
-    public function testLinks() {
+    public function testLinks()
+    {
         $this->setupTestConfig();
         $form = new CRM_Webhook_Form_WebhookSettings();
         self::assertEmpty($form->preProcess(), "PreProcess supposed to be empty.");

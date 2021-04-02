@@ -10,19 +10,23 @@ use Civi\Test\TransactionalInterface;
  *
  * @group headless
  */
-class CRM_Webhook_DispatcherHeadlessTest extends \PHPUnit\Framework\TestCase implements HeadlessInterface, HookInterface, TransactionalInterface {
+class CRM_Webhook_DispatcherHeadlessTest extends \PHPUnit\Framework\TestCase implements HeadlessInterface, HookInterface, TransactionalInterface
+{
 
-    public function setUpHeadless() {
+    public function setUpHeadless()
+    {
         return \Civi\Test::headless()
             ->installMe(__DIR__)
             ->apply();
     }
 
-    public function setUp(): void {
+    public function setUp(): void
+    {
         parent::setUp();
     }
 
-    public function tearDown(): void {
+    public function tearDown(): void
+    {
         parent::tearDown();
     }
     /**
@@ -32,7 +36,8 @@ class CRM_Webhook_DispatcherHeadlessTest extends \PHPUnit\Framework\TestCase imp
      * With vaild value, it handles the request.
      * Add valid config and test against it.
      */
-    public function testRunMissingListener() {
+    public function testRunMissingListener()
+    {
         if (isset($_GET["listener"])) {
             unset($_GET["listener"]);
         }
@@ -41,14 +46,16 @@ class CRM_Webhook_DispatcherHeadlessTest extends \PHPUnit\Framework\TestCase imp
         self::expectExceptionMessage("Missing listener.", "Invalid exception message.");
         self::assertEmpty($d->run(), "Run supposed to be empty.");
     }
-    public function testRunInvalidListener() {
+    public function testRunInvalidListener()
+    {
         $_GET["listener"] = "not-existing-listener";
         $d = new CRM_Webhook_Dispatcher();
         self::expectException(Exception::class, "Invalid exception class.");
         self::expectExceptionMessage("Invalid listener.", "Invalid exception message.");
         self::assertEmpty($d->run(), "Run supposed to be empty.");
     }
-    public function testRunValidListener() {
+    public function testRunValidListener()
+    {
         $config = new CRM_Webhook_Config(E::LONG_NAME);
         $config->create();
         $config->addWebhook(["name" => "validName", "description" => "valid-description", "handler" => "CRM_Webhook_Handler_Logger", "selector" => "valid_selector", "processor" => "CRM_Webhook_Processor_Dummy"]);
