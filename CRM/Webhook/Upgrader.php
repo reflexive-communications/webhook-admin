@@ -44,12 +44,10 @@ class CRM_Webhook_Upgrader extends CRM_Webhook_Upgrader_Base
    */
     public function upgrade_5000()
     {
-        $this->ctx->log->info('Applying update 5000');
         $oldSuffixedName = $this->extensionName . "_configuration";
         $currentConfig = Civi::settings()->get($oldSuffixedName);
         // No previous installation, we are rady.
         if (is_null($currentConfig) || !is_array($currentConfig)) {
-            $this->ctx->log->info('Old configuration is missing, skipping update.');
             return true;
         }
         // Install the default db under the new key
@@ -57,7 +55,6 @@ class CRM_Webhook_Upgrader extends CRM_Webhook_Upgrader_Base
         // Update the db with the currentConfig
         $config = new CRM_Webhook_Config($this->extensionName);
         if(!$config->update($currentConfig)) {
-            $this->ctx->log->info('failed to update the configuration.');
             return false;
         }
         // delete the content from the oldSuffixedName config.
