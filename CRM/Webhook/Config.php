@@ -13,7 +13,7 @@ class CRM_Webhook_Config extends CRM_RcBase_Config
      *
      * @return array the default configuration object.
      */
-    private function defaultConfiguration(): array
+    public function defaultConfiguration(): array
     {
         return [
             "sequence" => 1,
@@ -44,20 +44,21 @@ class CRM_Webhook_Config extends CRM_RcBase_Config
     public function addWebhook(array $webhook): bool
     {
         // load latest config
-        $this->load();
+        parent::load();
+        $configuration = parent::get();
         // duplication check - in case of duplication throws exception
-        foreach ($this->configuration["webhooks"] as $hook) {
+        foreach ($configuration["webhooks"] as $hook) {
             if ($hook["selector"] == $webhook["selector"]) {
                 throw new CRM_Core_Exception($webhook["selector"]." selector is duplicated.");
             }
         }
         // get the id and increment the global one
-        $id = $this->configuration["sequence"];
-        $this->configuration["sequence"] += 1;
+        $id = $configuration["sequence"];
+        $configuration["sequence"] += 1;
         // save hook under the id.
         $webhook["id"] = $id;
-        $this->configuration["webhooks"][$id] = $webhook;
-        return $this->update($this->configuration);
+        $configuration["webhooks"][$id] = $webhook;
+        return parent::update($configuration);
     }
 
     /**
@@ -72,15 +73,16 @@ class CRM_Webhook_Config extends CRM_RcBase_Config
     public function updateWebhook(array $webhook): bool
     {
         // load latest config
-        $this->load();
+        parent::load();
+        $configuration = parent::get();
         // duplication check - in case of duplication throws exception
-        foreach ($this->configuration["webhooks"] as $hook) {
+        foreach ($configuration["webhooks"] as $hook) {
             if ($hook["selector"] == $webhook["selector"] && $webhook["id"] != $hook["id"]) {
                 throw new CRM_Core_Exception($webhook["selector"]." selector is duplicated.");
             }
         }
-        $this->configuration["webhooks"][$webhook["id"]] = $webhook;
-        return $this->update($this->configuration);
+        $configuration["webhooks"][$webhook["id"]] = $webhook;
+        return parent::update($configuration);
     }
 
     /**
@@ -95,9 +97,10 @@ class CRM_Webhook_Config extends CRM_RcBase_Config
     public function deleteWebhook(int $webhook): bool
     {
         // load latest config
-        $this->load();
-        unset($this->configuration["webhooks"][$webhook]);
-        return $this->update($this->configuration);
+        parent::load();
+        $configuration = parent::get();
+        unset($configuration["webhooks"][$webhook]);
+        return parent::update($configuration);
     }
 
     /**
@@ -108,9 +111,10 @@ class CRM_Webhook_Config extends CRM_RcBase_Config
     public function deleteLogs(): bool
     {
         // load latest config
-        $this->load();
-        $this->configuration["logs"] = [];
-        return $this->update($this->configuration);
+        parent::load();
+        $configuration = parent::get();
+        $configuration["logs"] = [];
+        return parent::update($configuration);
     }
 
     /**
@@ -123,11 +127,12 @@ class CRM_Webhook_Config extends CRM_RcBase_Config
     public function insertLog(array $data): bool
     {
         // load latest config
-        $this->load();
-        $this->configuration["logs"][] = [
+        parent::load();
+        $configuration = parent::get();
+        $configuration["logs"][] = [
             "data" => $data,
             "timestamp" => time(),
         ];
-        return $this->update($this->configuration);
+        return parent::update($configuration);
     }
 }
