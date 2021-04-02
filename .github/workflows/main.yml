@@ -79,6 +79,8 @@ jobs:
       with:
           repository: reflexive-communications/rc-base
           path: rc-base
+
+    - name: Move rc-base to the extensions directory.
       run: |
           sudo mv rc-base ${{ env.LOCAL_DEPLOY_TARGET }}"/"${{ env.SITE_NAME }}"/web/sites/default/files/civicrm/ext"
           cd ${{ env.LOCAL_DEPLOY_TARGET }}"/"${{ env.SITE_NAME }}
