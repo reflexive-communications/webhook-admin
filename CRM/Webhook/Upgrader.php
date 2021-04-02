@@ -46,7 +46,7 @@ class CRM_Webhook_Upgrader extends CRM_Webhook_Upgrader_Base
     {
         $oldSuffixedName = $this->extensionName . "_configuration";
         $currentConfig = Civi::settings()->get($oldSuffixedName);
-        // No previous installation, we are rady.
+        // No previous installation, we are ready.
         if (is_null($currentConfig) || !is_array($currentConfig)) {
             return true;
         }
