@@ -86,8 +86,8 @@ class CRM_Webhook_ConfigHeadlessTest extends \PHPUnit\Framework\TestCase impleme
         $this->isDefaultConfiguration($cfg);
 
         self::assertTrue($config->remove(), "Remove config has to be successful.");
-        self::expectException(CRM_Core_Exception::class, "Invalid exception class.");
-        self::expectExceptionMessage("webhook_test_config config is missing.", "Invalid exception message.");
+        self::expectException(CRM_Core_Exception::class);
+        self::expectExceptionMessage("webhook_test_config config is missing.");
         $cfg = $config->get();
     }
 
@@ -124,8 +124,8 @@ class CRM_Webhook_ConfigHeadlessTest extends \PHPUnit\Framework\TestCase impleme
         self::assertEquals($cfg, $cfgLoaded, "Invalid loaded configuration.");
 
         $missingConfig = new CRM_Webhook_Config("webhook_test_missing_config");
-        self::expectException(CRM_Core_Exception::class, "Invalid exception class.");
-        self::expectExceptionMessage("webhook_test_missing_config_config config invalid.", "Invalid exception message.");
+        self::expectException(CRM_Core_Exception::class);
+        self::expectExceptionMessage("webhook_test_missing_config_config config invalid.");
         self::assertEmpty($missingConfig->load(), "Load result supposed to be empty.");
     }
 
@@ -165,8 +165,8 @@ class CRM_Webhook_ConfigHeadlessTest extends \PHPUnit\Framework\TestCase impleme
             "processor" => CRM_Webhook_Config::DEFAULT_HOOK_PROCESSOR,
             "options" => [],
         ];
-        self::expectException(CRM_Core_Exception::class, "Invalid exception class.");
-        self::expectExceptionMessage(CRM_Webhook_Config::DEFAULT_HOOK_SELECTOR." selector is duplicated.", "Invalid exception message.");
+        self::expectException(CRM_Core_Exception::class);
+        self::expectExceptionMessage(CRM_Webhook_Config::DEFAULT_HOOK_SELECTOR." selector is duplicated.");
         $config->addWebhook($newHook);
     }
     /**
@@ -209,8 +209,8 @@ class CRM_Webhook_ConfigHeadlessTest extends \PHPUnit\Framework\TestCase impleme
         self::assertTrue($config->addWebhook($newHook), "Add Webhook has to be successful.");
         $newHook["id"] = 1;
         $newHook["selector"] = CRM_Webhook_Config::DEFAULT_HOOK_SELECTOR;
-        self::expectException(CRM_Core_Exception::class, "Invalid exception class.");
-        self::expectExceptionMessage(CRM_Webhook_Config::DEFAULT_HOOK_SELECTOR." selector is duplicated.", "Invalid exception message.");
+        self::expectException(CRM_Core_Exception::class);
+        self::expectExceptionMessage(CRM_Webhook_Config::DEFAULT_HOOK_SELECTOR." selector is duplicated.");
         $config->updateWebhook($newHook);
     }
     /**

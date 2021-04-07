@@ -36,8 +36,8 @@ class CRM_Webhook_Form_WebhookBaseTest extends CRM_Webhook_Form_TestBase
         $form = new CRM_Webhook_Form_WebhookBase();
         $config = new CRM_Webhook_Config(E::LONG_NAME);
         $config->remove();
-        self::expectException(CRM_Core_Exception::class, "Invalid exception class.");
-        self::expectExceptionMessage(E::SHORT_NAME."_config config invalid.", "Invalid exception message.");
+        self::expectException(CRM_Core_Exception::class);
+        self::expectExceptionMessage(E::SHORT_NAME."_config config invalid.");
         self::assertEmpty($form->preProcess(), "PreProcess supposed to be empty.");
     }
 }

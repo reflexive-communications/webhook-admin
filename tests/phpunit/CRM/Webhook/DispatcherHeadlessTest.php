@@ -42,16 +42,16 @@ class CRM_Webhook_DispatcherHeadlessTest extends \PHPUnit\Framework\TestCase imp
             unset($_GET["listener"]);
         }
         $d = new CRM_Webhook_Dispatcher();
-        self::expectException(Exception::class, "Invalid exception class.");
-        self::expectExceptionMessage("Missing listener.", "Invalid exception message.");
+        self::expectException(Exception::class);
+        self::expectExceptionMessage("Missing listener.");
         self::assertEmpty($d->run(), "Run supposed to be empty.");
     }
     public function testRunInvalidListener()
     {
         $_GET["listener"] = "not-existing-listener";
         $d = new CRM_Webhook_Dispatcher();
-        self::expectException(Exception::class, "Invalid exception class.");
-        self::expectExceptionMessage("Invalid listener.", "Invalid exception message.");
+        self::expectException(Exception::class);
+        self::expectExceptionMessage("Invalid listener.");
         self::assertEmpty($d->run(), "Run supposed to be empty.");
     }
     public function testRunValidListener()
