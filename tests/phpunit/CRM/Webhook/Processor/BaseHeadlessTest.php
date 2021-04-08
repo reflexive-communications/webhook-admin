@@ -37,7 +37,7 @@ class CRM_Webhook_Processor_BaseHeadlessTest extends \PHPUnit\Framework\TestCase
     {
         $stub = $this->getMockForAbstractClass('CRM_Webhook_Processor_Base');
         $testData = ["key"=>"value"];
-        self::expectException(CRM_Core_Exception_PrematureExitException::class, "Invalid exception class.");
+        self::expectException(CRM_Core_Exception_PrematureExitException::class);
         self::assertEmpty($stub->output($testData), "Output supposed to be empty.");
     }
     /**
