@@ -66,7 +66,7 @@ Go to the `Administer > Webhooks` menu. It will lead you to the `civicrm/admin/w
 
 ### Call endpoint.
 
-The public endpoint is `/extensions/hu.es-progress.webhook/external/Listener.php`. A selector value has to be added as listener GET parameter. If the selector is `my-hook-handler`, then the endpoint of the listener application will be `/extensions/hu.es-progress.webhook/external/Listener.php?listener=my-hoook-listener`
+The public endpoint is `/extensions/hu.es-progress.webhook/external/listener.php`. A selector value has to be added as listener GET parameter. If the selector is `my-hook-handler`, then the endpoint of the listener application will be `/extensions/hu.es-progress.webhook/external/listener.php?listener=my-hoook-listener`
 
 ### Extend the config
 
