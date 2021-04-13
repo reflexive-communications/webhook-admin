@@ -14,38 +14,38 @@ class CRM_Webhook_Upgrader_Base
    */
     public static $instance;
 
-  /**
-   * @var CRM_Queue_TaskContext
-   */
+    /**
+     * @var CRM_Queue_TaskContext
+     */
     protected $ctx;
 
-  /**
-   * @var string
-   *   eg 'com.example.myextension'
-   */
+    /**
+     * @var string
+     *   eg 'com.example.myextension'
+     */
     protected $extensionName;
 
-  /**
-   * @var string
-   *   full path to the extension's source tree
-   */
+    /**
+     * @var string
+     *   full path to the extension's source tree
+     */
     protected $extensionDir;
 
-  /**
-   * @var array
-   *   sorted numerically
-   */
+    /**
+     * @var array
+     *   sorted numerically
+     */
     private $revisions;
 
-  /**
-   * @var bool
-   *   Flag to clean up extension revision data in civicrm_setting
-   */
+    /**
+     * @var bool
+     *   Flag to clean up extension revision data in civicrm_setting
+     */
     private $revisionStorageIsDeprecated = false;
 
-  /**
-   * Obtain a reference to the active upgrade handler.
-   */
+    /**
+     * Obtain a reference to the active upgrade handler.
+     */
     public static function instance()
     {
         if (!self::$instance) {
@@ -57,16 +57,16 @@ class CRM_Webhook_Upgrader_Base
         return self::$instance;
     }
 
-  /**
-   * Adapter that lets you add normal (non-static) member functions to the queue.
-   *
-   * Note: Each upgrader instance should only be associated with one
-   * task-context; otherwise, this will be non-reentrant.
-   *
-   * ```
-   * CRM_Webhook_Upgrader_Base::_queueAdapter($ctx, 'methodName', 'arg1', 'arg2');
-   * ```
-   */
+    /**
+     * Adapter that lets you add normal (non-static) member functions to the queue.
+     *
+     * Note: Each upgrader instance should only be associated with one
+     * task-context; otherwise, this will be non-reentrant.
+     *
+     * ```
+     * CRM_Webhook_Upgrader_Base::_queueAdapter($ctx, 'methodName', 'arg1', 'arg2');
+     * ```
+     */
     public static function _queueAdapter()
     {
         $instance = self::instance();
@@ -77,41 +77,41 @@ class CRM_Webhook_Upgrader_Base
         return call_user_func_array([$instance, $method], $args);
     }
 
-  /**
-   * CRM_Webhook_Upgrader_Base constructor.
-   *
-   * @param $extensionName
-   * @param $extensionDir
-   */
+    /**
+     * CRM_Webhook_Upgrader_Base constructor.
+     *
+     * @param $extensionName
+     * @param $extensionDir
+     */
     public function __construct($extensionName, $extensionDir)
     {
         $this->extensionName = $extensionName;
         $this->extensionDir = $extensionDir;
     }
 
-  // ******** Task helpers ********
+    // ******** Task helpers ********
 
-  /**
-   * Run a CustomData file.
-   *
-   * @param string $relativePath
-   *   the CustomData XML file path (relative to this extension's dir)
-   * @return bool
-   */
+    /**
+     * Run a CustomData file.
+     *
+     * @param string $relativePath
+     *   the CustomData XML file path (relative to this extension's dir)
+     * @return bool
+     */
     public function executeCustomDataFile($relativePath)
     {
         $xml_file = $this->extensionDir . '/' . $relativePath;
         return $this->executeCustomDataFileByAbsPath($xml_file);
     }
 
-  /**
-   * Run a CustomData file
-   *
-   * @param string $xml_file
-   *   the CustomData XML file path (absolute path)
-   *
-   * @return bool
-   */
+    /**
+     * Run a CustomData file
+     *
+     * @param string $xml_file
+     *   the CustomData XML file path (absolute path)
+     *
+     * @return bool
+     */
     protected function executeCustomDataFileByAbsPath($xml_file)
     {
         $import = new CRM_Utils_Migrate_Import();
@@ -119,14 +119,14 @@ class CRM_Webhook_Upgrader_Base
         return true;
     }
 
-  /**
-   * Run a SQL file.
-   *
-   * @param string $relativePath
-   *   the SQL file path (relative to this extension's dir)
-   *
-   * @return bool
-   */
+    /**
+     * Run a SQL file.
+     *
+     * @param string $relativePath
+     *   the SQL file path (relative to this extension's dir)
+     *
+     * @return bool
+     */
     public function executeSqlFile($relativePath)
     {
         CRM_Utils_File::sourceSQLFile(
@@ -136,19 +136,19 @@ class CRM_Webhook_Upgrader_Base
         return true;
     }
 
-  /**
-   * Run the sql commands in the specified file.
-   *
-   * @param string $tplFile
-   *   The SQL file path (relative to this extension's dir).
-   *   Ex: "sql/mydata.mysql.tpl".
-   *
-   * @return bool
-   * @throws \CRM_Core_Exception
-   */
+    /**
+     * Run the sql commands in the specified file.
+     *
+     * @param string $tplFile
+     *   The SQL file path (relative to this extension's dir).
+     *   Ex: "sql/mydata.mysql.tpl".
+     *
+     * @return bool
+     * @throws \CRM_Core_Exception
+     */
     public function executeSqlTemplate($tplFile)
     {
-      // Assign multilingual variable to Smarty.
+        // Assign multilingual variable to Smarty.
         $upgrade = new CRM_Upgrade_Form();
 
         $tplFile = CRM_Utils_File::isAbsolute($tplFile) ? $tplFile : $this->extensionDir . DIRECTORY_SEPARATOR . $tplFile;
@@ -163,31 +163,31 @@ class CRM_Webhook_Upgrader_Base
         return true;
     }
 
-  /**
-   * Run one SQL query.
-   *
-   * This is just a wrapper for CRM_Core_DAO::executeSql, but it
-   * provides syntactic sugar for queueing several tasks that
-   * run different queries
-   *
-   * @return bool
-   */
+    /**
+     * Run one SQL query.
+     *
+     * This is just a wrapper for CRM_Core_DAO::executeSql, but it
+     * provides syntactic sugar for queueing several tasks that
+     * run different queries
+     *
+     * @return bool
+     */
     public function executeSql($query, $params = [])
     {
-      // FIXME verify that we raise an exception on error
+        // FIXME verify that we raise an exception on error
         CRM_Core_DAO::executeQuery($query, $params);
         return true;
     }
 
-  /**
-   * Syntactic sugar for enqueuing a task which calls a function in this class.
-   *
-   * The task is weighted so that it is processed
-   * as part of the currently-pending revision.
-   *
-   * After passing the $funcName, you can also pass parameters that will go to
-   * the function. Note that all params must be serializable.
-   */
+    /**
+     * Syntactic sugar for enqueuing a task which calls a function in this class.
+     *
+     * The task is weighted so that it is processed
+     * as part of the currently-pending revision.
+     *
+     * After passing the $funcName, you can also pass parameters that will go to
+     * the function. Note that all params must be serializable.
+     */
     public function addTask($title)
     {
         $args = func_get_args();
@@ -200,13 +200,13 @@ class CRM_Webhook_Upgrader_Base
         return $this->queue->createItem($task, ['weight' => -1]);
     }
 
-  // ******** Revision-tracking helpers ********
+    // ******** Revision-tracking helpers ********
 
-  /**
-   * Determine if there are any pending revisions.
-   *
-   * @return bool
-   */
+    /**
+     * Determine if there are any pending revisions.
+     *
+     * @return bool
+     */
     public function hasPendingRevisions()
     {
         $revisions = $this->getRevisions();
@@ -222,11 +222,11 @@ class CRM_Webhook_Upgrader_Base
         return ($currentRevision < max($revisions));
     }
 
-  /**
-   * Add any pending revisions to the queue.
-   *
-   * @param CRM_Queue_Queue $queue
-   */
+    /**
+     * Add any pending revisions to the queue.
+     *
+     * @param CRM_Queue_Queue $queue
+     */
     public function enqueuePendingRevisions(CRM_Queue_Queue $queue)
     {
         $this->queue = $queue;
@@ -258,12 +258,12 @@ class CRM_Webhook_Upgrader_Base
         }
     }
 
-  /**
-   * Get a list of revisions.
-   *
-   * @return array
-   *   revisionNumbers sorted numerically
-   */
+    /**
+     * Get a list of revisions.
+     *
+     * @return array
+     *   revisionNumbers sorted numerically
+     */
     public function getRevisions()
     {
         if (!is_array($this->revisions)) {
@@ -303,7 +303,7 @@ class CRM_Webhook_Upgrader_Base
     public function setCurrentRevision($revision)
     {
         CRM_Core_BAO_Extension::setSchemaVersion($this->extensionName, $revision);
-      // clean up legacy schema version store (CRM-19252)
+        // clean up legacy schema version store (CRM-19252)
         $this->deleteDeprecatedRevision();
         return true;
     }
@@ -318,11 +318,11 @@ class CRM_Webhook_Upgrader_Base
         }
     }
 
-  // ******** Hook delegates ********
+    // ******** Hook delegates ********
 
-  /**
-   * @see https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_install
-   */
+    /**
+     * @see https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_install
+     */
     public function onInstall()
     {
         $files = glob($this->extensionDir . '/sql/*_install.sql');
@@ -348,9 +348,9 @@ class CRM_Webhook_Upgrader_Base
         }
     }
 
-  /**
-   * @see https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_postInstall
-   */
+    /**
+     * @see https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_postInstall
+     */
     public function onPostInstall()
     {
         $revisions = $this->getRevisions();
@@ -362,9 +362,9 @@ class CRM_Webhook_Upgrader_Base
         }
     }
 
-  /**
-   * @see https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_uninstall
-   */
+    /**
+     * @see https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_uninstall
+     */
     public function onUninstall()
     {
         $files = glob($this->extensionDir . '/sql/*_uninstall.mysql.tpl');
@@ -384,23 +384,23 @@ class CRM_Webhook_Upgrader_Base
         }
     }
 
-  /**
-   * @see https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_enable
-   */
+    /**
+     * @see https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_enable
+     */
     public function onEnable()
     {
-      // stub for possible future use
+        // stub for possible future use
         if (is_callable([$this, 'enable'])) {
             $this->enable();
         }
     }
 
-  /**
-   * @see https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_disable
-   */
+    /**
+     * @see https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_disable
+     */
     public function onDisable()
     {
-      // stub for possible future use
+        // stub for possible future use
         if (is_callable([$this, 'disable'])) {
             $this->disable();
         }

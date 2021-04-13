@@ -64,8 +64,8 @@ class CRM_Webhook_Form_LogTable extends CRM_Core_Form
     {
         parent::postProcess();
         if (!$this->config->deleteLogs()) {
-                CRM_Core_Session::setStatus(ts("Error during log deletion"), "Webhook", "error");
-                return;
+            CRM_Core_Session::setStatus(ts("Error during log deletion"), "Webhook", "error");
+            return;
         }
         CRM_Core_Session::setStatus(ts("Webhook logs deleted."), "Webhook", "success", ["expires" => 5000,]);
     }

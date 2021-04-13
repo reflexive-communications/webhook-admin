@@ -12,7 +12,6 @@ use Civi\Test\TransactionalInterface;
  */
 class CRM_Webhook_UpgraderHeadlessTest extends \PHPUnit\Framework\TestCase implements HeadlessInterface
 {
-
     public function setUpHeadless()
     {
         return \Civi\Test::headless()

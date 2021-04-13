@@ -9,7 +9,6 @@ use CRM_Webhook_ExtensionUtil as E;
  */
 class CRM_Webhook_Form_WebhookForm extends CRM_Webhook_Form_WebhookBase
 {
-
     private $optionValues;
     /**
      * Preprocess form
