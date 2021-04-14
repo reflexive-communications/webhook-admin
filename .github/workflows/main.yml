@@ -5,9 +5,20 @@ on:
         branches: [ main ]
 
 jobs:
+  code-style:
+    name:    Code style check
+    runs-on: ubuntu-18.04
+    steps:
+    - uses: actions/checkout@v2
+    - name: PHP-CS-Fixer
+      uses: docker://oskarstark/php-cs-fixer-ga
+      with:
+        args: --rules=@PSR2 --dry-run -v .
+
   tests:
     name: Unit tests
     runs-on: ubuntu-18.04
+    needs:   code-style
     env:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: drupal
