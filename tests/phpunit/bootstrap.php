@@ -32,8 +32,8 @@ function cv($cmd, $decode = 'json')
     $oldOutput = getenv('CV_OUTPUT');
     putenv("CV_OUTPUT=json");
 
-  // Execute `cv` in the original folder. This is a work-around for
-  // phpunit/codeception, which seem to manipulate PWD.
+    // Execute `cv` in the original folder. This is a work-around for
+    // phpunit/codeception, which seem to manipulate PWD.
     $cmd = sprintf('cd %s; %s', escapeshellarg(getenv('PWD')), $cmd);
 
     $process = proc_open($cmd, $descriptorSpec, $pipes, __DIR__);

@@ -12,7 +12,6 @@ use Civi\Test\TransactionalInterface;
  */
 class CRM_Webhook_Handler_LoggerHeadlessTest extends \PHPUnit\Framework\TestCase implements HeadlessInterface, HookInterface, TransactionalInterface
 {
-
     public function setUpHeadless()
     {
         return \Civi\Test::headless()

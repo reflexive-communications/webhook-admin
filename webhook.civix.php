@@ -12,19 +12,19 @@ class CRM_Webhook_ExtensionUtil
     const LONG_NAME = 'hu.es-progress.webhook';
     const CLASS_PREFIX = 'CRM_Webhook';
 
-  /**
-   * Translate a string using the extension's domain.
-   *
-   * If the extension doesn't have a specific translation
-   * for the string, fallback to the default translations.
-   *
-   * @param string $text
-   *   Canonical message text (generally en_US).
-   * @param array $params
-   * @return string
-   *   Translated text.
-   * @see ts
-   */
+    /**
+     * Translate a string using the extension's domain.
+     *
+     * If the extension doesn't have a specific translation
+     * for the string, fallback to the default translations.
+     *
+     * @param string $text
+     *   Canonical message text (generally en_US).
+     * @param array $params
+     * @return string
+     *   Translated text.
+     * @see ts
+     */
     public static function ts($text, $params = [])
     {
         if (!array_key_exists('domain', $params)) {
@@ -33,16 +33,16 @@ class CRM_Webhook_ExtensionUtil
         return ts($text, $params);
     }
 
-  /**
-   * Get the URL of a resource file (in this extension).
-   *
-   * @param string|NULL $file
-   *   Ex: NULL.
-   *   Ex: 'css/foo.css'.
-   * @return string
-   *   Ex: 'http://example.org/sites/default/ext/org.example.foo'.
-   *   Ex: 'http://example.org/sites/default/ext/org.example.foo/css/foo.css'.
-   */
+    /**
+     * Get the URL of a resource file (in this extension).
+     *
+     * @param string|NULL $file
+     *   Ex: NULL.
+     *   Ex: 'css/foo.css'.
+     * @return string
+     *   Ex: 'http://example.org/sites/default/ext/org.example.foo'.
+     *   Ex: 'http://example.org/sites/default/ext/org.example.foo/css/foo.css'.
+     */
     public static function url($file = null)
     {
         if ($file === null) {
@@ -51,30 +51,30 @@ class CRM_Webhook_ExtensionUtil
         return CRM_Core_Resources::singleton()->getUrl(self::LONG_NAME, $file);
     }
 
-  /**
-   * Get the path of a resource file (in this extension).
-   *
-   * @param string|NULL $file
-   *   Ex: NULL.
-   *   Ex: 'css/foo.css'.
-   * @return string
-   *   Ex: '/var/www/example.org/sites/default/ext/org.example.foo'.
-   *   Ex: '/var/www/example.org/sites/default/ext/org.example.foo/css/foo.css'.
-   */
+    /**
+     * Get the path of a resource file (in this extension).
+     *
+     * @param string|NULL $file
+     *   Ex: NULL.
+     *   Ex: 'css/foo.css'.
+     * @return string
+     *   Ex: '/var/www/example.org/sites/default/ext/org.example.foo'.
+     *   Ex: '/var/www/example.org/sites/default/ext/org.example.foo/css/foo.css'.
+     */
     public static function path($file = null)
     {
-      // return CRM_Core_Resources::singleton()->getPath(self::LONG_NAME, $file);
+        // return CRM_Core_Resources::singleton()->getPath(self::LONG_NAME, $file);
         return __DIR__ . ($file === null ? '' : (DIRECTORY_SEPARATOR . $file));
     }
 
-  /**
-   * Get the name of a class within this extension.
-   *
-   * @param string $suffix
-   *   Ex: 'Page_HelloWorld' or 'Page\\HelloWorld'.
-   * @return string
-   *   Ex: 'CRM_Foo_Page_HelloWorld'.
-   */
+    /**
+     * Get the name of a class within this extension.
+     *
+     * @param string $suffix
+     *   Ex: 'Page_HelloWorld' or 'Page\\HelloWorld'.
+     * @return string
+     *   Ex: 'CRM_Foo_Page_HelloWorld'.
+     */
     public static function findClass($suffix)
     {
         return self::CLASS_PREFIX . '_' . str_replace('\\', '_', $suffix);
@@ -400,7 +400,7 @@ function _webhook_civix_glob($pattern)
  */
 function _webhook_civix_insert_navigation_menu(&$menu, $path, $item)
 {
-  // If we are done going down the path, insert menu
+    // If we are done going down the path, insert menu
     if (empty($path)) {
         $menu[] = [
         'attributes' => array_merge([
@@ -410,7 +410,7 @@ function _webhook_civix_insert_navigation_menu(&$menu, $path, $item)
         ];
         return true;
     } else {
-      // Find an recurse into the next level down
+        // Find an recurse into the next level down
         $found = false;
         $path = explode('/', $path);
         $first = array_shift($path);
@@ -458,7 +458,7 @@ function _webhook_civix_fixNavigationMenuItems(&$nodes, &$maxNavID, $parentID)
         if (!isset($nodes[$origKey]['attributes']['parentID']) && $parentID !== null) {
             $nodes[$origKey]['attributes']['parentID'] = $parentID;
         }
-      // If no navID, then assign navID and fix key.
+        // If no navID, then assign navID and fix key.
         if (!isset($nodes[$origKey]['attributes']['navID'])) {
             $newKey = ++$maxNavID;
             $nodes[$origKey]['attributes']['navID'] = $newKey;

@@ -10,7 +10,6 @@ use Civi\Test\TransactionalInterface;
  */
 class CRM_Webhook_Form_TestBase extends \PHPUnit\Framework\TestCase implements HeadlessInterface, HookInterface, TransactionalInterface
 {
-
     const TEST_SETTINGS = [
         "sequence" => 1,
         "webhooks" => [
