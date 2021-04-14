@@ -9,7 +9,6 @@ use CRM_Webhook_ExtensionUtil as E;
  */
 class CRM_Webhook_Form_WebhookSettings extends CRM_Webhook_Form_WebhookBase
 {
-
     public function buildQuickForm()
     {
         parent::buildQuickForm();
