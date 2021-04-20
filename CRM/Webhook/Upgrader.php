@@ -38,6 +38,8 @@ class CRM_Webhook_Upgrader extends CRM_Webhook_Upgrader_Base
     /**
      * It moves the content of the old database to the new one.
      *
+     * @param string $oldName the key of the previous setting.
+     *
      * @return true on success
      * @throws Exception
      */
