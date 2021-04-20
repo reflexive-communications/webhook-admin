@@ -70,7 +70,7 @@ class CRM_Webhook_Upgrader extends CRM_Webhook_Upgrader_Base
      */
     public function upgrade_5000()
     {
-        return $this->updateCurrentDbFromPreviousInstall($this->extensionName . "_configuration");
+        return $this->updateCurrentDbFromPreviousInstall("hu.es-progress.webhook_configuration");
     }
 
     /**
@@ -79,7 +79,7 @@ class CRM_Webhook_Upgrader extends CRM_Webhook_Upgrader_Base
      * @return true on success
      * @throws Exception
      */
-    public function upgrade_5001()
+    public function upgrade_5100()
     {
         return $this->updateCurrentDbFromPreviousInstall("hu.es-progress.webhook_config");
     }

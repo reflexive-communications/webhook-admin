@@ -107,7 +107,7 @@ class CRM_Webhook_UpgraderHeadlessTest extends \PHPUnit\Framework\TestCase imple
     }
     public function testUpgrade_5000HasPreviousInstall()
     {
-        Civi::settings()->add(["webhook_test_configuration" => self::DEFAULT_TEST_CONFIG]);
+        Civi::settings()->add(["hu.es-progress.webhook_configuration" => self::DEFAULT_TEST_CONFIG]);
         $installer = new CRM_Webhook_Upgrader("webhook_test", ".");
         $this->assertEmpty($installer->install());
         try {
@@ -117,25 +117,25 @@ class CRM_Webhook_UpgraderHeadlessTest extends \PHPUnit\Framework\TestCase imple
         }
         $newConfig = Civi::settings()->get("webhook_test_config");
         $this->assertEquals(self::DEFAULT_TEST_CONFIG, $newConfig, "Config has to be the same after the migration.");
-        $this->assertNull(Civi::settings()->get("webhook_test_configuration"), "The orig config has to be removed.");
+        $this->assertNull(Civi::settings()->get("hu.es-progress.webhook_configuration"), "The orig config has to be removed.");
     }
-    public function testUpgrade_5001FreshInstall()
+    public function testUpgrade_5100FreshInstall()
     {
         $installer = new CRM_Webhook_Upgrader("webhook_test", ".");
         $this->assertEmpty($installer->install());
         try {
-            $this->assertTrue($installer->upgrade_5001());
+            $this->assertTrue($installer->upgrade_5100());
         } catch (Exception $e) {
             $this->fail("Should not throw exception. ".$e->getMessage());
         }
     }
-    public function testUpgrade_5001HasPreviousInstall()
+    public function testUpgrade_5100HasPreviousInstall()
     {
         Civi::settings()->add(["hu.es-progress.webhook_config" => self::DEFAULT_TEST_CONFIG]);
         $installer = new CRM_Webhook_Upgrader("webhook_test", ".");
         $this->assertEmpty($installer->install());
         try {
-            $this->assertTrue($installer->upgrade_5001());
+            $this->assertTrue($installer->upgrade_5100());
         } catch (Exception $e) {
             $this->fail("Should not throw exception. ".$e->getMessage());
         }
