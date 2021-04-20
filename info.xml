@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<extension key="hu.es-progress.webhook" type="module">
+<extension key="webhook-admin" type="module">
     <file>webhook</file>
     <name>CiviCRM webhooks</name>
     <description>Admin form for registering webhook listener applications.</description>
@@ -9,9 +9,9 @@
         <email>semseysandor@gmail.com</email>
     </maintainer>
     <urls>
-        <url desc="Main Extension Page">https://github.com/reflexive-communications/hu.es-progress.webhook</url>
-        <url desc="Documentation">https://github.com/reflexive-communications/hu.es-progress.webhook</url>
-        <url desc="Support">https://github.com/reflexive-communications/hu.es-progress.webhook/issues</url>
+        <url desc="Main Extension Page">https://github.com/reflexive-communications/webhook-admin</url>
+        <url desc="Documentation">https://github.com/reflexive-communications/webhook-admin</url>
+        <url desc="Support">https://github.com/reflexive-communications/webhook-admin/issues</url>
         <url desc="Licensing">http://www.gnu.org/licenses/agpl-3.0.html</url>
     </urls>
     <releaseDate>2021-04-13</releaseDate>

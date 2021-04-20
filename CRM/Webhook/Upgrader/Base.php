@@ -50,7 +50,7 @@ class CRM_Webhook_Upgrader_Base
     {
         if (!self::$instance) {
             self::$instance = new CRM_Webhook_Upgrader(
-                'hu.es-progress.webhook',
+                'webhook-admin',
                 E::path()
             );
         }

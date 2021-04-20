@@ -9,7 +9,7 @@
 class CRM_Webhook_ExtensionUtil
 {
     const SHORT_NAME = 'webhook';
-    const LONG_NAME = 'hu.es-progress.webhook';
+    const LONG_NAME = 'webhook-admin';
     const CLASS_PREFIX = 'CRM_Webhook';
 
     /**
