@@ -25,7 +25,7 @@ jobs:
       APACHE_DIR: "/etc/apache2"
       SITE_NAME: "composer-site.com"
       LOCAL_DEPLOY_TARGET: "/var/www/html"
-      EXTENSION_NAME: "hu.es-progress.webhook"
+      EXTENSION_NAME: "webhook-admin"
     services:
       mysql:
         image: mysql:5.7

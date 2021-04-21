@@ -1,4 +1,4 @@
-# hu.es-progress.webhook
+# webhook-admin
 
 This extension provides a public API endpoint as listener for webhooks and an administrator interface for setting up handler applications for processing the incoming messages. The handler applications has to be inherited from the base handler. Currently it can process JSON, XML and standard URL encoded form data messages. This extension provides an example handler that saves the request details to database. This log could be checked and cleand from the administer pages. To extend the valueset of the processors or handler classes, implement them in your extension and pass it to the config, with extending the configuration object in the `hook_civicrm_webhookOptionValues` hook.
 
@@ -20,7 +20,7 @@ install it with the command-line tool [cv](https://github.com/civicrm/cv).
 
 ```bash
 cd <extension-dir>
-cv dl hu.es-progress.webhook@https://gitlab.com/semseysandor/hu.es-progress.webhook/-/archive/master/hu.es-progress.webhook-master.zip
+cv dl webhook-admin@https://github.com/reflexive-communications/webhook-admin/-/archive/master/webhook-admin-master.zip
 ```
 
 ## Installation (CLI, Git)
@@ -29,7 +29,7 @@ Sysadmins and developers may clone the [Git](https://en.wikipedia.org/wiki/Git) 
 install it with the command-line tool [cv](https://github.com/civicrm/cv).
 
 ```bash
-git clone git@github.com:reflexive-communications/hu.es-progress.webhook.git
+git clone git@github.com:reflexive-communications/webhook-admin.git
 cv en webhook
 ```
 
@@ -66,7 +66,7 @@ Go to the `Administer > Webhooks` menu. It will lead you to the `civicrm/admin/w
 
 ### Call endpoint.
 
-The public endpoint is `/extensions/hu.es-progress.webhook/external/listener.php`. A selector value has to be added as listener GET parameter. If the selector is `my-hook-handler`, then the endpoint of the listener application will be `/extensions/hu.es-progress.webhook/external/listener.php?listener=my-hoook-listener`
+The public endpoint is `/extensions/webhook-admin/external/listener.php`. A selector value has to be added as listener GET parameter. If the selector is `my-hook-handler`, then the endpoint of the listener application will be `/extensions/webhook-admin/external/listener.php?listener=my-hoook-listener`
 
 ### Extend the config
 

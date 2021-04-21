@@ -12,6 +12,30 @@ use Civi\Test\TransactionalInterface;
  */
 class CRM_Webhook_UpgraderHeadlessTest extends \PHPUnit\Framework\TestCase implements HeadlessInterface
 {
+    const DEFAULT_TEST_CONFIG = [
+        "sequence" => 2,
+        "logs" => [],
+        "webhooks" => [
+            0 => [
+                "name" => "orig 1",
+                "description" => "orig 1 desc",
+                "handler" => "orig-handler-class-1",
+                "selector" => "orig-selector-1",
+                "processor" => "orig-processor-class-1",
+                "options" => [],
+                "id" => 0,
+            ],
+            1 => [
+                "name" => "orig 2",
+                "description" => "orig 2 desc",
+                "handler" => "orig-handler-class-2",
+                "selector" => "orig-selector-2",
+                "processor" => "orig-processor-class-2",
+                "options" => [],
+                "id" => 1,
+            ],
+        ],
+    ];
     public function setUpHeadless()
     {
         return \Civi\Test::headless()
@@ -83,31 +107,7 @@ class CRM_Webhook_UpgraderHeadlessTest extends \PHPUnit\Framework\TestCase imple
     }
     public function testUpgrade_5000HasPreviousInstall()
     {
-        $origConfig = [
-            "sequence" => 2,
-            "logs" => [],
-            "webhooks" => [
-                0 => [
-                    "name" => "orig 1",
-                    "description" => "orig 1 desc",
-                    "handler" => "orig-handler-class-1",
-                    "selector" => "orig-selector-1",
-                    "processor" => "orig-processor-class-1",
-                    "options" => [],
-                    "id" => 0,
-                ],
-                1 => [
-                    "name" => "orig 2",
-                    "description" => "orig 2 desc",
-                    "handler" => "orig-handler-class-2",
-                    "selector" => "orig-selector-2",
-                    "processor" => "orig-processor-class-2",
-                    "options" => [],
-                    "id" => 1,
-                ],
-            ],
-        ];
-        Civi::settings()->add(["webhook_test_configuration" => $origConfig]);
+        Civi::settings()->add(["hu.es-progress.webhook_configuration" => self::DEFAULT_TEST_CONFIG]);
         $installer = new CRM_Webhook_Upgrader("webhook_test", ".");
         $this->assertEmpty($installer->install());
         try {
@@ -116,7 +116,31 @@ class CRM_Webhook_UpgraderHeadlessTest extends \PHPUnit\Framework\TestCase imple
             $this->fail("Should not throw exception. ".$e->getMessage());
         }
         $newConfig = Civi::settings()->get("webhook_test_config");
-        $this->assertEquals($origConfig, $newConfig, "Config has to be the same after the migration.");
-        $this->assertNull(Civi::settings()->get("webhook_test_configuration"), "The orig config has to be removed.");
+        $this->assertEquals(self::DEFAULT_TEST_CONFIG, $newConfig, "Config has to be the same after the migration.");
+        $this->assertNull(Civi::settings()->get("hu.es-progress.webhook_configuration"), "The orig config has to be removed.");
+    }
+    public function testUpgrade_5100FreshInstall()
+    {
+        $installer = new CRM_Webhook_Upgrader("webhook_test", ".");
+        $this->assertEmpty($installer->install());
+        try {
+            $this->assertTrue($installer->upgrade_5100());
+        } catch (Exception $e) {
+            $this->fail("Should not throw exception. ".$e->getMessage());
+        }
+    }
+    public function testUpgrade_5100HasPreviousInstall()
+    {
+        Civi::settings()->add(["hu.es-progress.webhook_config" => self::DEFAULT_TEST_CONFIG]);
+        $installer = new CRM_Webhook_Upgrader("webhook_test", ".");
+        $this->assertEmpty($installer->install());
+        try {
+            $this->assertTrue($installer->upgrade_5100());
+        } catch (Exception $e) {
+            $this->fail("Should not throw exception. ".$e->getMessage());
+        }
+        $newConfig = Civi::settings()->get("webhook_test_config");
+        $this->assertEquals(self::DEFAULT_TEST_CONFIG, $newConfig, "Config has to be the same after the migration.");
+        $this->assertNull(Civi::settings()->get("hu.es-progress.webhook_config"), "The orig config has to be removed.");
     }
 }

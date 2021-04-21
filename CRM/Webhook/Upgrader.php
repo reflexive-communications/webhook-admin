@@ -36,16 +36,16 @@ class CRM_Webhook_Upgrader extends CRM_Webhook_Upgrader_Base
     }
 
     /**
-     * It handles the db key suffix change. From the _configuration to the _config that is
-     * provided by the rc-base.
+     * It moves the content of the old database to the new one.
+     *
+     * @param string $oldName the key of the previous setting.
      *
      * @return true on success
      * @throws Exception
      */
-    public function upgrade_5000()
+    private function updateCurrentDbFromPreviousInstall(string $oldName)
     {
-        $oldSuffixedName = $this->extensionName . "_configuration";
-        $currentConfig = Civi::settings()->get($oldSuffixedName);
+        $currentConfig = Civi::settings()->get($oldName);
         // No previous installation, we are ready.
         if (is_null($currentConfig) || !is_array($currentConfig)) {
             return true;
@@ -57,12 +57,34 @@ class CRM_Webhook_Upgrader extends CRM_Webhook_Upgrader_Base
         if (!$config->update($currentConfig)) {
             return false;
         }
-        // delete the content from the oldSuffixedName config.
-        Civi::settings()->revert($oldSuffixedName);
+        // delete the content from the oldName config.
+        Civi::settings()->revert($oldName);
 
         return true;
     }
 
+    /**
+     * It handles the db key suffix change. From the _configuration to the _config that is
+     * provided by the rc-base.
+     *
+     * @return true on success
+     * @throws Exception
+     */
+    public function upgrade_5000()
+    {
+        return $this->updateCurrentDbFromPreviousInstall("hu.es-progress.webhook_configuration");
+    }
+
+    /**
+     * It handles the db key prefix change. From the hu.es-progress.webhook_ to the webhook-admin_.
+     *
+     * @return true on success
+     * @throws Exception
+     */
+    public function upgrade_5100()
+    {
+        return $this->updateCurrentDbFromPreviousInstall("hu.es-progress.webhook_config");
+    }
 
     // By convention, functions that look like "function upgrade_NNNN()" are
   // upgrade tasks. They are executed in order (like Drupal's hook_update_N).
