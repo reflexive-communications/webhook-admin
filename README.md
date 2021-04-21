@@ -20,7 +20,7 @@ install it with the command-line tool [cv](https://github.com/civicrm/cv).
 
 ```bash
 cd <extension-dir>
-cv dl webhook-admin@https://gitlab.com/semseysandor/webhook-admin/-/archive/master/webhook-admin-master.zip
+cv dl webhook-admin@https://github.com/reflexive-communications/webhook-admin/-/archive/master/webhook-admin-master.zip
 ```
 
 ## Installation (CLI, Git)
