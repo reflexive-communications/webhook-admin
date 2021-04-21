@@ -5,8 +5,8 @@
     <description>Admin form for registering webhook listener applications.</description>
     <license>AGPL-3.0</license>
     <maintainer>
-        <author>Sandor Semsey</author>
-        <email>semseysandor@gmail.com</email>
+        <author>Akos Garai</author>
+        <email>szlem01@gmail.com</email>
     </maintainer>
     <urls>
         <url desc="Main Extension Page">https://github.com/reflexive-communications/webhook-admin</url>
