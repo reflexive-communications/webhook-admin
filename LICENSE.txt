@@ -1,5 +1,5 @@
 Package: webhook-admin
-Copyright (C) 2020, Sandor Semsey <semseysandor@gmail.com>
+Copyright (C) 2020, Akos Garai <szlem01@gmail.com>
 Licensed under the GNU Affero Public License 3.0 (below).
 
 -------------------------------------------------------------------------------
