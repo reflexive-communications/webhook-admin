@@ -13,111 +13,115 @@ use CRM_Webhook_ExtensionUtil as E;
 /**
  * Database access object for the Webhook entity.
  */
-class CRM_Webhook_DAO_Webhook extends CRM_Core_DAO {
-  const EXT = E::LONG_NAME;
-  const TABLE_ADDED = '';
+class CRM_Webhook_DAO_Webhook extends CRM_Core_DAO
+{
+    const EXT = E::LONG_NAME;
+    const TABLE_ADDED = '';
 
-  /**
-   * Static instance to hold the table name.
-   *
-   * @var string
-   */
-  public static $_tableName = 'civicrm_webhook';
+    /**
+     * Static instance to hold the table name.
+     *
+     * @var string
+     */
+    public static $_tableName = 'civicrm_webhook';
 
-  /**
-   * Should CiviCRM log any modifications to this table in the civicrm_log table.
-   *
-   * @var bool
-   */
-  public static $_log = TRUE;
+    /**
+     * Should CiviCRM log any modifications to this table in the civicrm_log table.
+     *
+     * @var bool
+     */
+    public static $_log = true;
 
-  /**
-   * Unique Webhook ID
-   *
-   * @var int
-   */
-  public $id;
+    /**
+     * Unique Webhook ID
+     *
+     * @var int
+     */
+    public $id;
 
-  /**
-   * The human readable name of the handler
-   *
-   * @var string
-   */
-  public $name;
+    /**
+     * The human readable name of the handler
+     *
+     * @var string
+     */
+    public $name;
 
-  /**
-   * Useful information about this hook
-   *
-   * @var text
-   */
-  public $description;
+    /**
+     * Useful information about this hook
+     *
+     * @var text
+     */
+    public $description;
 
-  /**
-   * The class name of the handler application
-   *
-   * @var string
-   */
-  public $handler;
+    /**
+     * The class name of the handler application
+     *
+     * @var string
+     */
+    public $handler;
 
-  /**
-   * The query parameter of the webhook
-   *
-   * @var string
-   */
-  public $query_string;
+    /**
+     * The query parameter of the webhook
+     *
+     * @var string
+     */
+    public $query_string;
 
-  /**
-   * The class name of the processor application
-   *
-   * @var string
-   */
-  public $processor;
+    /**
+     * The class name of the processor application
+     *
+     * @var string
+     */
+    public $processor;
 
-  /**
-   * Serialized data for PHP usage
-   *
-   * @var text
-   */
-  public $options;
+    /**
+     * Serialized data for PHP usage
+     *
+     * @var text
+     */
+    public $options;
 
-  /**
-   * Class constructor.
-   */
-  public function __construct() {
-    $this->__table = 'civicrm_webhook';
-    parent::__construct();
-  }
+    /**
+     * Class constructor.
+     */
+    public function __construct()
+    {
+        $this->__table = 'civicrm_webhook';
+        parent::__construct();
+    }
 
-  /**
-   * Returns localized title of this entity.
-   *
-   * @param bool $plural
-   *   Whether to return the plural version of the title.
-   */
-  public static function getEntityTitle($plural = FALSE) {
-    return $plural ? E::ts('Webhooks') : E::ts('Webhook');
-  }
+    /**
+     * Returns localized title of this entity.
+     *
+     * @param bool $plural
+     *   Whether to return the plural version of the title.
+     */
+    public static function getEntityTitle($plural = false)
+    {
+        return $plural ? E::ts('Webhooks') : E::ts('Webhook');
+    }
 
-  /**
-   * Returns all the column names of this table
-   *
-   * @return array
-   */
-  public static function &fields() {
-    if (!isset(Civi::$statics[__CLASS__]['fields'])) {
-      Civi::$statics[__CLASS__]['fields'] = [
+    /**
+     * Returns all the column names of this table
+     *
+     * @return array
+     */
+    public static function &fields()
+    {
+        if (!isset(Civi::$statics[__CLASS__]['fields'])) {
+            Civi::$statics[__CLASS__]['fields'] = [
         'id' => [
           'name' => 'id',
           'type' => CRM_Utils_Type::T_INT,
           'description' => E::ts('Unique Webhook ID'),
-          'required' => TRUE,
+          'required' => true,
           'where' => 'civicrm_webhook.id',
           'table_name' => 'civicrm_webhook',
           'entity' => 'Webhook',
           'bao' => 'CRM_Webhook_DAO_Webhook',
           'localizable' => 0,
-          'readonly' => TRUE,
-          'add' => NULL,
+          'readonly' => true,
+          'add' => null,
         ],
         'name' => [
           'name' => 'name',
@@ -131,7 +135,7 @@ class CRM_Webhook_DAO_Webhook extends CRM_Core_DAO {
           'entity' => 'Webhook',
           'bao' => 'CRM_Webhook_DAO_Webhook',
           'localizable' => 0,
-          'add' => NULL,
+          'add' => null,
         ],
         'description' => [
           'name' => 'description',
@@ -143,7 +147,7 @@ class CRM_Webhook_DAO_Webhook extends CRM_Core_DAO {
           'entity' => 'Webhook',
           'bao' => 'CRM_Webhook_DAO_Webhook',
           'localizable' => 0,
-          'add' => NULL,
+          'add' => null,
         ],
         'handler' => [
           'name' => 'handler',
@@ -157,7 +161,7 @@ class CRM_Webhook_DAO_Webhook extends CRM_Core_DAO {
           'entity' => 'Webhook',
           'bao' => 'CRM_Webhook_DAO_Webhook',
           'localizable' => 0,
-          'add' => NULL,
+          'add' => null,
         ],
         'query_string' => [
           'name' => 'query_string',
@@ -171,7 +175,7 @@ class CRM_Webhook_DAO_Webhook extends CRM_Core_DAO {
           'entity' => 'Webhook',
           'bao' => 'CRM_Webhook_DAO_Webhook',
           'localizable' => 0,
-          'add' => NULL,
+          'add' => null,
         ],
         'processor' => [
           'name' => 'processor',
@@ -185,7 +189,7 @@ class CRM_Webhook_DAO_Webhook extends CRM_Core_DAO {
           'entity' => 'Webhook',
           'bao' => 'CRM_Webhook_DAO_Webhook',
           'localizable' => 0,
-          'add' => NULL,
+          'add' => null,
         ],
         'options' => [
           'name' => 'options',
@@ -198,89 +202,94 @@ class CRM_Webhook_DAO_Webhook extends CRM_Core_DAO {
           'bao' => 'CRM_Webhook_DAO_Webhook',
           'localizable' => 0,
           'serialize' => self::SERIALIZE_PHP,
-          'add' => NULL,
+          'add' => null,
         ],
       ];
-      CRM_Core_DAO_AllCoreTables::invoke(__CLASS__, 'fields_callback', Civi::$statics[__CLASS__]['fields']);
+            CRM_Core_DAO_AllCoreTables::invoke(__CLASS__, 'fields_callback', Civi::$statics[__CLASS__]['fields']);
+        }
+        return Civi::$statics[__CLASS__]['fields'];
     }
-    return Civi::$statics[__CLASS__]['fields'];
-  }
 
-  /**
-   * Return a mapping from field-name to the corresponding key (as used in fields()).
-   *
-   * @return array
-   *   Array(string $name => string $uniqueName).
-   */
-  public static function &fieldKeys() {
-    if (!isset(Civi::$statics[__CLASS__]['fieldKeys'])) {
-      Civi::$statics[__CLASS__]['fieldKeys'] = array_flip(CRM_Utils_Array::collect('name', self::fields()));
+    /**
+     * Return a mapping from field-name to the corresponding key (as used in fields()).
+     *
+     * @return array
+     *   Array(string $name => string $uniqueName).
+     */
+    public static function &fieldKeys()
+    {
+        if (!isset(Civi::$statics[__CLASS__]['fieldKeys'])) {
+            Civi::$statics[__CLASS__]['fieldKeys'] = array_flip(CRM_Utils_Array::collect('name', self::fields()));
+        }
+        return Civi::$statics[__CLASS__]['fieldKeys'];
     }
-    return Civi::$statics[__CLASS__]['fieldKeys'];
-  }
 
-  /**
-   * Returns the names of this table
-   *
-   * @return string
-   */
-  public static function getTableName() {
-    return self::$_tableName;
-  }
+    /**
+     * Returns the names of this table
+     *
+     * @return string
+     */
+    public static function getTableName()
+    {
+        return self::$_tableName;
+    }
 
-  /**
-   * Returns if this table needs to be logged
-   *
-   * @return bool
-   */
-  public function getLog() {
-    return self::$_log;
-  }
+    /**
+     * Returns if this table needs to be logged
+     *
+     * @return bool
+     */
+    public function getLog()
+    {
+        return self::$_log;
+    }
 
-  /**
-   * Returns the list of fields that can be imported
-   *
-   * @param bool $prefix
-   *
-   * @return array
-   */
-  public static function &import($prefix = FALSE) {
-    $r = CRM_Core_DAO_AllCoreTables::getImports(__CLASS__, 'webhook', $prefix, []);
-    return $r;
-  }
+    /**
+     * Returns the list of fields that can be imported
+     *
+     * @param bool $prefix
+     *
+     * @return array
+     */
+    public static function &import($prefix = false)
+    {
+        $r = CRM_Core_DAO_AllCoreTables::getImports(__CLASS__, 'webhook', $prefix, []);
+        return $r;
+    }
 
-  /**
-   * Returns the list of fields that can be exported
-   *
-   * @param bool $prefix
-   *
-   * @return array
-   */
-  public static function &export($prefix = FALSE) {
-    $r = CRM_Core_DAO_AllCoreTables::getExports(__CLASS__, 'webhook', $prefix, []);
-    return $r;
-  }
+    /**
+     * Returns the list of fields that can be exported
+     *
+     * @param bool $prefix
+     *
+     * @return array
+     */
+    public static function &export($prefix = false)
+    {
+        $r = CRM_Core_DAO_AllCoreTables::getExports(__CLASS__, 'webhook', $prefix, []);
+        return $r;
+    }
 
-  /**
-   * Returns the list of indices
-   *
-   * @param bool $localize
-   *
-   * @return array
-   */
-  public static function indices($localize = TRUE) {
-    $indices = [
+    /**
+     * Returns the list of indices
+     *
+     * @param bool $localize
+     *
+     * @return array
+     */
+    public static function indices($localize = true)
+    {
+        $indices = [
       'index_query' => [
         'name' => 'index_query',
         'field' => [
           0 => 'query_string',
         ],
-        'localizable' => FALSE,
-        'unique' => TRUE,
+        'localizable' => false,
+        'unique' => true,
         'sig' => 'civicrm_webhook::1::query_string',
       ],
     ];
-    return ($localize && !empty($indices)) ? CRM_Core_DAO_AllCoreTables::multilingualize(__CLASS__, $indices) : $indices;
-  }
-
+        return ($localize && !empty($indices)) ? CRM_Core_DAO_AllCoreTables::multilingualize(__CLASS__, $indices) : $indices;
+    }
 }

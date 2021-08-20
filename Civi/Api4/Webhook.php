@@ -8,6 +8,6 @@ namespace Civi\Api4;
  *
  * @package Civi\Api4
  */
-class Webhook extends Generic\DAOEntity {
-
+class Webhook extends Generic\DAOEntity
+{
 }
