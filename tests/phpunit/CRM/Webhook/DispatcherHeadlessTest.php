@@ -15,6 +15,7 @@ class CRM_Webhook_DispatcherHeadlessTest extends \PHPUnit\Framework\TestCase imp
     public function setUpHeadless()
     {
         return \Civi\Test::headless()
+            ->install('rc-base')
             ->installMe(__DIR__)
             ->apply();
     }
@@ -55,10 +56,14 @@ class CRM_Webhook_DispatcherHeadlessTest extends \PHPUnit\Framework\TestCase imp
     }
     public function testRunValidListener()
     {
-        $config = new CRM_Webhook_Config(E::LONG_NAME);
-        $config->create();
-        $config->addWebhook(["name" => "validName", "description" => "valid-description", "handler" => "CRM_Webhook_Handler_Logger", "selector" => "valid_selector", "processor" => "CRM_Webhook_Processor_Dummy"]);
-        $_GET["listener"] = "valid_selector";
+        \Civi\Api4\Webhook::create(false)
+            ->addValue('query_string', 'valid_listener')
+            ->addValue('name', 'validName')
+            ->addValue('description', 'valid-description')
+            ->addValue('handler', 'CRM_Webhook_Handler_Logger')
+            ->addValue('processor', 'CRM_Webhook_Processor_Dummy')
+            ->execute();
+        $_GET["listener"] = "valid_listener";
         $d = new CRM_Webhook_Dispatcher();
         try {
             self::assertEmpty($d->run(), "Run supposed to be empty.");
