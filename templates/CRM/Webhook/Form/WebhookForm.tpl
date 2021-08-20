@@ -7,9 +7,9 @@
             </td>
         </tr>
         <tr>
-            <td class="label">{$form.selector.label}</td>
-            <td class="content">{$form.selector.html}<br/>
-                <span class="description">{ts}Selector - routing is based on this parameter{/ts}</span>
+            <td class="label">{$form.query_string.label}</td>
+            <td class="content">{$form.query_string.html}<br/>
+                <span class="description">{ts}Query string - routing is based on this parameter{/ts}</span>
             </td>
         </tr>
         <tr>
