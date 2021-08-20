@@ -18,7 +18,7 @@
             <tr>
                 <th id="sortable">{ts}ID{/ts}</th>
                 <th id="sortable">{ts}Name{/ts}</th>
-                <th id="sortable">{ts}Selector{/ts}</th>
+                <th id="sortable">{ts}Query String{/ts}</th>
                 <th id="sortable">{ts}Processor{/ts}</th>
                 <th id="sortable">{ts}Handler{/ts}</th>
                 <th id="sortable">{ts}Description{/ts}</th>
@@ -28,9 +28,9 @@
             <tbody>
             {foreach from=$webhooks key=id item=webhook}
                 <tr class="crm-entity {cycle values="odd-row,even-row"}">
-                    <td>{$id}</td>
+                    <td>{$webhook.id}</td>
                     <td>{$webhook.name}</td>
-                    <td>{$webhook.selector}</td>
+                    <td>{$webhook.query_string}</td>
                     <td>{$webhook.processor}</td>
                     <td>{$webhook.handler}</td>
                     <td>{$webhook.description}</td>

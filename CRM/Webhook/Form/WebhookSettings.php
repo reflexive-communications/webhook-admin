@@ -13,27 +13,26 @@ class CRM_Webhook_Form_WebhookSettings extends CRM_Webhook_Form_WebhookBase
     {
         parent::buildQuickForm();
 
-        // get the current configuration object
-        $config = $this->config->get();
-
         // Add new route button
         $newItemForm = CRM_Utils_System::url("civicrm/admin/webhooks/form");
         $this->assign("newItemForm", $newItemForm);
         $this->assign("logTable", CRM_Utils_System::url("civicrm/admin/webhooks/logs"));
 
+        $webhooks = \Civi\Api4\Webhook::get(false)
+            ->execute();
         // Add actions links
-        foreach ($config["webhooks"] as $id => $webhook) {
+        foreach ($webhooks as $k => $hook) {
             $actions = array_sum(array_keys($this->links()));
 
-            $config["webhooks"][$id]["actions"] = CRM_Core_Action::formLink(
+            $webhooks[$k]["actions"] = CRM_Core_Action::formLink(
                 $this->links(),
                 $actions,
-                ["id" => $id],
+                ["id" => $hook['id']],
                 ts("more")
             );
         }
         // Export webhooks to template
-        $this->assign("webhooks", $config["webhooks"]);
+        $this->assign("webhooks", $webhooks);
 
         $this->setTitle(ts("Webhook Settings"));
 
