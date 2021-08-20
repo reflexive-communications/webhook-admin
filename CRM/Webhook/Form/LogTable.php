@@ -48,7 +48,7 @@ class CRM_Webhook_Form_LogTable extends CRM_Core_Form
         $this->addButtons(
             [
                 [
-                    "type" => "cancel",
+                    "type" => "done",
                     "name" => ts("Delete logs"),
                     "isDefault" => true,
                 ],
