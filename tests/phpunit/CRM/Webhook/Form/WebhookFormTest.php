@@ -139,6 +139,13 @@ class CRM_Webhook_Form_WebhookFormTest extends CRM_Webhook_Form_TestBase
                 ],
                 "expectedResult" => ["query_string" => "The query string '".$hook['query_string']."' already set for the '".$hook['name']."' webhook."],
             ],
+            [
+                "data" => [
+                    "query_string" => $hook['query_string'],
+                    "id" => $hook["id"],
+                ],
+                "expectedResult" => true,
+            ],
         ];
         $form = new CRM_Webhook_Form_WebhookForm();
         foreach ($testData as $t) {
