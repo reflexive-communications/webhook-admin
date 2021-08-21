@@ -71,4 +71,22 @@ class CRM_Webhook_DispatcherHeadlessTest extends \PHPUnit\Framework\TestCase imp
             self::fail("Shouldn't throw exception.");
         }
     }
+    public function testRunValidListenerWithOptions()
+    {
+        \Civi\Api4\Webhook::create(false)
+            ->addValue('query_string', 'valid_listener')
+            ->addValue('name', 'validName')
+            ->addValue('description', 'valid-description')
+            ->addValue('handler', 'CRM_Webhook_Handler_Logger')
+            ->addValue('processor', 'CRM_Webhook_Processor_Dummy')
+            ->addValue('options', ['k' => 'v'])
+            ->execute();
+        $_GET["listener"] = "valid_listener";
+        $d = new CRM_Webhook_Dispatcher();
+        try {
+            self::assertEmpty($d->run(), "Run supposed to be empty.");
+        } catch (Exception $e) {
+            self::fail("Shouldn't throw exception.");
+        }
+    }
 }
