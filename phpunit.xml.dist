@@ -11,6 +11,11 @@
       <exclude>
         <!-- Skip the test directory -->
         <directory>./tests</directory>
+        <!-- Skip the generated files within generated directories -->
+        <directory>./CRM/Webhook/BAO</directory>
+        <directory>./CRM/Webhook/DAO</directory>
+        <directory>./Civi/Api4</directory>
+        <directory>./xml</directory>
         <!-- Skip the generated files -->
         <file>./webhook.php</file>
         <file>./webhook.civix.php</file>
