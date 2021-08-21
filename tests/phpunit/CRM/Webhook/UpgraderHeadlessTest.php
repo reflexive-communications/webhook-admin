@@ -75,9 +75,17 @@ class CRM_Webhook_UpgraderHeadlessTest extends \PHPUnit\Framework\TestCase imple
     public function testPostInstall()
     {
         $installer = new CRM_Webhook_Upgrader("webhook_test", ".");
-        $currentNumber = civicrm_api3('Webhook', 'getcount');
+        // delete the first id as it is the one that was inserted.
+        \Civi\Api4\Webhook::delete(false)
+            ->addWhere('id', '=', 1)
+            ->execute();
+        $currentNumber = \Civi\Api4\Webhook::get(false)
+            ->selectRowCount()
+            ->execute();
         $this->assertEmpty($installer->postInstall());
-        $newNumber = civicrm_api3('Webhook', 'getcount');
-        self::assertSame($currentNumber+1, $newNumber);
+        $newNumber = \Civi\Api4\Webhook::get(false)
+            ->selectRowCount()
+            ->execute();
+        self::assertSame(count($currentNumber)+1, count($newNumber));
     }
 }
