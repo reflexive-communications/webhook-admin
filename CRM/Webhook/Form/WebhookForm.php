@@ -33,7 +33,8 @@ class CRM_Webhook_Form_WebhookForm extends CRM_Webhook_Form_WebhookBase
         return \Civi\Api4\Webhook::get(false)
             ->addWhere('id', '=', $id)
             ->setLimit(1)
-            ->execute();
+            ->execute()
+            ->first();
     }
 
     /**
@@ -75,10 +76,9 @@ class CRM_Webhook_Form_WebhookForm extends CRM_Webhook_Form_WebhookBase
         }
         $webhook = $this->getWebhook($this->id);
 
-        if (empty($webhook)) {
+        if (is_null($webhook)) {
             return [];
         }
-        $webhook = $webhook->first();
         // Set defaults
         $this->_defaults["name"] = $webhook["name"];
         $this->_defaults["query_string"] = $webhook["query_string"];
