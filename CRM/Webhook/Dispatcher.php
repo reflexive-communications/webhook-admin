@@ -57,7 +57,11 @@ class CRM_Webhook_Dispatcher
         $hook = $current->first();
         // Instantiate Processor & Handler
         $processor = $this->createProcessor($hook['processor']);
-        $handler = $this->createHandler($hook['handler'], $processor, []);
+        $options = [];
+        if (!is_null($hook['options'])) {
+            $options = $hook['options'];
+        }
+        $handler = $this->createHandler($hook['handler'], $processor, $options);
 
         // Handle request
         $handler->handle();
