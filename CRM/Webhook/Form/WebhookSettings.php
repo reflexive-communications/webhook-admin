@@ -28,7 +28,11 @@ class CRM_Webhook_Form_WebhookSettings extends CRM_Webhook_Form_WebhookBase
                 $this->links(),
                 $actions,
                 ["id" => $hook['id']],
-                ts("more")
+                ts("more"),
+                false,
+                'view.webhook.row',
+                'Webhook',
+                $hook['id'],
             );
         }
         // Export webhooks to template
