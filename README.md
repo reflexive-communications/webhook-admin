@@ -7,21 +7,7 @@ The extension is licensed under [AGPL-3.0](LICENSE.txt).
 ## Requirements
 
 * PHP v7.3+
-* CiviCRM 5.29+ (might work below, not tested)
-
-## Installation (Web UI)
-
-This extension has not yet been published for installation via the web UI.
-
-## Installation (CLI, Zip)
-
-Sysadmins and developers may download the `.zip` file for this extension and
-install it with the command-line tool [cv](https://github.com/civicrm/cv).
-
-```bash
-cd <extension-dir>
-cv dl webhook-admin@https://github.com/reflexive-communications/webhook-admin/-/archive/master/webhook-admin-master.zip
-```
+* CiviCRM 5.37+
 
 ## Installation (CLI, Git)
 
@@ -81,3 +67,12 @@ function myextension_civicrm_webhookOptionValues(&$config) {
     $config["handlers"]["My_Handler_Class_Name"] = "My handler class label";
 }
 ```
+
+## Upgrades
+
+The extension does not provide upgrader process for v1 -> v2 migration. The supported way is the following:
+
+- Uninstall v1
+- Install v2
+
+The v1 configurations will be lost in this process.
