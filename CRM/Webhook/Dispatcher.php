@@ -46,29 +46,22 @@ class CRM_Webhook_Dispatcher
             http_response_code(400);
             throw new Exception("Missing listener.");
         }
-        $listener = $_GET["listener"];
-        // Load configs
-        CRM_Core_Config::singleton();
-        $config = new CRM_Webhook_Config(E::LONG_NAME);
-        $config->load();
-        $webhooks = $config->get()["webhooks"];
-        $processorClass = "";
-        $handlerClass = "";
-        foreach ($webhooks as $hook) {
-            if ($hook["selector"] == $listener) {
-                $processorClass = $hook["processor"];
-                $handlerClass = $hook["handler"];
-                break;
-            }
-        }
-        if ($processorClass == "" || $handlerClass == "") {
+        $current = \Civi\Api4\Webhook::get(false)
+            ->addWhere('query_string', '=', $_GET["listener"])
+            ->setLimit(1)
+            ->execute();
+        if (count($current) === 0) {
             http_response_code(400);
             throw new Exception("Invalid listener.");
         }
-
+        $hook = $current->first();
         // Instantiate Processor & Handler
-        $processor = $this->createProcessor($processorClass);
-        $handler = $this->createHandler($handlerClass, $processor, []);
+        $processor = $this->createProcessor($hook['processor']);
+        $options = [];
+        if (!is_null($hook['options'])) {
+            $options = $hook['options'];
+        }
+        $handler = $this->createHandler($hook['handler'], $processor, $options);
 
         // Handle request
         $handler->handle();

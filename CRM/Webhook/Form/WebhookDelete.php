@@ -26,9 +26,13 @@ class CRM_Webhook_Form_WebhookDelete extends CRM_Webhook_Form_WebhookBase
                 ],
             ]
         );
-        $hook = $this->config->get()["webhooks"][$this->id];
-        $this->assign("hookName", $hook["name"]);
-        $this->assign("hookSelector", $hook["selector"]);
+        $webhook = \Civi\Api4\Webhook::get(false)
+            ->addWhere('id', '=', $this->id)
+            ->setLimit(1)
+            ->execute()
+            ->first();
+        $this->assign("hookName", $webhook["name"]);
+        $this->assign("hookQueryString", $webhook["query_string"]);
 
         $this->setTitle(ts("Webhook Delete"));
     }
@@ -36,10 +40,10 @@ class CRM_Webhook_Form_WebhookDelete extends CRM_Webhook_Form_WebhookBase
     public function postProcess()
     {
         parent::postProcess();
-        if (!$this->config->deleteWebhook($this->id)) {
-            CRM_Core_Session::setStatus(ts("Error while updating the configuration."), "Webhook", "error");
-            return;
-        }
+        \Civi\Api4\Webhook::delete(false)
+            ->addWhere('id', '=', $this->id)
+            ->setLimit(1)
+            ->execute();
 
         // Show success
         CRM_Core_Session::setStatus(ts("Webhook deleted"), "Webhook", "success", ["expires" => 5000,]);

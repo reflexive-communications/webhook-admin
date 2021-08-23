@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+
+<table>
+  <base>CRM/Webhook</base>
+  <class>Webhook</class>
+  <name>civicrm_webhook</name>
+  <comment>FIXME</comment>
+  <log>true</log>
+
+  <field>
+    <name>id</name>
+    <type>int unsigned</type>
+    <required>true</required>
+    <comment>Unique Webhook ID</comment>
+  </field>
+  <primaryKey>
+    <name>id</name>
+    <autoincrement>true</autoincrement>
+  </primaryKey>
+
+  <field>
+    <name>name</name>
+    <type>varchar</type>
+    <length>255</length>
+    <comment>The human readable name of the handler</comment>
+  </field>
+  <field>
+    <name>description</name>
+    <type>text</type>
+    <comment>Useful information about this hook</comment>
+  </field>
+  <field>
+    <name>handler</name>
+    <type>varchar</type>
+    <length>255</length>
+    <comment>The class name of the handler application</comment>
+  </field>
+  <field>
+    <name>query_string</name>
+    <type>varchar</type>
+    <length>255</length>
+    <comment>The query parameter of the webhook</comment>
+  </field>
+  <field>
+    <name>processor</name>
+    <type>varchar</type>
+    <length>255</length>
+    <comment>The class name of the processor application</comment>
+  </field>
+  <field>
+    <name>options</name>
+    <type>text</type>
+    <comment>Serialized data for PHP usage</comment>
+    <serialize>PHP</serialize>
+  </field>
+  <index>
+    <name>index_query</name>
+    <fieldName>query_string</fieldName>
+    <unique>true</unique>
+  </index>
+
+</table>

@@ -315,10 +315,10 @@ function _webhook_civix_civicrm_caseTypes(&$caseTypes)
             throw new CRM_Core_Exception($errorMessage);
         }
         $caseTypes[$name] = [
-        'module' => E::LONG_NAME,
-        'name' => $name,
-        'file' => $file,
-        ];
+      'module' => E::LONG_NAME,
+      'name' => $name,
+      'file' => $file,
+    ];
     }
 }
 
@@ -403,11 +403,11 @@ function _webhook_civix_insert_navigation_menu(&$menu, $path, $item)
     // If we are done going down the path, insert menu
     if (empty($path)) {
         $menu[] = [
-        'attributes' => array_merge([
+      'attributes' => array_merge([
         'label'      => CRM_Utils_Array::value('name', $item),
         'active'     => 1,
-        ], $item),
-        ];
+      ], $item),
+    ];
         return true;
     } else {
         // Find an recurse into the next level down
@@ -494,5 +494,11 @@ function _webhook_civix_civicrm_alterSettingsFolders(&$metaDataFolders = null)
  */
 function _webhook_civix_civicrm_entityTypes(&$entityTypes)
 {
-    $entityTypes = array_merge($entityTypes, []);
+    $entityTypes = array_merge($entityTypes, [
+    'CRM_Webhook_DAO_Webhook' => [
+      'name' => 'Webhook',
+      'class' => 'CRM_Webhook_DAO_Webhook',
+      'table' => 'civicrm_webhook',
+    ],
+  ]);
 }

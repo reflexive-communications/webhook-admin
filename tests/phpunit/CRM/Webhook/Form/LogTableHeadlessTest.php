@@ -13,23 +13,13 @@ use Civi\Test\TransactionalInterface;
 class CRM_Webhook_Form_LogTableHeadlessTest extends \PHPUnit\Framework\TestCase implements HeadlessInterface, HookInterface, TransactionalInterface
 {
     const TEST_SETTINGS = [
-        "sequence" => 1,
-        "webhooks" => [
-            0 => [
-                "id" => 0,
-                "name" => "test name",
-                "description" => "test description",
-                "handler" => "test_handler",
-                "selector" => "test-selector",
-                "processor" => "test-processor",
-            ],
-        ],
         "logs" => [],
     ];
 
     public function setUpHeadless()
     {
         return \Civi\Test::headless()
+            ->install('rc-base')
             ->installMe(__DIR__)
             ->apply();
     }

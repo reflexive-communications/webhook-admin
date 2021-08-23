@@ -4,6 +4,6 @@
     </h3>
 </div>
 <div>
-    <h2>{$hookName} - {$hookSelector}</h2>
+    <h2>{$hookName} - {$hookQueryString}</h2>
     <div class="crm-submit-buttons">{include file="CRM/common/formButtons.tpl"}</div>
 </div>

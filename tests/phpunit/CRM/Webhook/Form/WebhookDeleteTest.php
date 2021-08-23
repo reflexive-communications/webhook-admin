@@ -21,8 +21,15 @@ class CRM_Webhook_Form_WebhookDeleteTest extends CRM_Webhook_Form_TestBase
      */
     public function testBuildQuickFormWithId()
     {
-        $this->setGlobals("id", self::TEST_SETTINGS["webhooks"][0]["id"]);
-        $this->setupTestConfig();
+        $hook = \Civi\Api4\Webhook::create(false)
+            ->addValue('query_string', 'valid_listener')
+            ->addValue('name', 'validName')
+            ->addValue('description', 'valid-description')
+            ->addValue('handler', 'CRM_Webhook_Handler_Logger')
+            ->addValue('processor', 'CRM_Webhook_Processor_Dummy')
+            ->execute()
+            ->first();
+        $this->setGlobals("id", $hook['id']);
         $form = new CRM_Webhook_Form_WebhookDelete();
         self::assertEmpty($form->preProcess(), "PreProcess supposed to be empty.");
         try {
@@ -35,19 +42,26 @@ class CRM_Webhook_Form_WebhookDeleteTest extends CRM_Webhook_Form_TestBase
 
     public function testPostProcessValidId()
     {
-        $this->setGlobals("id", self::TEST_SETTINGS["webhooks"][0]["id"]);
-        $this->setupTestConfig();
+        $hook = \Civi\Api4\Webhook::create(false)
+            ->addValue('query_string', 'valid_listener')
+            ->addValue('name', 'validName')
+            ->addValue('description', 'valid-description')
+            ->addValue('handler', 'CRM_Webhook_Handler_Logger')
+            ->addValue('processor', 'CRM_Webhook_Processor_Dummy')
+            ->execute()
+            ->first();
+        $this->setGlobals("id", $hook['id']);
         $form = new CRM_Webhook_Form_WebhookDelete();
         $config = new CRM_Webhook_Config(E::LONG_NAME);
         self::assertEmpty($form->preProcess(), "PreProcess supposed to be empty.");
-        $config->load();
-        self::assertEquals(1, count($config->get()["webhooks"]), "We have only 1 hook");
         try {
             self::assertEmpty($form->postProcess());
         } catch (Exception $e) {
             self::fail("It shouldn't throw exception. ".$e->getMessage());
         }
-        $config->load();
-        self::assertEquals(0, count($config->get()["webhooks"]), "The webhook supposed to be deleted.");
+        $deletedHook = \Civi\Api4\Webhook::get(false)
+            ->addWhere('id', '=', $hook['id'])
+            ->execute();
+        self::assertEquals(0, count($deletedHook), "The webhook supposed to be deleted.");
     }
 }
