@@ -111,7 +111,7 @@ class CRM_Webhook_Form_WebhookForm extends CRM_Webhook_Form_WebhookBase
         $this->add("text", "query_string", ts("Query String"), [], true);
         $this->add("select", "processor", ts("Processor"), $this->getOptionsFor("processors"), true);
         $this->add("select", "handler", ts("Handler Class"), $this->getOptionsFor("handlers"), true);
-        $this->add("text", "description", ts("Description"), [], true);
+        $this->add("textarea", "description", ts("Description"), [], true);
         if (!is_null($this->id)) {
             $this->add("hidden", "id");
         }
