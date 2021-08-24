@@ -115,7 +115,7 @@ class CRM_Webhook_Form_WebhookForm extends CRM_Webhook_Form_WebhookBase
         if (!is_null($this->id)) {
             $this->add("hidden", "id");
         }
-        if (!is_null($this->webhook['query_string'])) {
+        if (!is_null($this->webhook) && !is_null($this->webhook['query_string'])) {
             $this->assign('hook_url', CRM_Core_Config::singleton()->extensionsURL.'webhook-admin/external/listener.php?listener='.$this->webhook['query_string']);
         }
 
