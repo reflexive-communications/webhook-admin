@@ -10,6 +10,7 @@ use CRM_Webhook_ExtensionUtil as E;
 class CRM_Webhook_Form_WebhookForm extends CRM_Webhook_Form_WebhookBase
 {
     private $optionValues;
+    private $webhook;
     /**
      * Preprocess form
      *
@@ -19,6 +20,9 @@ class CRM_Webhook_Form_WebhookForm extends CRM_Webhook_Form_WebhookBase
     {
         parent::preProcess();
         $this->setOptionValues();
+        if (!is_null($this->id)) {
+            $this->webhook = $this->getWebhook($this->id);
+        }
     }
 
     /**
@@ -71,20 +75,15 @@ class CRM_Webhook_Form_WebhookForm extends CRM_Webhook_Form_WebhookBase
     public function setDefaultValues()
     {
         // new item - no defaults
-        if (is_null($this->id)) {
-            return [];
-        }
-        $webhook = $this->getWebhook($this->id);
-
-        if (is_null($webhook)) {
+        if (is_null($this->id) || is_null($this->webhook)) {
             return [];
         }
         // Set defaults
-        $this->_defaults["name"] = $webhook["name"];
-        $this->_defaults["query_string"] = $webhook["query_string"];
-        $this->_defaults["handler"] = $webhook["handler"];
-        $this->_defaults["description"] = $webhook["description"];
-        $this->_defaults["processor"] = $webhook["processor"];
+        $this->_defaults["name"] = $this->webhook["name"];
+        $this->_defaults["query_string"] = $this->webhook["query_string"];
+        $this->_defaults["handler"] = $this->webhook["handler"];
+        $this->_defaults["description"] = $this->webhook["description"];
+        $this->_defaults["processor"] = $this->webhook["processor"];
         $this->_defaults["id"] = $this->id;
 
         return $this->_defaults;
@@ -115,6 +114,9 @@ class CRM_Webhook_Form_WebhookForm extends CRM_Webhook_Form_WebhookBase
         $this->add("text", "description", ts("Description"), [], true);
         if (!is_null($this->id)) {
             $this->add("hidden", "id");
+        }
+        if (!is_null($this->webhook['query_string'])) {
+            $this->assign('hook_url', CRM_Core_Config::singleton()->extensionsURL.'webhook-admin/external/listener.php?listener='.$this->webhook['query_string']);
         }
 
         // Submit buttons
