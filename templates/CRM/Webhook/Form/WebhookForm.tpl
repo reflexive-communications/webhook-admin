@@ -31,6 +31,11 @@
             </td>
         </tr>
     </table>
+    {if isset($hook_url)}
+    <div>
+        <p><b>{$hook_url}</b></p>
+    </div>
+    {/if}
     <div class="crm-submit-buttons">
         {include file="CRM/common/formButtons.tpl" location="bottom"}
     </div>
