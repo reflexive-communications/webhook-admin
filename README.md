@@ -1,5 +1,7 @@
 # webhook-admin
 
+[![CI](https://github.com/reflexive-communications/webhook-admin/actions/workflows/main.yml/badge.svg)](https://github.com/reflexive-communications/webhook-admin/actions/workflows/main.yml)
+
 This extension provides a public API endpoint as listener for webhooks and an administrator interface for setting up handler applications for processing the incoming messages. The handler applications has to be inherited from the base handler. Currently it can process JSON, XML and standard URL encoded form data messages. This extension provides an example handler that saves the request details to database. This log could be checked and cleand from the administer pages. To extend the valueset of the processors or handler classes, implement them in your extension and pass it to the config, with extending the configuration object in the `hook_civicrm_webhookOptionValues` hook.
 
 The extension is licensed under [AGPL-3.0](LICENSE.txt).
