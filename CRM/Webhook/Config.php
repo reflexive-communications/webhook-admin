@@ -2,7 +2,6 @@
 
 class CRM_Webhook_Config extends CRM_RcBase_Config
 {
-
     /**
      * Provides a default configuration object.
      *

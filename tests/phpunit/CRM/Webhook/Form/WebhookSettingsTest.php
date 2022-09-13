@@ -7,7 +7,6 @@
  */
 class CRM_Webhook_Form_WebhookSettingsTest extends CRM_Webhook_Form_TestBase
 {
-
     /**
      * Build quick form test case.
      * Setup test configuration, preProcess then call the function.

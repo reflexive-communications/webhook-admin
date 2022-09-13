@@ -9,7 +9,6 @@ use CRM_Webhook_ExtensionUtil as E;
  */
 class CRM_Webhook_Form_WebhookBaseTest extends CRM_Webhook_Form_TestBase
 {
-
     /**
      * PreProcess test case with existing config.
      * Setup test configuration then call the function.

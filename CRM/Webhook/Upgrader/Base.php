@@ -8,10 +8,9 @@ use CRM_Webhook_ExtensionUtil as E;
  */
 class CRM_Webhook_Upgrader_Base
 {
-
-  /**
-   * @var CRM_Webhook_Upgrader_Base
-   */
+    /**
+     * @var CRM_Webhook_Upgrader_Base
+     */
     public static $instance;
 
     /**

@@ -12,7 +12,6 @@ use Civi\Test\TransactionalInterface;
  */
 class CRM_Webhook_Form_WebhookDeleteTest extends CRM_Webhook_Form_TestBase
 {
-
     /**
      * Build quick form test cases.
      * Setup test configuration, preProcess then call the function.
