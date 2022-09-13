@@ -5,7 +5,6 @@
  */
 class CRM_Webhook_ConfigTest extends \PHPUnit\Framework\TestCase
 {
-
     /**
      * The setup() method is executed before the test is executed (optional).
      */

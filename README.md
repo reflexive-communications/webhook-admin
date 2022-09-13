@@ -8,8 +8,8 @@ The extension is licensed under [AGPL-3.0](LICENSE.txt).
 
 ## Requirements
 
-* PHP v7.3+
-* CiviCRM 5.37+
+-   PHP v7.3+
+-   CiviCRM 5.37+
 
 ## Installation (CLI, Git)
 
@@ -77,7 +77,7 @@ function myextension_civicrm_webhookOptionValues(&$config) {
 
 The extension does not provide upgrader process for v1 -> v2 migration. The supported way is the following:
 
-- Uninstall v1
-- Install v2
+-   Uninstall v1
+-   Install v2
 
 The v1 configurations will be lost in this process.
