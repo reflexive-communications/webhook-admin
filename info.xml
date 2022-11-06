@@ -4,10 +4,18 @@
     <name>Webhooks</name>
     <description>Registers webhook listener applications</description>
     <license>AGPL-3.0</license>
-    <maintainer>
-        <author>Akos Garai</author>
-        <email>szlem01@gmail.com</email>
-    </maintainer>
+    <authors>
+        <author>
+            <name>Sandor Semsey</name>
+            <email>sandor@es-progress.hu</email>
+            <role>Maintainer</role>
+        </author>
+        <author>
+            <name>akosgarai</name>
+            <email>szlem01@gmail.com</email>
+            <role>Developer</role>
+        </author>
+    </authors>
     <urls>
         <url desc="Main Extension Page">https://github.com/reflexive-communications/webhook-admin</url>
         <url desc="Documentation">https://github.com/reflexive-communications/webhook-admin</url>
