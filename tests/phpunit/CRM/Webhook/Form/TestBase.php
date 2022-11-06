@@ -1,5 +1,6 @@
 <?php
 
+use Civi\Test;
 use CRM_Webhook_ExtensionUtil as E;
 use Civi\Test\HeadlessInterface;
 use Civi\Test\HookInterface;
@@ -21,12 +22,23 @@ class CRM_Webhook_Form_TestBase extends \PHPUnit\Framework\TestCase implements H
         $_REQUEST[$key] = $value;
     }
 
-    public function setUpHeadless()
+    /**
+     * Apply a forced rebuild of DB, thus
+     * create a clean DB before running tests
+     *
+     * @throws \CRM_Extension_Exception_ParseException
+     */
+    public static function setUpBeforeClass(): void
     {
-        return \Civi\Test::headless()
+        // Resets DB
+        Test::headless()
             ->install('rc-base')
             ->installMe(__DIR__)
-            ->apply();
+            ->apply(true);
+    }
+
+    public function setUpHeadless()
+    {
     }
 
     public function setUp(): void

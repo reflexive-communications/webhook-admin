@@ -1,10 +1,31 @@
 <?php
 
+use Civi\Test;
+
 /**
  * This is a generic test class for the extension (implemented with PHPUnit).
  */
 class CRM_Webhook_Handler_BaseTest extends \PHPUnit\Framework\TestCase
 {
+    /**
+     * Apply a forced rebuild of DB, thus
+     * create a clean DB before running tests
+     *
+     * @throws \CRM_Extension_Exception_ParseException
+     */
+    public static function setUpBeforeClass(): void
+    {
+        // Resets DB
+        Test::headless()
+            ->install('rc-base')
+            ->installMe(__DIR__)
+            ->apply(true);
+    }
+
+    public function setUpHeadless()
+    {
+    }
+
     /**
      * The setup() method is executed before the test is executed (optional).
      */
