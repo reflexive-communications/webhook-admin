@@ -1,5 +1,6 @@
 <?php
 
+use Civi\Test;
 use Civi\Test\HeadlessInterface;
 
 /**
