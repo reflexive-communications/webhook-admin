@@ -87,6 +87,8 @@ class CRM_Webhook_Form_WebhookFormTest extends CRM_Webhook_Form_TestBase
             ->addValue('processor', 'CRM_Webhook_Processor_Dummy')
             ->execute()
             ->first();
+        unset($hook['custom']);
+        unset($hook['check_permissions']);
         $this->setGlobals("id", $hook['id']);
         $form = new CRM_Webhook_Form_WebhookForm();
         self::assertEmpty($form->preProcess(), "PreProcess supposed to be empty.");
