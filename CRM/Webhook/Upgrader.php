@@ -6,7 +6,7 @@ use Civi\Api4\Webhook;
 /**
  * Collection of upgrade steps.
  */
-class CRM_Webhook_Upgrader extends CRM_Webhook_Upgrader_Base
+class CRM_Webhook_Upgrader extends CRM_Extension_Upgrader_Base
 {
     const DEFAULT_HOOK_NAME = "Logger webhook";
 
