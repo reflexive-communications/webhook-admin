@@ -25,6 +25,7 @@ class CRM_Webhook_Config extends CRM_RcBase_Config
         parent::load();
         $configuration = parent::get();
         $configuration["logs"] = [];
+
         return parent::update($configuration);
     }
 
@@ -44,6 +45,7 @@ class CRM_Webhook_Config extends CRM_RcBase_Config
             "data" => $data,
             "timestamp" => time(),
         ];
+
         return parent::update($configuration);
     }
 }

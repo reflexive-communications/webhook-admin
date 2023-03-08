@@ -15,8 +15,10 @@ class CRM_Webhook_Processor_Dummy extends CRM_Webhook_Processor_Base
             $header = substr($key, 5);
             $headers[$header] = $value;
         }
+
         return $headers;
     }
+
     /**
      * Process input
      *
@@ -30,6 +32,6 @@ class CRM_Webhook_Processor_Dummy extends CRM_Webhook_Processor_Base
         $post = $_POST;
         $headers = $this->getHeaders();
 
-        return [ "raw" => $inputRaw, "get" => $get, "post" => $post, "header" => $headers ];
+        return ["raw" => $inputRaw, "get" => $get, "post" => $post, "header" => $headers];
     }
 }

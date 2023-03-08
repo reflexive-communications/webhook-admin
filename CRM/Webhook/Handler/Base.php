@@ -30,7 +30,6 @@ abstract class CRM_Webhook_Handler_Base
      * CRM_Webhook_Handler_Base constructor.
      *
      * @param \CRM_Webhook_Processor_Base $processor Webhook Processor
-     *
      * @param array $options Webhook options
      */
     public function __construct(CRM_Webhook_Processor_Base $processor, array $options = [])

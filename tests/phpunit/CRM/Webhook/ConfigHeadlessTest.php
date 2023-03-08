@@ -46,6 +46,7 @@ class CRM_Webhook_ConfigHeadlessTest extends \PHPUnit\Framework\TestCase impleme
         self::assertTrue(array_key_exists("logs", $cfg), "logs key is missing from the config.");
         self::assertSame([], $cfg["logs"], "Invalid logs initial value.");
     }
+
     /**
      * It checks that the create function works well.
      */
@@ -131,13 +132,14 @@ class CRM_Webhook_ConfigHeadlessTest extends \PHPUnit\Framework\TestCase impleme
         self::assertTrue($config->create(), "Create config has to be successful.");
         $cfg = $config->get();
         self::assertEquals(0, count($cfg["logs"]), "Invalid default configuration.");
-        $config->insertLog(["k"=>"v"]);
+        $config->insertLog(["k" => "v"]);
         $cfg = $config->get();
         self::assertEquals(1, count($cfg["logs"]), "Invalid number of logs after insert.");
-        $config->insertLog(["k"=>"v"]);
+        $config->insertLog(["k" => "v"]);
         $cfg = $config->get();
         self::assertEquals(2, count($cfg["logs"]), "Invalid number of logs after insert.");
     }
+
     /**
      * It checks that the deleteLogs function works well.
      */
@@ -147,7 +149,7 @@ class CRM_Webhook_ConfigHeadlessTest extends \PHPUnit\Framework\TestCase impleme
         self::assertTrue($config->create(), "Create config has to be successful.");
         $cfg = $config->get();
         self::assertEquals(0, count($cfg["logs"]), "Invalid default configuration.");
-        $config->insertLog(["k"=>"v"]);
+        $config->insertLog(["k" => "v"]);
         $cfg = $config->get();
         self::assertEquals(1, count($cfg["logs"]), "Invalid number of logs after insert.");
         $config->deleteLogs();

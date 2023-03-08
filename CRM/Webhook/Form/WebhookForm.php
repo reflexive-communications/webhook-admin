@@ -10,7 +10,9 @@ use CRM_Webhook_ExtensionUtil as E;
 class CRM_Webhook_Form_WebhookForm extends CRM_Webhook_Form_WebhookBase
 {
     private $optionValues;
+
     private $webhook;
+
     /**
      * Preprocess form
      *
@@ -88,6 +90,7 @@ class CRM_Webhook_Form_WebhookForm extends CRM_Webhook_Form_WebhookBase
 
         return $this->_defaults;
     }
+
     /**
      * Processor + handler options
      *
@@ -95,10 +98,11 @@ class CRM_Webhook_Form_WebhookForm extends CRM_Webhook_Form_WebhookBase
      */
     private function getOptionsFor(string $name)
     {
-        $opts = [ "" => ts("- select -") ];
+        $opts = ["" => ts("- select -")];
         foreach ($this->optionValues[$name] as $k => $v) {
             $opts[$k] = $v;
         }
+
         return $opts;
     }
 
@@ -169,7 +173,7 @@ class CRM_Webhook_Form_WebhookForm extends CRM_Webhook_Form_WebhookBase
         }
         $errors['query_string'] = ts(
             "The query string '%1' already set for the '%2' webhook.",
-            ['1' => $values['query_string'], '2' => $current[0]['name'],]
+            ['1' => $values['query_string'], '2' => $current[0]['name']]
         );
 
         return $errors;
@@ -189,6 +193,6 @@ class CRM_Webhook_Form_WebhookForm extends CRM_Webhook_Form_WebhookBase
         }
         $upgrader->execute();
 
-        CRM_Core_Session::setStatus(ts("Webhook Saved."), "Webhook", "success", ["expires" => 5000,]);
+        CRM_Core_Session::setStatus(ts("Webhook Saved."), "Webhook", "success", ["expires" => 5000]);
     }
 }

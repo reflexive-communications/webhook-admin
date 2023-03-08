@@ -45,12 +45,14 @@ class CRM_Webhook_Form_LogTableHeadlessTest extends \PHPUnit\Framework\TestCase 
     {
         parent::tearDown();
     }
+
     protected function setupTestConfig()
     {
         $config = new CRM_Webhook_Config(E::LONG_NAME);
         $config->create();
         self::assertTrue($config->update(self::TEST_SETTINGS), "Config update has to be successful.");
     }
+
     /**
      * PreProcess test case with existing config.
      * Setup test configuration then call the function.
@@ -100,11 +102,12 @@ class CRM_Webhook_Form_LogTableHeadlessTest extends \PHPUnit\Framework\TestCase 
         }
         self::assertEquals("Webhook Logs", $form->getTitle(), "Invalid form title.");
     }
+
     public function testBuildQuickFormWithLogs()
     {
         $this->setupTestConfig();
         $config = new CRM_Webhook_Config(E::LONG_NAME);
-        $config->insertLog([ "raw" => "", "get" => [], "post" => [], "header" => []]);
+        $config->insertLog(["raw" => "", "get" => [], "post" => [], "header" => []]);
         $form = new CRM_Webhook_Form_LogTable();
         self::assertEmpty($form->preProcess(), "PreProcess supposed to be empty.");
         try {
@@ -123,7 +126,7 @@ class CRM_Webhook_Form_LogTableHeadlessTest extends \PHPUnit\Framework\TestCase 
         $this->setupTestConfig();
         $form = new CRM_Webhook_Form_LogTable();
         $config = new CRM_Webhook_Config(E::LONG_NAME);
-        $config->insertLog([ "raw" => "", "get" => [], "post" => [], "header" => []]);
+        $config->insertLog(["raw" => "", "get" => [], "post" => [], "header" => []]);
         $config->load();
         self::assertEquals(1, count($config->get()["logs"]), "Invalid number of log entries.");
         self::assertEmpty($form->preProcess(), "PreProcess supposed to be empty.");

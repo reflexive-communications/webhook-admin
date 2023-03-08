@@ -47,10 +47,11 @@ class CRM_Webhook_Processor_BaseHeadlessTest extends \PHPUnit\Framework\TestCase
     public function testOutput()
     {
         $stub = $this->getMockForAbstractClass('CRM_Webhook_Processor_Base');
-        $testData = ["key"=>"value"];
+        $testData = ["key" => "value"];
         self::expectException(CRM_Core_Exception_PrematureExitException::class);
         self::assertEmpty($stub->output($testData), "Output supposed to be empty.");
     }
+
     /**
      * Error test case.
      */
@@ -58,6 +59,7 @@ class CRM_Webhook_Processor_BaseHeadlessTest extends \PHPUnit\Framework\TestCase
     {
         self::markTestIncomplete("This test has not been implemented yet.");
     }
+
     public function testErrorWithoutOutput()
     {
         self::markTestIncomplete("This test has not been implemented yet.");

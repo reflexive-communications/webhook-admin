@@ -46,6 +46,6 @@ class CRM_Webhook_Form_WebhookDelete extends CRM_Webhook_Form_WebhookBase
             ->execute();
 
         // Show success
-        CRM_Core_Session::setStatus(ts("Webhook deleted"), "Webhook", "success", ["expires" => 5000,]);
+        CRM_Core_Session::setStatus(ts("Webhook deleted"), "Webhook", "success", ["expires" => 5000]);
     }
 }

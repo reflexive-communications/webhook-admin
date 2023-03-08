@@ -24,7 +24,6 @@ class CRM_Webhook_ConfigTest extends \PHPUnit\Framework\TestCase
 
     /**
      * Default configuration test case.
-     *
      */
     public function testConfigAfterConstructor()
     {
