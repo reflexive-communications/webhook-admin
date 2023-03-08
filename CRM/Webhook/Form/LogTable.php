@@ -68,6 +68,6 @@ class CRM_Webhook_Form_LogTable extends CRM_Core_Form
 
             return;
         }
-        CRM_Core_Session::setStatus(ts("Webhook logs deleted."), "Webhook", "success", ["expires" => 5000,]);
+        CRM_Core_Session::setStatus(ts("Webhook logs deleted."), "Webhook", "success", ["expires" => 5000]);
     }
 }

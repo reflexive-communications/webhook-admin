@@ -173,7 +173,7 @@ class CRM_Webhook_Form_WebhookForm extends CRM_Webhook_Form_WebhookBase
         }
         $errors['query_string'] = ts(
             "The query string '%1' already set for the '%2' webhook.",
-            ['1' => $values['query_string'], '2' => $current[0]['name'],]
+            ['1' => $values['query_string'], '2' => $current[0]['name']]
         );
 
         return $errors;
@@ -193,6 +193,6 @@ class CRM_Webhook_Form_WebhookForm extends CRM_Webhook_Form_WebhookBase
         }
         $upgrader->execute();
 
-        CRM_Core_Session::setStatus(ts("Webhook Saved."), "Webhook", "success", ["expires" => 5000,]);
+        CRM_Core_Session::setStatus(ts("Webhook Saved."), "Webhook", "success", ["expires" => 5000]);
     }
 }
