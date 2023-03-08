@@ -26,6 +26,7 @@ class CRM_Webhook_Form_WebhookFormTest extends CRM_Webhook_Form_TestBase
         }
         self::assertSame("Webhook Form", $form->getTitle(), "Invalid form title.");
     }
+
     public function testBuildQuickFormWithId()
     {
         $hook = \Civi\Api4\Webhook::create(false)
@@ -61,6 +62,7 @@ class CRM_Webhook_Form_WebhookFormTest extends CRM_Webhook_Form_TestBase
         $defaults = $form->setDefaultValues();
         self::assertSame([], $defaults, "Should be empty without id.");
     }
+
     public function testSetDefaultValuesNotExistingId()
     {
         $hook = \Civi\Api4\Webhook::create(false)
@@ -77,6 +79,7 @@ class CRM_Webhook_Form_WebhookFormTest extends CRM_Webhook_Form_TestBase
         $defaults = $form->setDefaultValues();
         self::assertSame([], $defaults, "Should be empty with not existing id.");
     }
+
     public function testSetDefaultValuesGoodId()
     {
         $hook = \Civi\Api4\Webhook::create(false)
@@ -153,6 +156,7 @@ class CRM_Webhook_Form_WebhookFormTest extends CRM_Webhook_Form_TestBase
             self::assertEquals($t["expectedResult"], $form->validateQueryString($t["data"], null, null), "Should return the expected value.");
         }
     }
+
     public function testPostProcessDuplicatedInput()
     {
         $hook = \Civi\Api4\Webhook::create(false)
@@ -174,6 +178,7 @@ class CRM_Webhook_Form_WebhookFormTest extends CRM_Webhook_Form_TestBase
         self::expectException(PEAR_Exception::class);
         self::assertEmpty($form->postProcess());
     }
+
     public function testPostProcessValidInput()
     {
         $currentNumber = \Civi\Api4\Webhook::get(false)
@@ -195,8 +200,9 @@ class CRM_Webhook_Form_WebhookFormTest extends CRM_Webhook_Form_TestBase
         $newNumber = \Civi\Api4\Webhook::get(false)
             ->selectRowCount()
             ->execute();
-        self::assertSame(count($currentNumber)+1, count($newNumber));
+        self::assertSame(count($currentNumber) + 1, count($newNumber));
     }
+
     public function testPostProcessValidInputEdition()
     {
         $hook = \Civi\Api4\Webhook::create(false)

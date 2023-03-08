@@ -33,6 +33,6 @@ class CRM_Webhook_Processor_DummyTest extends \PHPUnit\Framework\TestCase
         $_GET = [];
         $dummy = new CRM_Webhook_Processor_Dummy();
         $input = $dummy->input();
-        self::assertEquals([ "raw" => "", "get" => [], "post" => [], "header" => ['REFERER' => 'v1', 'USER_AGENT' => 'v2']], $input, "Input supposed to be empty in this case.");
+        self::assertEquals(["raw" => "", "get" => [], "post" => [], "header" => ['REFERER' => 'v1', 'USER_AGENT' => 'v2']], $input, "Input supposed to be empty in this case.");
     }
 }

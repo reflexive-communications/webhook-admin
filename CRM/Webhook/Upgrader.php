@@ -1,4 +1,5 @@
 <?php
+
 use CRM_Webhook_ExtensionUtil as E;
 use Civi\Api4\Webhook;
 
@@ -8,9 +9,13 @@ use Civi\Api4\Webhook;
 class CRM_Webhook_Upgrader extends CRM_Webhook_Upgrader_Base
 {
     const DEFAULT_HOOK_NAME = "Logger webhook";
+
     const DEFAULT_HOOK_DESC = "This webhook could be used for testing purposes. It logs the received data.";
+
     const DEFAULT_HOOK_HANDLER = "CRM_Webhook_Handler_Logger";
+
     const DEFAULT_HOOK_QUERY_STRING = "logger-hook";
+
     const DEFAULT_HOOK_PROCESSOR = "CRM_Webhook_Processor_Dummy";
 
     /**
@@ -29,7 +34,6 @@ class CRM_Webhook_Upgrader extends CRM_Webhook_Upgrader_Base
 
     /**
      * Work with entities usually not available during the install step.
-     *
      * This method can be used for any post-install tasks. For example, if a step
      * of your installation depends on accessing an entity that is itself
      * created during the installation (e.g., a setting or a managed entity), do

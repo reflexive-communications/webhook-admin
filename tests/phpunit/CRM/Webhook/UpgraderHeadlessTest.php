@@ -29,7 +29,7 @@ class CRM_Webhook_UpgraderHeadlessTest extends \PHPUnit\Framework\TestCase imple
     {
     }
 
-    public function setUp():void
+    public function setUp(): void
     {
         parent::setUp();
     }
@@ -78,6 +78,7 @@ class CRM_Webhook_UpgraderHeadlessTest extends \PHPUnit\Framework\TestCase imple
             $this->fail("Should not throw exception. ".$e->getMessage());
         }
     }
+
     /**
      * Test the post install process.
      */
@@ -95,6 +96,6 @@ class CRM_Webhook_UpgraderHeadlessTest extends \PHPUnit\Framework\TestCase imple
         $newNumber = \Civi\Api4\Webhook::get(false)
             ->selectRowCount()
             ->execute();
-        self::assertSame(count($currentNumber)+1, count($newNumber));
+        self::assertSame(count($currentNumber) + 1, count($newNumber));
     }
 }

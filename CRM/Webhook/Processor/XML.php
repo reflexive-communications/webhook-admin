@@ -18,7 +18,7 @@ class CRM_Webhook_Processor_XML extends CRM_Webhook_Processor_Base
 
             // Disable external entity parsing to prevent XEE attack
             libxml_disable_entity_loader(true);
-      
+
             // Load XML
             $xml = new SimpleXMLElement($input);
 
@@ -26,7 +26,7 @@ class CRM_Webhook_Processor_XML extends CRM_Webhook_Processor_Base
             $json = json_encode($xml);
 
             return [
-            $xml->getName() => json_decode($json, true),
+                $xml->getName() => json_decode($json, true),
             ];
         } catch (Exception $e) {
             $this->error(ts('Unable to parse XML.'), true);

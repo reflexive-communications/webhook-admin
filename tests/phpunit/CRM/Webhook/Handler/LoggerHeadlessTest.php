@@ -44,7 +44,6 @@ class CRM_Webhook_Handler_LoggerHeadlessTest extends \PHPUnit\Framework\TestCase
 
     /**
      * Handle test case.
-     *
      * It shouldn't throw exception.
      */
     public function testHandle()

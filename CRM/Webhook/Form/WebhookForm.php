@@ -10,7 +10,9 @@ use CRM_Webhook_ExtensionUtil as E;
 class CRM_Webhook_Form_WebhookForm extends CRM_Webhook_Form_WebhookBase
 {
     private $optionValues;
+
     private $webhook;
+
     /**
      * Preprocess form
      *
@@ -88,6 +90,7 @@ class CRM_Webhook_Form_WebhookForm extends CRM_Webhook_Form_WebhookBase
 
         return $this->_defaults;
     }
+
     /**
      * Processor + handler options
      *
@@ -95,10 +98,11 @@ class CRM_Webhook_Form_WebhookForm extends CRM_Webhook_Form_WebhookBase
      */
     private function getOptionsFor(string $name)
     {
-        $opts = [ "" => ts("- select -") ];
+        $opts = ["" => ts("- select -")];
         foreach ($this->optionValues[$name] as $k => $v) {
             $opts[$k] = $v;
         }
+
         return $opts;
     }
 

@@ -40,6 +40,7 @@ class CRM_Webhook_DispatcherHeadlessTest extends \PHPUnit\Framework\TestCase imp
     {
         parent::tearDown();
     }
+
     /**
      * Run command tests.
      * Without listener get param, it fails.
@@ -57,6 +58,7 @@ class CRM_Webhook_DispatcherHeadlessTest extends \PHPUnit\Framework\TestCase imp
         self::expectExceptionMessage("Missing listener.");
         self::assertEmpty($d->run(), "Run supposed to be empty.");
     }
+
     public function testRunInvalidListener()
     {
         $_GET["listener"] = "not-existing-listener";
@@ -65,6 +67,7 @@ class CRM_Webhook_DispatcherHeadlessTest extends \PHPUnit\Framework\TestCase imp
         self::expectExceptionMessage("Invalid listener.");
         self::assertEmpty($d->run(), "Run supposed to be empty.");
     }
+
     public function testRunValidListener()
     {
         \Civi\Api4\Webhook::create(false)
@@ -82,6 +85,7 @@ class CRM_Webhook_DispatcherHeadlessTest extends \PHPUnit\Framework\TestCase imp
             self::fail("Shouldn't throw exception.");
         }
     }
+
     public function testRunValidListenerWithOptions()
     {
         \Civi\Api4\Webhook::create(false)

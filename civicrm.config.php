@@ -2,10 +2,10 @@
 
 /**
  * Full path to civicrm.settings.php
- *
  * This extension tries to find it automatically, if that fails
  * set path here.
  */
+
 //define( 'CIVICRM_SETTINGS_PATH', '/full/path/to/civicrm.settings.php');
 
 /**

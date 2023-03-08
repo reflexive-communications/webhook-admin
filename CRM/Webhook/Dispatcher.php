@@ -23,9 +23,7 @@ class CRM_Webhook_Dispatcher
      * Instantiate Handler
      *
      * @param string $handler_class Handler class name
-     *
      * @param \CRM_Webhook_Processor_Base $processor Webhook Processor
-     *
      * @param array $options additional options to handler
      *
      * @return \CRM_Webhook_Handler_Base
