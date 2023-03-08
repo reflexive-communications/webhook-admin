@@ -21,31 +21,31 @@
                     <td>{$entry.data.raw}</td>
                     <td>
                         <ul>
-                        {foreach from=$entry.data.get key=gid item=getentry}
-                            <li>{$gid} : {$getentry}</li>
-                        {/foreach}
-                        <ul>
+                            {foreach from=$entry.data.get key=gid item=getentry}
+                                <li>{$gid} : {$getentry}</li>
+                            {/foreach}
+                            <ul>
                     </td>
                     <td>
                         <ul>
-                        {foreach from=$entry.data.post key=pid item=postentry}
-                            <li>{$pid} : {$postentry}</li>
-                        {/foreach}
-                        <ul>
+                            {foreach from=$entry.data.post key=pid item=postentry}
+                                <li>{$pid} : {$postentry}</li>
+                            {/foreach}
+                            <ul>
                     </td>
                     <td>
                         <ul>
-                        {foreach from=$entry.data.header key=hid item=headerentry}
-                            <li>{$hid} : {$headerentry}</li>
-                        {/foreach}
-                        <ul>
+                            {foreach from=$entry.data.header key=hid item=headerentry}
+                                <li>{$hid} : {$headerentry}</li>
+                            {/foreach}
+                            <ul>
                     </td>
                     <td>
                         <ul>
-                        {foreach from=$entry.data.error key=eid item=errorentry}
-                            <li>{$errorentry}</li>
-                        {/foreach}
-                        <ul>
+                            {foreach from=$entry.data.error key=eid item=errorentry}
+                                <li>{$errorentry}</li>
+                            {/foreach}
+                            <ul>
                     </td>
                 </tr>
             {/foreach}
