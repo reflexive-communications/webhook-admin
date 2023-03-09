@@ -6,7 +6,7 @@ use Civi\Api4\Webhook;
 /**
  * Collection of upgrade steps.
  */
-class CRM_Webhook_Upgrader extends CRM_Webhook_Upgrader_Base
+class CRM_Webhook_Upgrader extends CRM_Extension_Upgrader_Base
 {
     const DEFAULT_HOOK_NAME = "Logger webhook";
 
@@ -25,10 +25,10 @@ class CRM_Webhook_Upgrader extends CRM_Webhook_Upgrader_Base
      */
     public function install()
     {
-        $config = new CRM_Webhook_Config($this->extensionName);
+        $config = new CRM_Webhook_Config(E::LONG_NAME);
         // Create default configs
         if (!$config->create()) {
-            throw new CRM_Core_Exception($this->extensionName.ts(' could not create configs in database'));
+            throw new CRM_Core_Exception(E::LONG_NAME.ts(' could not create configs in database'));
         }
     }
 
@@ -57,10 +57,10 @@ class CRM_Webhook_Upgrader extends CRM_Webhook_Upgrader_Base
      */
     public function uninstall()
     {
-        $config = new CRM_Webhook_Config($this->extensionName);
+        $config = new CRM_Webhook_Config(E::LONG_NAME);
         // delete current configs
         if (!$config->remove()) {
-            throw new CRM_Core_Exception($this->extensionName.ts(' could not remove configs from database'));
+            throw new CRM_Core_Exception(E::LONG_NAME.ts(' could not remove configs from database'));
         }
     }
 }
