@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="iso-8859-1" ?>
-
 <table>
     <base>CRM/Webhook</base>
     <class>Webhook</class>
@@ -13,11 +12,6 @@
         <required>true</required>
         <comment>Unique Webhook ID</comment>
     </field>
-    <primaryKey>
-        <name>id</name>
-        <autoincrement>true</autoincrement>
-    </primaryKey>
-
     <field>
         <name>name</name>
         <type>varchar</type>
@@ -53,10 +47,15 @@
         <comment>Serialized data for PHP usage</comment>
         <serialize>PHP</serialize>
     </field>
+
+    <primaryKey>
+        <name>id</name>
+        <autoincrement>true</autoincrement>
+    </primaryKey>
+
     <index>
         <name>index_query</name>
         <fieldName>query_string</fieldName>
         <unique>true</unique>
     </index>
-
 </table>
