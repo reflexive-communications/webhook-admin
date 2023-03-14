@@ -24,7 +24,7 @@
         <type>varchar</type>
         <length>255</length>
         <required>false</required>
-        <default>null</default>
+        <default>NULL</default>
         <import>true</import>
         <export>true</export>
         <html>
@@ -37,7 +37,7 @@
         <title>Description</title>
         <type>text</type>
         <required>false</required>
-        <default>null</default>
+        <default>NULL</default>
         <import>true</import>
         <export>true</export>
         <html>
@@ -51,7 +51,7 @@
         <type>varchar</type>
         <length>255</length>
         <required>false</required>
-        <default>null</default>
+        <default>NULL</default>
         <import>true</import>
         <export>true</export>
         <html>
@@ -65,7 +65,7 @@
         <type>varchar</type>
         <length>255</length>
         <required>false</required>
-        <default>null</default>
+        <default>NULL</default>
         <import>true</import>
         <export>true</export>
         <html>
@@ -79,7 +79,7 @@
         <type>varchar</type>
         <length>255</length>
         <required>false</required>
-        <default>null</default>
+        <default>NULL</default>
         <import>true</import>
         <export>true</export>
         <html>
@@ -92,7 +92,7 @@
         <title>Custom options</title>
         <type>text</type>
         <required>false</required>
-        <default>null</default>
+        <default>NULL</default>
         <import>true</import>
         <export>true</export>
         <html>
