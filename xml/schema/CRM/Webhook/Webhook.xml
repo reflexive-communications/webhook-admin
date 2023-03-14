@@ -10,44 +10,96 @@
 
     <field>
         <name>id</name>
+        <title>Webhook ID</title>
         <type>int unsigned</type>
         <required>true</required>
+        <html>
+            <type>Number</type>
+        </html>
         <comment>Unique Webhook ID</comment>
     </field>
     <field>
         <name>name</name>
+        <title>Name</title>
         <type>varchar</type>
         <length>255</length>
-        <comment>The human readable name of the handler</comment>
+        <required>false</required>
+        <default>null</default>
+        <import>true</import>
+        <export>true</export>
+        <html>
+            <type>Text</type>
+        </html>
+        <comment>Webhook name</comment>
     </field>
     <field>
         <name>description</name>
+        <title>Description</title>
         <type>text</type>
-        <comment>Useful information about this hook</comment>
+        <required>false</required>
+        <default>null</default>
+        <import>true</import>
+        <export>true</export>
+        <html>
+            <type>Text</type>
+        </html>
+        <comment>Webhook description</comment>
     </field>
     <field>
         <name>handler</name>
+        <title>Handler</title>
         <type>varchar</type>
         <length>255</length>
-        <comment>The class name of the handler application</comment>
+        <required>false</required>
+        <default>null</default>
+        <import>true</import>
+        <export>true</export>
+        <html>
+            <type>Text</type>
+        </html>
+        <comment>Handler class</comment>
     </field>
     <field>
         <name>query_string</name>
+        <title>Query string</title>
         <type>varchar</type>
         <length>255</length>
-        <comment>The query parameter of the webhook</comment>
+        <required>false</required>
+        <default>null</default>
+        <import>true</import>
+        <export>true</export>
+        <html>
+            <type>Text</type>
+        </html>
+        <comment>Webhook query parameter</comment>
     </field>
     <field>
         <name>processor</name>
+        <title>Processor</title>
         <type>varchar</type>
         <length>255</length>
-        <comment>The class name of the processor application</comment>
+        <required>false</required>
+        <default>null</default>
+        <import>true</import>
+        <export>true</export>
+        <html>
+            <type>Text</type>
+        </html>
+        <comment>Processor class</comment>
     </field>
     <field>
         <name>options</name>
+        <title>Custom options</title>
         <type>text</type>
-        <comment>Serialized data for PHP usage</comment>
+        <required>false</required>
+        <default>null</default>
+        <import>true</import>
+        <export>true</export>
+        <html>
+            <type>Text</type>
+        </html>
         <serialize>PHP</serialize>
+        <comment>Custom serialized data for PHP</comment>
     </field>
 
     <primaryKey>
