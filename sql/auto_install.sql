@@ -30,17 +30,17 @@ SET FOREIGN_KEY_CHECKS=1;
 -- *
 -- * civicrm_webhook
 -- *
--- * FIXME
+-- * Webhook configs
 -- *
 -- *******************************************************/
 CREATE TABLE `civicrm_webhook` (
   `id` int unsigned NOT NULL AUTO_INCREMENT COMMENT 'Unique Webhook ID',
-  `name` varchar(255) COMMENT 'The human readable name of the handler',
-  `description` text COMMENT 'Useful information about this hook',
-  `handler` varchar(255) COMMENT 'The class name of the handler application',
-  `query_string` varchar(255) COMMENT 'The query parameter of the webhook',
-  `processor` varchar(255) COMMENT 'The class name of the processor application',
-  `options` text COMMENT 'Serialized data for PHP usage',
+  `name` varchar(255) NULL DEFAULT NULL COMMENT 'Webhook name',
+  `description` text NULL DEFAULT NULL COMMENT 'Webhook description',
+  `handler` varchar(255) NULL DEFAULT NULL COMMENT 'Handler class',
+  `query_string` varchar(255) NULL DEFAULT NULL COMMENT 'Webhook query parameter',
+  `processor` varchar(255) NULL DEFAULT NULL COMMENT 'Processor class',
+  `options` text NULL DEFAULT NULL COMMENT 'Custom serialized data for PHP',
   PRIMARY KEY (`id`),
   UNIQUE INDEX `index_query`(query_string)
 )
