@@ -5,7 +5,7 @@ use Civi\WebhookAdmin\HeadlessTestCase;
 /**
  * @group headless
  */
-class CRM_Webhook_Processor_BaseHeadlessTest extends HeadlessTestCase
+class CRM_Webhook_Processor_BaseTest extends HeadlessTestCase
 {
     /**
      * Output test case.

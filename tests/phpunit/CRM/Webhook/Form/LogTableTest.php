@@ -6,7 +6,7 @@ use CRM_Webhook_ExtensionUtil as E;
 /**
  * @group headless
  */
-class CRM_Webhook_Form_LogTableHeadlessTest extends HeadlessTestCase
+class CRM_Webhook_Form_LogTableTest extends HeadlessTestCase
 {
     /**
      * PreProcess test case with existing config.

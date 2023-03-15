@@ -6,7 +6,7 @@ use Civi\WebhookAdmin\HeadlessTestCase;
 /**
  * @group headless
  */
-class CRM_Webhook_DispatcherHeadlessTest extends HeadlessTestCase
+class CRM_Webhook_DispatcherTest extends HeadlessTestCase
 {
     /**
      * Run command tests.

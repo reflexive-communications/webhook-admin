@@ -8,7 +8,7 @@ use CRM_Webhook_ExtensionUtil as E;
  *
  * @group headless
  */
-class CRM_Webhook_Handler_LoggerHeadlessTest extends HeadlessTestCase
+class CRM_Webhook_Handler_LoggerTest extends HeadlessTestCase
 {
     /**
      * Handle test case.

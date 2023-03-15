@@ -5,7 +5,7 @@ use Civi\WebhookAdmin\HeadlessTestCase;
 /**
  * @group headless
  */
-class CRM_Webhook_UpgraderHeadlessTest extends HeadlessTestCase
+class CRM_Webhook_UpgraderTest extends HeadlessTestCase
 {
     /**
      * Test the install process.
