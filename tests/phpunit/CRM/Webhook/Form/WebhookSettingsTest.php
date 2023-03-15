@@ -1,11 +1,11 @@
 <?php
 
+use Civi\WebhookAdmin\HeadlessTestCase;
+
 /**
- * WebhookSettings tests
- *
  * @group headless
  */
-class CRM_Webhook_Form_WebhookSettingsTest extends CRM_Webhook_Form_TestBase
+class CRM_Webhook_Form_WebhookSettingsTest extends HeadlessTestCase
 {
     /**
      * Build quick form test case.

@@ -1,57 +1,12 @@
 <?php
 
-use Civi\Test;
-use Civi\Test\HeadlessInterface;
+use Civi\WebhookAdmin\HeadlessTestCase;
 
 /**
- * Tests for the install, uninstall process.
- *
  * @group headless
  */
-class CRM_Webhook_UpgraderHeadlessTest extends \PHPUnit\Framework\TestCase implements HeadlessInterface
+class CRM_Webhook_UpgraderHeadlessTest extends HeadlessTestCase
 {
-    /**
-     * Apply a forced rebuild of DB, thus
-     * create a clean DB before running tests
-     *
-     * @throws \CRM_Extension_Exception_ParseException
-     */
-    public static function setUpBeforeClass(): void
-    {
-        // Resets DB
-        Test::headless()
-            ->install('rc-base')
-            ->installMe(__DIR__)
-            ->apply(true);
-    }
-
-    public function setUpHeadless()
-    {
-    }
-
-    public function setUp(): void
-    {
-        parent::setUp();
-    }
-
-    public function tearDown(): void
-    {
-        parent::tearDown();
-    }
-
-    /**
-     * Create a clean DB before running tests
-     *
-     * @throws CRM_Extension_Exception_ParseException
-     */
-    public static function tearDownAfterClass(): void
-    {
-        \Civi\Test::headless()
-            ->uninstall('rc-base')
-            ->uninstallMe(__DIR__)
-            ->apply(true);
-    }
-
     /**
      * Test the install process.
      */

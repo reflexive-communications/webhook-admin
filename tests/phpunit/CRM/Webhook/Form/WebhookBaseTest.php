@@ -1,13 +1,12 @@
 <?php
 
+use Civi\WebhookAdmin\HeadlessTestCase;
 use CRM_Webhook_ExtensionUtil as E;
 
 /**
- * WebhookBase tests
- *
  * @group headless
  */
-class CRM_Webhook_Form_WebhookBaseTest extends CRM_Webhook_Form_TestBase
+class CRM_Webhook_Form_WebhookBaseTest extends HeadlessTestCase
 {
     /**
      * PreProcess test case with existing config.

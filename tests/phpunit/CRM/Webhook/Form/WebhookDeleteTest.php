@@ -1,16 +1,12 @@
 <?php
 
+use Civi\Api4\Webhook;
+use Civi\WebhookAdmin\HeadlessTestCase;
 use CRM_Webhook_ExtensionUtil as E;
-use Civi\Test\HeadlessInterface;
-use Civi\Test\HookInterface;
-use Civi\Test\TransactionalInterface;
-
 /**
- * FIXME - Add test description.
- *
  * @group headless
  */
-class CRM_Webhook_Form_WebhookDeleteTest extends CRM_Webhook_Form_TestBase
+class CRM_Webhook_Form_WebhookDeleteTest extends HeadlessTestCase
 {
     /**
      * Build quick form test cases.
@@ -20,7 +16,7 @@ class CRM_Webhook_Form_WebhookDeleteTest extends CRM_Webhook_Form_TestBase
      */
     public function testBuildQuickFormWithId()
     {
-        $hook = \Civi\Api4\Webhook::create(false)
+        $hook = Webhook::create(false)
             ->addValue('query_string', 'valid_listener')
             ->addValue('name', 'validName')
             ->addValue('description', 'valid-description')
@@ -41,8 +37,8 @@ class CRM_Webhook_Form_WebhookDeleteTest extends CRM_Webhook_Form_TestBase
 
     public function testPostProcessValidId()
     {
-        $hook = \Civi\Api4\Webhook::create(false)
-            ->addValue('query_string', 'valid_listener')
+        $hook = Webhook::create(false)
+            ->addValue('query_string', 'valid_listener_post_process')
             ->addValue('name', 'validName')
             ->addValue('description', 'valid-description')
             ->addValue('handler', 'CRM_Webhook_Handler_Logger')
@@ -58,7 +54,7 @@ class CRM_Webhook_Form_WebhookDeleteTest extends CRM_Webhook_Form_TestBase
         } catch (Exception $e) {
             self::fail("It shouldn't throw exception. ".$e->getMessage());
         }
-        $deletedHook = \Civi\Api4\Webhook::get(false)
+        $deletedHook = Webhook::get(false)
             ->addWhere('id', '=', $hook['id'])
             ->execute();
         self::assertEquals(0, count($deletedHook), "The webhook supposed to be deleted.");

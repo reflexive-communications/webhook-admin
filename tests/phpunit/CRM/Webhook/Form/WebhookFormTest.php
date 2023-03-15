@@ -1,13 +1,12 @@
 <?php
 
-use CRM_Webhook_ExtensionUtil as E;
+use Civi\Api4\Webhook;
+use Civi\WebhookAdmin\HeadlessTestCase;
 
 /**
- * WebhookForm tests
- *
  * @group headless
  */
-class CRM_Webhook_Form_WebhookFormTest extends CRM_Webhook_Form_TestBase
+class CRM_Webhook_Form_WebhookFormTest extends HeadlessTestCase
 {
     /**
      * Build quick form test cases.
@@ -29,8 +28,8 @@ class CRM_Webhook_Form_WebhookFormTest extends CRM_Webhook_Form_TestBase
 
     public function testBuildQuickFormWithId()
     {
-        $hook = \Civi\Api4\Webhook::create(false)
-            ->addValue('query_string', 'valid_listener')
+        $hook = Webhook::create(false)
+            ->addValue('query_string', 'valid_listener_build')
             ->addValue('name', 'validName')
             ->addValue('description', 'valid-description')
             ->addValue('handler', 'CRM_Webhook_Handler_Logger')
@@ -65,8 +64,8 @@ class CRM_Webhook_Form_WebhookFormTest extends CRM_Webhook_Form_TestBase
 
     public function testSetDefaultValuesNotExistingId()
     {
-        $hook = \Civi\Api4\Webhook::create(false)
-            ->addValue('query_string', 'valid_listener')
+        $hook = Webhook::create(false)
+            ->addValue('query_string', 'valid_listener_not_existing_id')
             ->addValue('name', 'validName')
             ->addValue('description', 'valid-description')
             ->addValue('handler', 'CRM_Webhook_Handler_Logger')
@@ -82,8 +81,8 @@ class CRM_Webhook_Form_WebhookFormTest extends CRM_Webhook_Form_TestBase
 
     public function testSetDefaultValuesGoodId()
     {
-        $hook = \Civi\Api4\Webhook::create(false)
-            ->addValue('query_string', 'valid_listener')
+        $hook = Webhook::create(false)
+            ->addValue('query_string', 'valid_listener_valid_id')
             ->addValue('name', 'validName')
             ->addValue('description', 'valid-description')
             ->addValue('handler', 'CRM_Webhook_Handler_Logger')
@@ -122,8 +121,8 @@ class CRM_Webhook_Form_WebhookFormTest extends CRM_Webhook_Form_TestBase
      */
     public function testConfigValidator()
     {
-        $hook = \Civi\Api4\Webhook::create(false)
-            ->addValue('query_string', 'valid_listener')
+        $hook = Webhook::create(false)
+            ->addValue('query_string', 'valid_listener_config')
             ->addValue('name', 'validName')
             ->addValue('description', 'valid-description')
             ->addValue('handler', 'CRM_Webhook_Handler_Logger')
@@ -159,8 +158,8 @@ class CRM_Webhook_Form_WebhookFormTest extends CRM_Webhook_Form_TestBase
 
     public function testPostProcessDuplicatedInput()
     {
-        $hook = \Civi\Api4\Webhook::create(false)
-            ->addValue('query_string', 'valid_listener')
+        $hook = Webhook::create(false)
+            ->addValue('query_string', 'valid_listener_duplicated')
             ->addValue('name', 'validName')
             ->addValue('description', 'valid-description')
             ->addValue('handler', 'CRM_Webhook_Handler_Logger')
@@ -171,7 +170,7 @@ class CRM_Webhook_Form_WebhookFormTest extends CRM_Webhook_Form_TestBase
         $_POST["name"] = 'validName';
         $_POST["description"] = 'valid-description';
         $_POST["handler"] = 'CRM_Webhook_Handler_Logger';
-        $_POST["query_string"] = 'valid_listener';
+        $_POST["query_string"] = 'valid_listener_duplicated';
         $_POST["processor"] = 'CRM_Webhook_Processor_Dummy';
         $form = new CRM_Webhook_Form_WebhookForm();
         self::assertEmpty($form->preProcess(), "PreProcess supposed to be empty.");
@@ -181,14 +180,14 @@ class CRM_Webhook_Form_WebhookFormTest extends CRM_Webhook_Form_TestBase
 
     public function testPostProcessValidInput()
     {
-        $currentNumber = \Civi\Api4\Webhook::get(false)
+        $currentNumber = Webhook::get(false)
             ->selectRowCount()
             ->execute();
         $this->setGlobals("id", null);
         $_POST["name"] = 'validName';
         $_POST["description"] = 'valid-description';
         $_POST["handler"] = 'CRM_Webhook_Handler_Logger';
-        $_POST["query_string"] = 'valid_listener';
+        $_POST["query_string"] = 'valid_listener_input';
         $_POST["processor"] = 'CRM_Webhook_Processor_Dummy';
         $form = new CRM_Webhook_Form_WebhookForm();
         self::assertEmpty($form->preProcess(), "PreProcess supposed to be empty.");
@@ -197,7 +196,7 @@ class CRM_Webhook_Form_WebhookFormTest extends CRM_Webhook_Form_TestBase
         } catch (Exception $e) {
             self::fail("It shouldn't throw exception.");
         }
-        $newNumber = \Civi\Api4\Webhook::get(false)
+        $newNumber = Webhook::get(false)
             ->selectRowCount()
             ->execute();
         self::assertSame(count($currentNumber) + 1, count($newNumber));
@@ -205,22 +204,22 @@ class CRM_Webhook_Form_WebhookFormTest extends CRM_Webhook_Form_TestBase
 
     public function testPostProcessValidInputEdition()
     {
-        $hook = \Civi\Api4\Webhook::create(false)
-            ->addValue('query_string', 'valid_listener')
+        $hook = Webhook::create(false)
+            ->addValue('query_string', 'valid_listener_edit')
             ->addValue('name', 'validName')
             ->addValue('description', 'valid-description')
             ->addValue('handler', 'CRM_Webhook_Handler_Logger')
             ->addValue('processor', 'CRM_Webhook_Processor_Dummy')
             ->execute()
             ->first();
-        $currentNumber = \Civi\Api4\Webhook::get(false)
+        $currentNumber = Webhook::get(false)
             ->selectRowCount()
             ->execute();
         $this->setGlobals("id", $hook["id"]);
         $_POST["name"] = 'validName';
         $_POST["description"] = 'valid-description';
         $_POST["handler"] = 'CRM_Webhook_Handler_Logger';
-        $_POST["query_string"] = 'valid_listener';
+        $_POST["query_string"] = 'valid_listener_edited';
         $_POST["processor"] = 'CRM_Webhook_Processor_Dummy';
         $form = new CRM_Webhook_Form_WebhookForm();
         self::assertEmpty($form->preProcess(), "PreProcess supposed to be empty.");
@@ -229,7 +228,7 @@ class CRM_Webhook_Form_WebhookFormTest extends CRM_Webhook_Form_TestBase
         } catch (Exception $e) {
             self::fail("It shouldn't throw exception.");
         }
-        $newNumber = \Civi\Api4\Webhook::get(false)
+        $newNumber = Webhook::get(false)
             ->selectRowCount()
             ->execute();
         self::assertSame(count($currentNumber), count($newNumber));
