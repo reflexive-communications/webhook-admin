@@ -4,8 +4,6 @@ use Civi\WebhookAdmin\HeadlessTestCase;
 use CRM_Webhook_ExtensionUtil as E;
 
 /**
- * Logger handler tests.
- *
  * @group headless
  */
 class CRM_Webhook_Handler_LoggerTest extends HeadlessTestCase
