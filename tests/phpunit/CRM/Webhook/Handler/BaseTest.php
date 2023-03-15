@@ -14,11 +14,11 @@ class CRM_Webhook_Handler_BaseTest extends HeadlessTestCase
     public function testHandle()
     {
         $processor = new CRM_Webhook_Processor_Dummy();
-        $stub = $this->getMockForAbstractClass("CRM_Webhook_Handler_Base", [$processor]);
-        $stub->method("authenticate")->willReturn(true);
-        $stub->method("validate")->willReturn(true);
+        $stub = $this->getMockForAbstractClass('CRM_Webhook_Handler_Base', [$processor]);
+        $stub->method('authenticate')->willReturn(true);
+        $stub->method('validate')->willReturn(true);
         try {
-            self::assertEmpty($stub->handle(), "It should be empty.");
+            self::assertEmpty($stub->handle(), 'It should be empty.');
         } catch (Exception $e) {
             self::fail("Shouldn't throw exception. ".$e->getMessage());
         }

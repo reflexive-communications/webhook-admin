@@ -18,7 +18,7 @@ class CRM_Webhook_Form_WebhookBaseTest extends HeadlessTestCase
         $this->setupTestConfig();
         $form = new CRM_Webhook_Form_WebhookBase();
         try {
-            self::assertEmpty($form->preProcess(), "PreProcess supposed to be empty.");
+            self::assertEmpty($form->preProcess(), 'PreProcess supposed to be empty.');
         } catch (Exception $e) {
             self::fail("Shouldn't throw exception with valid db.");
         }
@@ -35,7 +35,7 @@ class CRM_Webhook_Form_WebhookBaseTest extends HeadlessTestCase
         $config = new CRM_Webhook_Config(E::LONG_NAME);
         $config->remove();
         try {
-            self::assertEmpty($form->preProcess(), "PreProcess supposed to be empty.");
+            self::assertEmpty($form->preProcess(), 'PreProcess supposed to be empty.');
         } catch (Exception $e) {
             self::fail("Shouldn't throw exception with valid db.");
         }

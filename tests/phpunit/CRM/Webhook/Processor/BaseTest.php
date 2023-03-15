@@ -13,8 +13,8 @@ class CRM_Webhook_Processor_BaseTest extends HeadlessTestCase
     public function testOutput()
     {
         $stub = $this->getMockForAbstractClass('CRM_Webhook_Processor_Base');
-        $testData = ["key" => "value"];
+        $testData = ['key' => 'value'];
         self::expectException(CRM_Core_Exception_PrematureExitException::class);
-        self::assertEmpty($stub->output($testData), "Output supposed to be empty.");
+        self::assertEmpty($stub->output($testData), 'Output supposed to be empty.');
     }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use Civi\Api4\Webhook;
 use Civi\WebhookAdmin\HeadlessTestCase;
 
 /**
@@ -12,11 +13,11 @@ class CRM_Webhook_UpgraderTest extends HeadlessTestCase
      */
     public function testInstall()
     {
-        $installer = new CRM_Webhook_Upgrader("webhook_test", ".");
+        $installer = new CRM_Webhook_Upgrader();
         try {
             $this->assertEmpty($installer->install());
         } catch (Exception $e) {
-            $this->fail("Should not throw exception. ".$e->getMessage());
+            $this->fail('Should not throw exception. '.$e->getMessage());
         }
     }
 
@@ -25,12 +26,12 @@ class CRM_Webhook_UpgraderTest extends HeadlessTestCase
      */
     public function testUninstall()
     {
-        $installer = new CRM_Webhook_Upgrader("webhook_test", ".");
+        $installer = new CRM_Webhook_Upgrader();
         $this->assertEmpty($installer->install());
         try {
             $this->assertEmpty($installer->uninstall());
         } catch (Exception $e) {
-            $this->fail("Should not throw exception. ".$e->getMessage());
+            $this->fail('Should not throw exception. '.$e->getMessage());
         }
     }
 
@@ -39,16 +40,16 @@ class CRM_Webhook_UpgraderTest extends HeadlessTestCase
      */
     public function testPostInstall()
     {
-        $installer = new CRM_Webhook_Upgrader("webhook_test", ".");
+        $installer = new CRM_Webhook_Upgrader();
         // delete the first id as it is the one that was inserted.
-        \Civi\Api4\Webhook::delete(false)
+        Webhook::delete(false)
             ->addWhere('id', '=', 1)
             ->execute();
-        $currentNumber = \Civi\Api4\Webhook::get(false)
+        $currentNumber = Webhook::get(false)
             ->selectRowCount()
             ->execute();
         $this->assertEmpty($installer->postInstall());
-        $newNumber = \Civi\Api4\Webhook::get(false)
+        $newNumber = Webhook::get(false)
             ->selectRowCount()
             ->execute();
         self::assertSame(count($currentNumber) + 1, count($newNumber));
