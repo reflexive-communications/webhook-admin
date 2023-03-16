@@ -9,7 +9,7 @@ use CRM_Webhook_ExtensionUtil as E;
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_config/
  */
-function webhook_civicrm_config(&$config)
+function webhook_civicrm_config(&$config): void
 {
     _webhook_civix_civicrm_config($config);
 }
@@ -20,7 +20,7 @@ function webhook_civicrm_config(&$config)
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_entityTypes
  */
-function webhook_civicrm_entityTypes(&$entityTypes)
+function webhook_civicrm_entityTypes(&$entityTypes): void
 {
     _webhook_civix_civicrm_entityTypes($entityTypes);
 }
@@ -30,7 +30,7 @@ function webhook_civicrm_entityTypes(&$entityTypes)
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_navigationMenu
  */
-function webhook_civicrm_navigationMenu(&$menu)
+function webhook_civicrm_navigationMenu(&$menu): void
 {
     _webhook_civix_insert_navigation_menu($menu, 'Administer', [
         'label' => E::ts('Webhooks'),
