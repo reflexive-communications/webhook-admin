@@ -1,7 +1,5 @@
 <?php
 
-use CRM_Webhook_ExtensionUtil as E;
-
 /**
  * Form controller class
  *
@@ -18,7 +16,7 @@ class CRM_Webhook_Form_WebhookForm extends CRM_Webhook_Form_WebhookBase
      *
      * @throws CRM_Core_Exception
      */
-    public function preProcess()
+    public function preProcess(): void
     {
         parent::preProcess();
         $this->setOptionValues();
@@ -34,7 +32,7 @@ class CRM_Webhook_Form_WebhookForm extends CRM_Webhook_Form_WebhookBase
      *
      * @return array
      */
-    public function getWebhook(int $id)
+    public function getWebhook(int $id): array
     {
         return \Civi\Api4\Webhook::get(false)
             ->addWhere('id', '=', $id)
@@ -47,7 +45,7 @@ class CRM_Webhook_Form_WebhookForm extends CRM_Webhook_Form_WebhookBase
      * Set option values.
      * It could be extended with the hook_civicrm_webhookOptionValues hook.
      */
-    public function setOptionValues()
+    public function setOptionValues(): void
     {
         $optionValues = [
             "processors" => [],
@@ -74,7 +72,7 @@ class CRM_Webhook_Form_WebhookForm extends CRM_Webhook_Form_WebhookBase
      *
      * @return array
      */
-    public function setDefaultValues()
+    public function setDefaultValues(): array
     {
         // new item - no defaults
         if (is_null($this->id) || is_null($this->webhook)) {
@@ -96,7 +94,7 @@ class CRM_Webhook_Form_WebhookForm extends CRM_Webhook_Form_WebhookBase
      *
      * @return array
      */
-    private function getOptionsFor(string $name)
+    private function getOptionsFor(string $name): array
     {
         $opts = ["" => ts("- select -")];
         foreach ($this->optionValues[$name] as $k => $v) {
@@ -106,7 +104,7 @@ class CRM_Webhook_Form_WebhookForm extends CRM_Webhook_Form_WebhookBase
         return $opts;
     }
 
-    public function buildQuickForm()
+    public function buildQuickForm(): void
     {
         parent::buildQuickForm();
 
@@ -143,7 +141,7 @@ class CRM_Webhook_Form_WebhookForm extends CRM_Webhook_Form_WebhookBase
     /**
      * Add form validation rules
      */
-    public function addRules()
+    public function addRules(): void
     {
         $this->addFormRule(
             ["CRM_Webhook_Form_WebhookForm", "validateQueryString"],
@@ -179,7 +177,7 @@ class CRM_Webhook_Form_WebhookForm extends CRM_Webhook_Form_WebhookBase
         return $errors;
     }
 
-    public function postProcess()
+    public function postProcess(): void
     {
         parent::postProcess();
         if (!is_null($this->id)) {

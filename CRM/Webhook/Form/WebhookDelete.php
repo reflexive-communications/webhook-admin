@@ -1,7 +1,5 @@
 <?php
 
-use CRM_Webhook_ExtensionUtil as E;
-
 /**
  * Form controller class
  *
@@ -9,7 +7,7 @@ use CRM_Webhook_ExtensionUtil as E;
  */
 class CRM_Webhook_Form_WebhookDelete extends CRM_Webhook_Form_WebhookBase
 {
-    public function buildQuickForm()
+    public function buildQuickForm(): void
     {
         parent::buildQuickForm();
 
@@ -37,7 +35,7 @@ class CRM_Webhook_Form_WebhookDelete extends CRM_Webhook_Form_WebhookBase
         $this->setTitle(ts("Webhook Delete"));
     }
 
-    public function postProcess()
+    public function postProcess(): void
     {
         parent::postProcess();
         \Civi\Api4\Webhook::delete(false)

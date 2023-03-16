@@ -24,7 +24,7 @@ class CRM_Webhook_Processor_Dummy extends CRM_Webhook_Processor_Base
      *
      * @return array
      */
-    public function input()
+    public function input(): array
     {
         // Get contents from raw POST data
         $inputRaw = file_get_contents("php://input");

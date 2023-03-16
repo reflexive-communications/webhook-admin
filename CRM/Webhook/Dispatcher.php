@@ -1,7 +1,5 @@
 <?php
 
-use CRM_Webhook_ExtensionUtil as E;
-
 /**
  * Main webhook Dispatcher
  */
@@ -14,7 +12,7 @@ class CRM_Webhook_Dispatcher
      *
      * @return \CRM_Webhook_Processor_Base
      */
-    protected function createProcessor(string $processor_class)
+    protected function createProcessor(string $processor_class): CRM_Webhook_Processor_Base
     {
         return new $processor_class();
     }
@@ -28,7 +26,7 @@ class CRM_Webhook_Dispatcher
      *
      * @return \CRM_Webhook_Handler_Base
      */
-    protected function createHandler(string $handler_class, CRM_Webhook_Processor_Base $processor, array $options = [])
+    protected function createHandler(string $handler_class, CRM_Webhook_Processor_Base $processor, array $options = []): CRM_Webhook_Handler_Base
     {
         return new $handler_class($processor, $options);
     }
@@ -36,7 +34,7 @@ class CRM_Webhook_Dispatcher
     /**
      * Run Controller
      */
-    public function run()
+    public function run(): void
     {
         // Get the listener param from the get object
         // listener has to be a get param.

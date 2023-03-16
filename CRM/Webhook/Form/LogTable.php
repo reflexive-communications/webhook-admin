@@ -21,7 +21,7 @@ class CRM_Webhook_Form_LogTable extends CRM_Core_Form
      *
      * @throws CRM_Core_Exception
      */
-    public function preProcess()
+    public function preProcess(): void
     {
         // Get current settings
         $this->config = new CRM_Webhook_Config(E::LONG_NAME);
@@ -31,7 +31,7 @@ class CRM_Webhook_Form_LogTable extends CRM_Core_Form
     /**
      * Build form
      */
-    public function buildQuickForm()
+    public function buildQuickForm(): void
     {
         parent::buildQuickForm();
 
@@ -60,7 +60,7 @@ class CRM_Webhook_Form_LogTable extends CRM_Core_Form
     /**
      * Post process
      */
-    public function postProcess()
+    public function postProcess(): void
     {
         parent::postProcess();
         if (!$this->config->deleteLogs()) {

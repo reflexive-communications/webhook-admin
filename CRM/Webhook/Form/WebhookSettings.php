@@ -9,7 +9,7 @@ use CRM_Webhook_ExtensionUtil as E;
  */
 class CRM_Webhook_Form_WebhookSettings extends CRM_Webhook_Form_WebhookBase
 {
-    public function buildQuickForm()
+    public function buildQuickForm(): void
     {
         parent::buildQuickForm();
 
@@ -67,10 +67,5 @@ class CRM_Webhook_Form_WebhookSettings extends CRM_Webhook_Form_WebhookBase
                 "class" => "crm-popup webhook-action",
             ],
         ];
-    }
-
-    public function postProcess()
-    {
-        parent::postProcess();
     }
 }

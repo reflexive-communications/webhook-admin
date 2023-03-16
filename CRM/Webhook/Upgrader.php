@@ -1,7 +1,7 @@
 <?php
 
-use CRM_Webhook_ExtensionUtil as E;
 use Civi\Api4\Webhook;
+use CRM_Webhook_ExtensionUtil as E;
 
 /**
  * Collection of upgrade steps.
@@ -23,7 +23,7 @@ class CRM_Webhook_Upgrader extends CRM_Extension_Upgrader_Base
      *
      * @throws CRM_Core_Exception
      */
-    public function install()
+    public function install(): void
     {
         $config = new CRM_Webhook_Config(E::LONG_NAME);
         // Create default configs
@@ -39,7 +39,7 @@ class CRM_Webhook_Upgrader extends CRM_Extension_Upgrader_Base
      * created during the installation (e.g., a setting or a managed entity), do
      * so here to avoid order of operation problems.
      */
-    public function postInstall()
+    public function postInstall(): void
     {
         Webhook::create(false)
             ->addValue('name', self::DEFAULT_HOOK_NAME)
@@ -55,7 +55,7 @@ class CRM_Webhook_Upgrader extends CRM_Extension_Upgrader_Base
      *
      * @throws CRM_Core_Exception
      */
-    public function uninstall()
+    public function uninstall(): void
     {
         $config = new CRM_Webhook_Config(E::LONG_NAME);
         // delete current configs

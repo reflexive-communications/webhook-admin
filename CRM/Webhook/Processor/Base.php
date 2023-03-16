@@ -19,7 +19,7 @@ abstract class CRM_Webhook_Processor_Base
      *
      * @param mixed $result Result to output
      */
-    public function output($result)
+    public function output($result): void
     {
         CRM_Utils_JSON::output($result);
     }
@@ -30,7 +30,7 @@ abstract class CRM_Webhook_Processor_Base
      * @param mixed $message Error message
      * @param bool $output Should we output error message
      */
-    public function error($message, bool $output = false)
+    public function error($message, bool $output = false): void
     {
         // Log error
         CRM_Core_Error::debug_log_message($message, false, CRM_Webhook_ExtensionUtil::SHORT_NAME, LogLevel::ERROR);

@@ -10,7 +10,7 @@ class CRM_Webhook_Processor_XML extends CRM_Webhook_Processor_Base
      *
      * @return array|null
      */
-    public function input()
+    public function input(): ?array
     {
         try {
             // Get contents from raw POST data
