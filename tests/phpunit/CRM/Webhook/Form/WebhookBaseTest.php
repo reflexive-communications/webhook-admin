@@ -1,13 +1,12 @@
 <?php
 
+use Civi\WebhookAdmin\HeadlessTestCase;
 use CRM_Webhook_ExtensionUtil as E;
 
 /**
- * WebhookBase tests
- *
  * @group headless
  */
-class CRM_Webhook_Form_WebhookBaseTest extends CRM_Webhook_Form_TestBase
+class CRM_Webhook_Form_WebhookBaseTest extends HeadlessTestCase
 {
     /**
      * PreProcess test case with existing config.
@@ -19,7 +18,7 @@ class CRM_Webhook_Form_WebhookBaseTest extends CRM_Webhook_Form_TestBase
         $this->setupTestConfig();
         $form = new CRM_Webhook_Form_WebhookBase();
         try {
-            self::assertEmpty($form->preProcess(), "PreProcess supposed to be empty.");
+            self::assertEmpty($form->preProcess(), 'PreProcess supposed to be empty.');
         } catch (Exception $e) {
             self::fail("Shouldn't throw exception with valid db.");
         }
@@ -36,7 +35,7 @@ class CRM_Webhook_Form_WebhookBaseTest extends CRM_Webhook_Form_TestBase
         $config = new CRM_Webhook_Config(E::LONG_NAME);
         $config->remove();
         try {
-            self::assertEmpty($form->preProcess(), "PreProcess supposed to be empty.");
+            self::assertEmpty($form->preProcess(), 'PreProcess supposed to be empty.');
         } catch (Exception $e) {
             self::fail("Shouldn't throw exception with valid db.");
         }
