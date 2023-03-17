@@ -9,8 +9,8 @@ use CRM_Webhook_ExtensionUtil as E;
 class CRM_Webhook_Handler_LoggerTest extends HeadlessTestCase
 {
     /**
-     * Handle test case.
-     * It shouldn't throw exception.
+     * @return void
+     * @throws \CRM_Core_Exception
      */
     public function testHandle()
     {

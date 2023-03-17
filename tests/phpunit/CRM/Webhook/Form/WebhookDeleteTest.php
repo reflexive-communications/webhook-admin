@@ -10,10 +10,10 @@ use CRM_Webhook_ExtensionUtil as E;
 class CRM_Webhook_Form_WebhookDeleteTest extends HeadlessTestCase
 {
     /**
-     * Build quick form test cases.
-     * Setup test configuration, preProcess then call the function.
-     * It shouldn't throw exception.
-     * The title should be set.
+     * @return void
+     * @throws \API_Exception
+     * @throws \CRM_Core_Exception
+     * @throws \Civi\API\Exception\UnauthorizedException
      */
     public function testBuildQuickFormWithId()
     {
@@ -36,6 +36,12 @@ class CRM_Webhook_Form_WebhookDeleteTest extends HeadlessTestCase
         self::assertEquals('Webhook Delete', $form->getTitle(), 'Invalid form title.');
     }
 
+    /**
+     * @return void
+     * @throws \API_Exception
+     * @throws \CRM_Core_Exception
+     * @throws \Civi\API\Exception\UnauthorizedException
+     */
     public function testPostProcessValidId()
     {
         $hook = Webhook::create(false)

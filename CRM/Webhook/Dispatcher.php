@@ -1,6 +1,6 @@
 <?php
 
-use CRM_Webhook_ExtensionUtil as E;
+use Civi\Api4\Webhook;
 
 /**
  * Main webhook Dispatcher
@@ -14,7 +14,7 @@ class CRM_Webhook_Dispatcher
      *
      * @return \CRM_Webhook_Processor_Base
      */
-    protected function createProcessor(string $processor_class)
+    protected function createProcessor(string $processor_class): CRM_Webhook_Processor_Base
     {
         return new $processor_class();
     }
@@ -28,29 +28,32 @@ class CRM_Webhook_Dispatcher
      *
      * @return \CRM_Webhook_Handler_Base
      */
-    protected function createHandler(string $handler_class, CRM_Webhook_Processor_Base $processor, array $options = [])
+    protected function createHandler(string $handler_class, CRM_Webhook_Processor_Base $processor, array $options = []): CRM_Webhook_Handler_Base
     {
         return new $handler_class($processor, $options);
     }
 
     /**
      * Run Controller
+     *
+     * @throws \API_Exception
+     * @throws \Exception
      */
-    public function run()
+    public function run(): void
     {
         // Get the listener param from the get object
         // listener has to be a get param.
-        if (!isset($_GET["listener"])) {
+        if (!isset($_GET['listener'])) {
             http_response_code(400);
-            throw new Exception("Missing listener.");
+            throw new Exception('Missing listener.');
         }
-        $current = \Civi\Api4\Webhook::get(false)
-            ->addWhere('query_string', '=', $_GET["listener"])
+        $current = Webhook::get(false)
+            ->addWhere('query_string', '=', $_GET['listener'])
             ->setLimit(1)
             ->execute();
         if (count($current) === 0) {
             http_response_code(400);
-            throw new Exception("Invalid listener.");
+            throw new Exception('Invalid listener.');
         }
         $hook = $current->first();
         // Instantiate Processor & Handler

@@ -27,8 +27,6 @@ abstract class CRM_Webhook_Handler_Base
     protected $data;
 
     /**
-     * CRM_Webhook_Handler_Base constructor.
-     *
      * @param \CRM_Webhook_Processor_Base $processor Webhook Processor
      * @param array $options Webhook options
      */
@@ -41,7 +39,7 @@ abstract class CRM_Webhook_Handler_Base
     /**
      * Process input
      */
-    protected function processInput()
+    protected function processInput(): void
     {
         $this->data = $this->processor->input();
     }
@@ -63,7 +61,7 @@ abstract class CRM_Webhook_Handler_Base
     /**
      * Handle request
      */
-    public function handle()
+    public function handle(): void
     {
         $this->processInput();
         $this->validate();

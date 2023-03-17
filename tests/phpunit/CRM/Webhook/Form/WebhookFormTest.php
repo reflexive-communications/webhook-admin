@@ -9,10 +9,10 @@ use Civi\WebhookAdmin\HeadlessTestCase;
 class CRM_Webhook_Form_WebhookFormTest extends HeadlessTestCase
 {
     /**
-     * Build quick form test cases.
-     * Setup test configuration, preProcess then call the function.
-     * It shouldn't throw exception.
-     * The title should be set.
+     * @return void
+     * @throws \API_Exception
+     * @throws \CRM_Core_Exception
+     * @throws \Civi\API\Exception\UnauthorizedException
      */
     public function testBuildQuickFormWithoutId()
     {
@@ -26,6 +26,12 @@ class CRM_Webhook_Form_WebhookFormTest extends HeadlessTestCase
         self::assertSame('Webhook Form', $form->getTitle(), 'Invalid form title.');
     }
 
+    /**
+     * @return void
+     * @throws \API_Exception
+     * @throws \CRM_Core_Exception
+     * @throws \Civi\API\Exception\UnauthorizedException
+     */
     public function testBuildQuickFormWithId()
     {
         $hook = Webhook::create(false)
@@ -48,10 +54,10 @@ class CRM_Webhook_Form_WebhookFormTest extends HeadlessTestCase
     }
 
     /**
-     * Default values test cases.
-     * Without id - no defaults.
-     * With not existing id - no defaults.
-     * existing id - defaults.
+     * @return void
+     * @throws \API_Exception
+     * @throws \CRM_Core_Exception
+     * @throws \Civi\API\Exception\UnauthorizedException
      */
     public function testSetDefaultValuesNoId()
     {
@@ -62,6 +68,12 @@ class CRM_Webhook_Form_WebhookFormTest extends HeadlessTestCase
         self::assertSame([], $defaults, 'Should be empty without id.');
     }
 
+    /**
+     * @return void
+     * @throws \API_Exception
+     * @throws \CRM_Core_Exception
+     * @throws \Civi\API\Exception\UnauthorizedException
+     */
     public function testSetDefaultValuesNotExistingId()
     {
         $hook = Webhook::create(false)
@@ -79,6 +91,12 @@ class CRM_Webhook_Form_WebhookFormTest extends HeadlessTestCase
         self::assertSame([], $defaults, 'Should be empty with not existing id.');
     }
 
+    /**
+     * @return void
+     * @throws \API_Exception
+     * @throws \CRM_Core_Exception
+     * @throws \Civi\API\Exception\UnauthorizedException
+     */
     public function testSetDefaultValuesGoodId()
     {
         $hook = Webhook::create(false)
@@ -102,8 +120,7 @@ class CRM_Webhook_Form_WebhookFormTest extends HeadlessTestCase
     }
 
     /**
-     * Add Rules test case.
-     * It shouldn't throw exception.
+     * @return void
      */
     public function testAddRules()
     {
@@ -117,7 +134,9 @@ class CRM_Webhook_Form_WebhookFormTest extends HeadlessTestCase
     }
 
     /**
-     * Config Validator test cases.
+     * @return void
+     * @throws \API_Exception
+     * @throws \Civi\API\Exception\UnauthorizedException
      */
     public function testConfigValidator()
     {
@@ -156,6 +175,12 @@ class CRM_Webhook_Form_WebhookFormTest extends HeadlessTestCase
         }
     }
 
+    /**
+     * @return void
+     * @throws \API_Exception
+     * @throws \CRM_Core_Exception
+     * @throws \Civi\API\Exception\UnauthorizedException
+     */
     public function testPostProcessDuplicatedInput()
     {
         $hook = Webhook::create(false)
@@ -178,6 +203,12 @@ class CRM_Webhook_Form_WebhookFormTest extends HeadlessTestCase
         self::assertEmpty($form->postProcess());
     }
 
+    /**
+     * @return void
+     * @throws \API_Exception
+     * @throws \CRM_Core_Exception
+     * @throws \Civi\API\Exception\UnauthorizedException
+     */
     public function testPostProcessValidInput()
     {
         $currentNumber = Webhook::get(false)
@@ -202,6 +233,12 @@ class CRM_Webhook_Form_WebhookFormTest extends HeadlessTestCase
         self::assertSame(count($currentNumber) + 1, count($newNumber));
     }
 
+    /**
+     * @return void
+     * @throws \API_Exception
+     * @throws \CRM_Core_Exception
+     * @throws \Civi\API\Exception\UnauthorizedException
+     */
     public function testPostProcessValidInputEdition()
     {
         $hook = Webhook::create(false)

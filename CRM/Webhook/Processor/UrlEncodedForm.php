@@ -10,7 +10,7 @@ class CRM_Webhook_Processor_UrlEncodedForm extends CRM_Webhook_Processor_Base
      *
      * @return array
      */
-    public function input()
+    public function input(): array
     {
         $data = [];
 

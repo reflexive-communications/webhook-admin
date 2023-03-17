@@ -31,7 +31,7 @@ class CRM_Webhook_Handler_Logger extends CRM_Webhook_Handler_Base
     /**
      * Handle request
      */
-    public function handle()
+    public function handle(): void
     {
         parent::handle();
         $config = new CRM_Webhook_Config(E::LONG_NAME);

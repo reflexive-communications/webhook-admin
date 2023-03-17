@@ -10,7 +10,7 @@ class CRM_Webhook_Config extends CRM_RcBase_Config
     public function defaultConfiguration(): array
     {
         return [
-            "logs" => [],
+            'logs' => [],
         ];
     }
 
@@ -18,13 +18,14 @@ class CRM_Webhook_Config extends CRM_RcBase_Config
      * Delete the log entries.
      *
      * @return bool the status of the deletion process.
+     * @throws \CRM_Core_Exception
      */
     public function deleteLogs(): bool
     {
         // load latest config
         parent::load();
         $configuration = parent::get();
-        $configuration["logs"] = [];
+        $configuration['logs'] = [];
 
         return parent::update($configuration);
     }
@@ -35,15 +36,16 @@ class CRM_Webhook_Config extends CRM_RcBase_Config
      * @param array $data the data to store.
      *
      * @return bool the status of the insertion process.
+     * @throws \CRM_Core_Exception
      */
     public function insertLog(array $data): bool
     {
         // load latest config
         parent::load();
         $configuration = parent::get();
-        $configuration["logs"][] = [
-            "data" => $data,
-            "timestamp" => time(),
+        $configuration['logs'][] = [
+            'data' => $data,
+            'timestamp' => time(),
         ];
 
         return parent::update($configuration);

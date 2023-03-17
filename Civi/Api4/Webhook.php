@@ -5,7 +5,7 @@ namespace Civi\Api4;
 /**
  * Webhook entity.
  *
- * Provided by the CiviCRM webhooks extension.
+ * Provided by webhook-admin extension.
  *
  * @package Civi\Api4
  */

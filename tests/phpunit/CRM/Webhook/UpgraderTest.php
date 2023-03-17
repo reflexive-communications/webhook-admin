@@ -9,7 +9,7 @@ use Civi\WebhookAdmin\HeadlessTestCase;
 class CRM_Webhook_UpgraderTest extends HeadlessTestCase
 {
     /**
-     * Test the install process.
+     * @return void
      */
     public function testInstall()
     {
@@ -22,7 +22,8 @@ class CRM_Webhook_UpgraderTest extends HeadlessTestCase
     }
 
     /**
-     * Test the uninstall process.
+     * @return void
+     * @throws \CRM_Core_Exception
      */
     public function testUninstall()
     {
@@ -36,7 +37,10 @@ class CRM_Webhook_UpgraderTest extends HeadlessTestCase
     }
 
     /**
-     * Test the post install process.
+     * @return void
+     * @throws \API_Exception
+     * @throws \CRM_Core_Exception
+     * @throws \Civi\API\Exception\UnauthorizedException
      */
     public function testPostInstall()
     {

@@ -8,10 +8,8 @@ use Civi\WebhookAdmin\HeadlessTestCase;
 class CRM_Webhook_Form_WebhookSettingsTest extends HeadlessTestCase
 {
     /**
-     * Build quick form test case.
-     * Setup test configuration, preProcess then call the function.
-     * It shouldn't throw exception.
-     * The title should be set.
+     * @return void
+     * @throws \CRM_Core_Exception
      */
     public function testBuildQuickForm()
     {
@@ -27,7 +25,8 @@ class CRM_Webhook_Form_WebhookSettingsTest extends HeadlessTestCase
     }
 
     /**
-     * Post Process test case. It does nothing.
+     * @return void
+     * @throws \CRM_Core_Exception
      */
     public function testPostProcess()
     {
@@ -42,8 +41,8 @@ class CRM_Webhook_Form_WebhookSettingsTest extends HeadlessTestCase
     }
 
     /**
-     * Links test case.
-     * It shouldn't throw exception.
+     * @return void
+     * @throws \CRM_Core_Exception
      */
     public function testLinks()
     {

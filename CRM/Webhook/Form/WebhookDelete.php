@@ -1,6 +1,6 @@
 <?php
 
-use CRM_Webhook_ExtensionUtil as E;
+use Civi\Api4\Webhook;
 
 /**
  * Form controller class
@@ -9,43 +9,53 @@ use CRM_Webhook_ExtensionUtil as E;
  */
 class CRM_Webhook_Form_WebhookDelete extends CRM_Webhook_Form_WebhookBase
 {
-    public function buildQuickForm()
+    /**
+     * @return void
+     * @throws \API_Exception
+     * @throws \Civi\API\Exception\UnauthorizedException
+     */
+    public function buildQuickForm(): void
     {
         parent::buildQuickForm();
 
         $this->addButtons(
             [
                 [
-                    "type" => "cancel",
-                    "name" => ts("Cancel"),
+                    'type' => 'cancel',
+                    'name' => ts('Cancel'),
                 ],
                 [
-                    "type" => "done",
-                    "name" => ts("Delete"),
-                    "isDefault" => true,
+                    'type' => 'done',
+                    'name' => ts('Delete'),
+                    'isDefault' => true,
                 ],
             ]
         );
-        $webhook = \Civi\Api4\Webhook::get(false)
+        $webhook = Webhook::get(false)
             ->addWhere('id', '=', $this->id)
             ->setLimit(1)
             ->execute()
             ->first();
-        $this->assign("hookName", $webhook["name"]);
-        $this->assign("hookQueryString", $webhook["query_string"]);
+        $this->assign('hookName', $webhook['name']);
+        $this->assign('hookQueryString', $webhook['query_string']);
 
-        $this->setTitle(ts("Webhook Delete"));
+        $this->setTitle(ts('Webhook Delete'));
     }
 
-    public function postProcess()
+    /**
+     * @return void
+     * @throws \API_Exception
+     * @throws \Civi\API\Exception\UnauthorizedException
+     */
+    public function postProcess(): void
     {
         parent::postProcess();
-        \Civi\Api4\Webhook::delete(false)
+        Webhook::delete(false)
             ->addWhere('id', '=', $this->id)
             ->setLimit(1)
             ->execute();
 
         // Show success
-        CRM_Core_Session::setStatus(ts("Webhook deleted"), "Webhook", "success", ["expires" => 5000]);
+        CRM_Core_Session::setStatus(ts('Webhook deleted'), 'Webhook', 'success', ['expires' => 5000]);
     }
 }
