@@ -15,9 +15,8 @@ class CRM_Webhook_Form_WebhookBase extends CRM_Core_Form
     protected $id;
 
     /**
-     * Preprocess form
-     *
-     * @throws CRM_Core_Exception
+     * @return void
+     * @throws \CRM_Core_Exception
      */
     public function preProcess(): void
     {

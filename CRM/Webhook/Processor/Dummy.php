@@ -5,6 +5,9 @@
  */
 class CRM_Webhook_Processor_Dummy extends CRM_Webhook_Processor_Base
 {
+    /**
+     * @return array
+     */
     private function getHeaders(): array
     {
         $headers = [];

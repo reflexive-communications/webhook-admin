@@ -27,8 +27,6 @@ abstract class CRM_Webhook_Handler_Base
     protected $data;
 
     /**
-     * CRM_Webhook_Handler_Base constructor.
-     *
      * @param \CRM_Webhook_Processor_Base $processor Webhook Processor
      * @param array $options Webhook options
      */

@@ -12,9 +12,10 @@ class CRM_Webhook_Form_WebhookForm extends CRM_Webhook_Form_WebhookBase
     private $webhook;
 
     /**
-     * Preprocess form
-     *
-     * @throws CRM_Core_Exception
+     * @return void
+     * @throws \API_Exception
+     * @throws \CRM_Core_Exception
+     * @throws \Civi\API\Exception\UnauthorizedException
      */
     public function preProcess(): void
     {
@@ -31,6 +32,8 @@ class CRM_Webhook_Form_WebhookForm extends CRM_Webhook_Form_WebhookBase
      * @param int $id webhook id
      *
      * @return array
+     * @throws \API_Exception
+     * @throws \Civi\API\Exception\UnauthorizedException
      */
     public function getWebhook(int $id): array
     {
@@ -68,8 +71,6 @@ class CRM_Webhook_Form_WebhookForm extends CRM_Webhook_Form_WebhookBase
     }
 
     /**
-     * Set default values
-     *
      * @return array
      */
     public function setDefaultValues(): array
@@ -92,6 +93,8 @@ class CRM_Webhook_Form_WebhookForm extends CRM_Webhook_Form_WebhookBase
     /**
      * Processor + handler options
      *
+     * @param string $name
+     *
      * @return array
      */
     private function getOptionsFor(string $name): array
@@ -104,6 +107,10 @@ class CRM_Webhook_Form_WebhookForm extends CRM_Webhook_Form_WebhookBase
         return $opts;
     }
 
+    /**
+     * @return void
+     * @throws \CRM_Core_Exception
+     */
     public function buildQuickForm(): void
     {
         parent::buildQuickForm();
@@ -139,7 +146,7 @@ class CRM_Webhook_Form_WebhookForm extends CRM_Webhook_Form_WebhookBase
     }
 
     /**
-     * Add form validation rules
+     * @return void
      */
     public function addRules(): void
     {
@@ -156,6 +163,8 @@ class CRM_Webhook_Form_WebhookForm extends CRM_Webhook_Form_WebhookBase
      * @param array $options Options to pass to function
      *
      * @return array|bool
+     * @throws \API_Exception
+     * @throws \Civi\API\Exception\UnauthorizedException
      */
     public function validateQueryString($values, $files, $options)
     {
@@ -177,6 +186,11 @@ class CRM_Webhook_Form_WebhookForm extends CRM_Webhook_Form_WebhookBase
         return $errors;
     }
 
+    /**
+     * @return void
+     * @throws \API_Exception
+     * @throws \Civi\API\Exception\UnauthorizedException
+     */
     public function postProcess(): void
     {
         parent::postProcess();

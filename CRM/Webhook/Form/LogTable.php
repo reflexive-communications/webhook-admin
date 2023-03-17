@@ -17,9 +17,8 @@ class CRM_Webhook_Form_LogTable extends CRM_Core_Form
     protected $config;
 
     /**
-     * Preprocess form
-     *
-     * @throws CRM_Core_Exception
+     * @return void
+     * @throws \CRM_Core_Exception
      */
     public function preProcess(): void
     {
@@ -29,7 +28,8 @@ class CRM_Webhook_Form_LogTable extends CRM_Core_Form
     }
 
     /**
-     * Build form
+     * @return void
+     * @throws \CRM_Core_Exception
      */
     public function buildQuickForm(): void
     {
@@ -58,7 +58,8 @@ class CRM_Webhook_Form_LogTable extends CRM_Core_Form
     }
 
     /**
-     * Post process
+     * @return void
+     * @throws \CRM_Core_Exception
      */
     public function postProcess(): void
     {

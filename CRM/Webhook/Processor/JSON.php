@@ -9,7 +9,6 @@ class CRM_Webhook_Processor_JSON extends CRM_Webhook_Processor_Base
      * Process input
      *
      * @return mixed|null
-     * @throws \CRM_Core_Exception
      */
     public function input()
     {

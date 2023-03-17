@@ -18,6 +18,7 @@ class CRM_Webhook_Config extends CRM_RcBase_Config
      * Delete the log entries.
      *
      * @return bool the status of the deletion process.
+     * @throws \CRM_Core_Exception
      */
     public function deleteLogs(): bool
     {
@@ -35,6 +36,7 @@ class CRM_Webhook_Config extends CRM_RcBase_Config
      * @param array $data the data to store.
      *
      * @return bool the status of the insertion process.
+     * @throws \CRM_Core_Exception
      */
     public function insertLog(array $data): bool
     {

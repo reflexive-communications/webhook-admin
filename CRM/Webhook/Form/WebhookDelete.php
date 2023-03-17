@@ -7,6 +7,11 @@
  */
 class CRM_Webhook_Form_WebhookDelete extends CRM_Webhook_Form_WebhookBase
 {
+    /**
+     * @return void
+     * @throws \API_Exception
+     * @throws \Civi\API\Exception\UnauthorizedException
+     */
     public function buildQuickForm(): void
     {
         parent::buildQuickForm();
@@ -35,6 +40,11 @@ class CRM_Webhook_Form_WebhookDelete extends CRM_Webhook_Form_WebhookBase
         $this->setTitle(ts("Webhook Delete"));
     }
 
+    /**
+     * @return void
+     * @throws \API_Exception
+     * @throws \Civi\API\Exception\UnauthorizedException
+     */
     public function postProcess(): void
     {
         parent::postProcess();

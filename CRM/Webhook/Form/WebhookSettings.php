@@ -9,6 +9,11 @@ use CRM_Webhook_ExtensionUtil as E;
  */
 class CRM_Webhook_Form_WebhookSettings extends CRM_Webhook_Form_WebhookBase
 {
+    /**
+     * @return void
+     * @throws \API_Exception
+     * @throws \Civi\API\Exception\UnauthorizedException
+     */
     public function buildQuickForm(): void
     {
         parent::buildQuickForm();

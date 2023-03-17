@@ -9,11 +9,8 @@ use Civi\WebhookAdmin\HeadlessTestCase;
 class CRM_Webhook_DispatcherTest extends HeadlessTestCase
 {
     /**
-     * Run command tests.
-     * Without listener get param, it fails.
-     * Without valid listener param it fails.
-     * With vaild value, it handles the request.
-     * Add valid config and test against it.
+     * @return void
+     * @throws \API_Exception
      */
     public function testRunMissingListener()
     {
@@ -26,6 +23,10 @@ class CRM_Webhook_DispatcherTest extends HeadlessTestCase
         self::assertEmpty($d->run(), 'Run supposed to be empty.');
     }
 
+    /**
+     * @return void
+     * @throws \API_Exception
+     */
     public function testRunInvalidListener()
     {
         $_GET['listener'] = 'not-existing-listener';
@@ -35,6 +36,11 @@ class CRM_Webhook_DispatcherTest extends HeadlessTestCase
         self::assertEmpty($d->run(), 'Run supposed to be empty.');
     }
 
+    /**
+     * @return void
+     * @throws \API_Exception
+     * @throws \Civi\API\Exception\UnauthorizedException
+     */
     public function testRunValidListener()
     {
         Webhook::create(false)
@@ -53,6 +59,11 @@ class CRM_Webhook_DispatcherTest extends HeadlessTestCase
         }
     }
 
+    /**
+     * @return void
+     * @throws \API_Exception
+     * @throws \Civi\API\Exception\UnauthorizedException
+     */
     public function testRunValidListenerWithOptions()
     {
         Webhook::create(false)

@@ -38,6 +38,8 @@ class CRM_Webhook_Upgrader extends CRM_Extension_Upgrader_Base
      * of your installation depends on accessing an entity that is itself
      * created during the installation (e.g., a setting or a managed entity), do
      * so here to avoid order of operation problems.
+     *
+     * @throws CRM_Core_Exception
      */
     public function postInstall(): void
     {

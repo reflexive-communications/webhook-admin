@@ -8,7 +8,7 @@ use Civi\WebhookAdmin\HeadlessTestCase;
 class CRM_Webhook_Processor_DummyTest extends HeadlessTestCase
 {
     /**
-     * Input test case.
+     * @return void
      */
     public function testInput()
     {

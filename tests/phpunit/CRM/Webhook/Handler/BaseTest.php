@@ -8,8 +8,7 @@ use Civi\WebhookAdmin\HeadlessTestCase;
 class CRM_Webhook_Handler_BaseTest extends HeadlessTestCase
 {
     /**
-     * Handle test case.
-     * It shouldn't throw exception.
+     * @return void
      */
     public function testHandle()
     {

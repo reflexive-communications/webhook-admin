@@ -9,9 +9,7 @@ use CRM_Webhook_ExtensionUtil as E;
 class CRM_Webhook_Form_WebhookBaseTest extends HeadlessTestCase
 {
     /**
-     * PreProcess test case with existing config.
-     * Setup test configuration then call the function.
-     * It shouldn't throw exception.
+     * @return void
      */
     public function testPreProcessExistingConfig()
     {
@@ -25,9 +23,7 @@ class CRM_Webhook_Form_WebhookBaseTest extends HeadlessTestCase
     }
 
     /**
-     * PreProcess test case with deleted config.
-     * Setup test configuration then call the function.
-     * It shouldn't throw exception.
+     * @return void
      */
     public function testPreProcessMissingConfig()
     {

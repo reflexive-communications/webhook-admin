@@ -8,7 +8,8 @@ use Civi\WebhookAdmin\HeadlessTestCase;
 class CRM_Webhook_ConfigTest extends HeadlessTestCase
 {
     /**
-     * Default configuration test case.
+     * @return void
+     * @throws \CRM_Core_Exception
      */
     public function testConfigAfterConstructor()
     {
@@ -18,6 +19,11 @@ class CRM_Webhook_ConfigTest extends HeadlessTestCase
         self::assertSame([], $cfg['logs'], 'Invalid logs initial value.');
     }
 
+    /**
+     * @param array $cfg
+     *
+     * @return void
+     */
     private function isDefaultConfiguration(array $cfg)
     {
         self::assertTrue(array_key_exists('logs', $cfg), 'logs key is missing from the config.');
@@ -25,7 +31,8 @@ class CRM_Webhook_ConfigTest extends HeadlessTestCase
     }
 
     /**
-     * It checks that the create function works well.
+     * @return void
+     * @throws \CRM_Core_Exception
      */
     public function testCreate()
     {
@@ -36,7 +43,7 @@ class CRM_Webhook_ConfigTest extends HeadlessTestCase
     }
 
     /**
-     * It checks that the remove function works well.
+     * @return void
      */
     public function testRemove()
     {
@@ -46,7 +53,8 @@ class CRM_Webhook_ConfigTest extends HeadlessTestCase
     }
 
     /**
-     * It checks that the get function works well.
+     * @return void
+     * @throws \CRM_Core_Exception
      */
     public function testGet()
     {
@@ -63,7 +71,8 @@ class CRM_Webhook_ConfigTest extends HeadlessTestCase
     }
 
     /**
-     * It checks that the update function works well.
+     * @return void
+     * @throws \CRM_Core_Exception
      */
     public function testUpdate()
     {
@@ -77,7 +86,8 @@ class CRM_Webhook_ConfigTest extends HeadlessTestCase
     }
 
     /**
-     * It checks that the load function works well.
+     * @return void
+     * @throws \CRM_Core_Exception
      */
     public function testLoad()
     {
@@ -101,7 +111,8 @@ class CRM_Webhook_ConfigTest extends HeadlessTestCase
     }
 
     /**
-     * It checks that the insertLog function works well.
+     * @return void
+     * @throws \CRM_Core_Exception
      */
     public function testInsertLog()
     {
@@ -118,7 +129,8 @@ class CRM_Webhook_ConfigTest extends HeadlessTestCase
     }
 
     /**
-     * It checks that the deleteLogs function works well.
+     * @return void
+     * @throws \CRM_Core_Exception
      */
     public function testDeleteLogs()
     {

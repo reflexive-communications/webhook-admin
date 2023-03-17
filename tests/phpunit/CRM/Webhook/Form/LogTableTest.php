@@ -9,9 +9,7 @@ use CRM_Webhook_ExtensionUtil as E;
 class CRM_Webhook_Form_LogTableTest extends HeadlessTestCase
 {
     /**
-     * PreProcess test case with existing config.
-     * Setup test configuration then call the function.
-     * It shouldn't throw exception.
+     * @return void
      */
     public function testPreProcessExistingConfig()
     {
@@ -25,9 +23,8 @@ class CRM_Webhook_Form_LogTableTest extends HeadlessTestCase
     }
 
     /**
-     * PreProcess test case with deleted config.
-     * Setup test configuration then call the function.
-     * It should throw exception.
+     * @return void
+     * @throws \CRM_Core_Exception
      */
     public function testPreProcessMissingConfig()
     {
@@ -40,10 +37,8 @@ class CRM_Webhook_Form_LogTableTest extends HeadlessTestCase
     }
 
     /**
-     * Build quick form test case.
-     * Setup test configuration, preProcess then call the function.
-     * It shouldn't throw exception.
-     * The title should be set.
+     * @return void
+     * @throws \CRM_Core_Exception
      */
     public function testBuildQuickFormWithoutLogs()
     {
@@ -58,6 +53,10 @@ class CRM_Webhook_Form_LogTableTest extends HeadlessTestCase
         self::assertEquals('Webhook Logs', $form->getTitle(), 'Invalid form title.');
     }
 
+    /**
+     * @return void
+     * @throws \CRM_Core_Exception
+     */
     public function testBuildQuickFormWithLogs()
     {
         $this->setupTestConfig();
@@ -74,7 +73,8 @@ class CRM_Webhook_Form_LogTableTest extends HeadlessTestCase
     }
 
     /**
-     * Post Process test case. Config should be empty.
+     * @return void
+     * @throws \CRM_Core_Exception
      */
     public function testPostProcess()
     {

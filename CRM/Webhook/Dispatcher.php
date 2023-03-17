@@ -33,6 +33,9 @@ class CRM_Webhook_Dispatcher
 
     /**
      * Run Controller
+     *
+     * @throws \API_Exception
+     * @throws \Exception
      */
     public function run(): void
     {
