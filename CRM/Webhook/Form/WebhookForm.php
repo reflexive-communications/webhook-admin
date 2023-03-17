@@ -33,11 +33,11 @@ class CRM_Webhook_Form_WebhookForm extends CRM_Webhook_Form_WebhookBase
      *
      * @param int $id webhook id
      *
-     * @return array
+     * @return array|null
      * @throws \API_Exception
      * @throws \Civi\API\Exception\UnauthorizedException
      */
-    public function getWebhook(int $id): array
+    public function getWebhook(int $id): ?array
     {
         return Webhook::get(false)
             ->addWhere('id', '=', $id)
