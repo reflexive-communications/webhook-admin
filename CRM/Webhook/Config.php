@@ -10,7 +10,7 @@ class CRM_Webhook_Config extends CRM_RcBase_Config
     public function defaultConfiguration(): array
     {
         return [
-            "logs" => [],
+            'logs' => [],
         ];
     }
 
@@ -25,7 +25,7 @@ class CRM_Webhook_Config extends CRM_RcBase_Config
         // load latest config
         parent::load();
         $configuration = parent::get();
-        $configuration["logs"] = [];
+        $configuration['logs'] = [];
 
         return parent::update($configuration);
     }
@@ -43,9 +43,9 @@ class CRM_Webhook_Config extends CRM_RcBase_Config
         // load latest config
         parent::load();
         $configuration = parent::get();
-        $configuration["logs"][] = [
-            "data" => $data,
-            "timestamp" => time(),
+        $configuration['logs'][] = [
+            'data' => $data,
+            'timestamp' => time(),
         ];
 
         return parent::update($configuration);

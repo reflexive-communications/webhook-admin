@@ -1,5 +1,6 @@
 <?php
 
+use Civi\Api4\Webhook;
 use CRM_Webhook_ExtensionUtil as E;
 
 /**
@@ -19,21 +20,21 @@ class CRM_Webhook_Form_WebhookSettings extends CRM_Webhook_Form_WebhookBase
         parent::buildQuickForm();
 
         // Add new route button
-        $newItemForm = CRM_Utils_System::url("civicrm/admin/webhooks/form");
-        $this->assign("newItemForm", $newItemForm);
-        $this->assign("logTable", CRM_Utils_System::url("civicrm/admin/webhooks/logs"));
+        $newItemForm = CRM_Utils_System::url('civicrm/admin/webhooks/form');
+        $this->assign('newItemForm', $newItemForm);
+        $this->assign('logTable', CRM_Utils_System::url('civicrm/admin/webhooks/logs'));
 
-        $webhooks = \Civi\Api4\Webhook::get(false)
+        $webhooks = Webhook::get(false)
             ->execute();
         // Add actions links
         foreach ($webhooks as $k => $hook) {
             $actions = array_sum(array_keys($this->links()));
 
-            $webhooks[$k]["actions"] = CRM_Core_Action::formLink(
+            $webhooks[$k]['actions'] = CRM_Core_Action::formLink(
                 $this->links(),
                 $actions,
-                ["id" => $hook['id']],
-                ts("more"),
+                ['id' => $hook['id']],
+                ts('more'),
                 false,
                 'view.webhook.row',
                 'Webhook',
@@ -41,12 +42,12 @@ class CRM_Webhook_Form_WebhookSettings extends CRM_Webhook_Form_WebhookBase
             );
         }
         // Export webhooks to template
-        $this->assign("webhooks", $webhooks);
+        $this->assign('webhooks', $webhooks);
 
-        $this->setTitle(ts("Webhook Settings"));
+        $this->setTitle(ts('Webhook Settings'));
 
         // Add js functions. It seems the jquery $ sign and the smarty template $ sign conflicts.
-        Civi::resources()->addScriptFile(E::LONG_NAME, "js/Form/popup.js");
+        Civi::resources()->addScriptFile(E::LONG_NAME, 'js/Form/popup.js');
     }
 
     /**
@@ -58,18 +59,18 @@ class CRM_Webhook_Form_WebhookSettings extends CRM_Webhook_Form_WebhookBase
     {
         return [
             CRM_Core_Action::UPDATE => [
-                "name" => ts("Edit"),
-                "url" => "civicrm/admin/webhooks/form",
-                "qs" => "id=%%id%%",
-                "title" => ts("Edit webhook"),
-                "class" => "crm-popup webhook-action",
+                'name' => ts('Edit'),
+                'url' => 'civicrm/admin/webhooks/form',
+                'qs' => 'id=%%id%%',
+                'title' => ts('Edit webhook'),
+                'class' => 'crm-popup webhook-action',
             ],
             CRM_Core_Action::DELETE => [
-                "name" => ts("Delete"),
-                "url" => "civicrm/admin/webhooks/delete",
-                "qs" => "id=%%id%%",
-                "title" => ts("Delete webhook"),
-                "class" => "crm-popup webhook-action",
+                'name' => ts('Delete'),
+                'url' => 'civicrm/admin/webhooks/delete',
+                'qs' => 'id=%%id%%',
+                'title' => ts('Delete webhook'),
+                'class' => 'crm-popup webhook-action',
             ],
         ];
     }

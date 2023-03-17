@@ -1,5 +1,7 @@
 <?php
 
+use Civi\Api4\Webhook;
+
 /**
  * Form controller class
  *
@@ -37,7 +39,7 @@ class CRM_Webhook_Form_WebhookForm extends CRM_Webhook_Form_WebhookBase
      */
     public function getWebhook(int $id): array
     {
-        return \Civi\Api4\Webhook::get(false)
+        return Webhook::get(false)
             ->addWhere('id', '=', $id)
             ->setLimit(1)
             ->execute()
@@ -51,22 +53,22 @@ class CRM_Webhook_Form_WebhookForm extends CRM_Webhook_Form_WebhookBase
     public function setOptionValues(): void
     {
         $optionValues = [
-            "processors" => [],
-            "handlers" => [],
+            'processors' => [],
+            'handlers' => [],
         ];
         // Fire hook event.
         Civi::dispatcher()->dispatch(
-            "hook_civicrm_webhookOptionValues",
+            'hook_civicrm_webhookOptionValues',
             Civi\Core\Event\GenericHookEvent::create([
-                "options" => &$optionValues,
+                'options' => &$optionValues,
             ])
         );
 
-        $optionValues["processors"]["CRM_Webhook_Processor_Dummy"] = "Dummy processor for testing";
-        $optionValues["processors"]["CRM_Webhook_Processor_JSON"] = "JSON";
-        $optionValues["processors"]["CRM_Webhook_Processor_UrlEncodedForm"] = "Url Encoded Form";
-        $optionValues["processors"]["CRM_Webhook_Processor_XML"] = "XML";
-        $optionValues["handlers"]["CRM_Webhook_Handler_Logger"] = "DB Logger";
+        $optionValues['processors']['CRM_Webhook_Processor_Dummy'] = 'Dummy processor for testing';
+        $optionValues['processors']['CRM_Webhook_Processor_JSON'] = 'JSON';
+        $optionValues['processors']['CRM_Webhook_Processor_UrlEncodedForm'] = 'Url Encoded Form';
+        $optionValues['processors']['CRM_Webhook_Processor_XML'] = 'XML';
+        $optionValues['handlers']['CRM_Webhook_Handler_Logger'] = 'DB Logger';
         $this->optionValues = $optionValues;
     }
 
@@ -80,12 +82,12 @@ class CRM_Webhook_Form_WebhookForm extends CRM_Webhook_Form_WebhookBase
             return [];
         }
         // Set defaults
-        $this->_defaults["name"] = $this->webhook["name"];
-        $this->_defaults["query_string"] = $this->webhook["query_string"];
-        $this->_defaults["handler"] = $this->webhook["handler"];
-        $this->_defaults["description"] = $this->webhook["description"];
-        $this->_defaults["processor"] = $this->webhook["processor"];
-        $this->_defaults["id"] = $this->id;
+        $this->_defaults['name'] = $this->webhook['name'];
+        $this->_defaults['query_string'] = $this->webhook['query_string'];
+        $this->_defaults['handler'] = $this->webhook['handler'];
+        $this->_defaults['description'] = $this->webhook['description'];
+        $this->_defaults['processor'] = $this->webhook['processor'];
+        $this->_defaults['id'] = $this->id;
 
         return $this->_defaults;
     }
@@ -99,7 +101,7 @@ class CRM_Webhook_Form_WebhookForm extends CRM_Webhook_Form_WebhookBase
      */
     private function getOptionsFor(string $name): array
     {
-        $opts = ["" => ts("- select -")];
+        $opts = ['' => ts('- select -')];
         foreach ($this->optionValues[$name] as $k => $v) {
             $opts[$k] = $v;
         }
@@ -116,13 +118,13 @@ class CRM_Webhook_Form_WebhookForm extends CRM_Webhook_Form_WebhookBase
         parent::buildQuickForm();
 
         // Add form elements
-        $this->add("text", "name", ts("Webhook Name"), [], true);
-        $this->add("text", "query_string", ts("Query String"), [], true);
-        $this->add("select", "processor", ts("Processor"), $this->getOptionsFor("processors"), true);
-        $this->add("select", "handler", ts("Handler Class"), $this->getOptionsFor("handlers"), true);
-        $this->add("textarea", "description", ts("Description"), ['rows' => '4', 'cols' => '60'], true);
+        $this->add('text', 'name', ts('Webhook Name'), [], true);
+        $this->add('text', 'query_string', ts('Query String'), [], true);
+        $this->add('select', 'processor', ts('Processor'), $this->getOptionsFor('processors'), true);
+        $this->add('select', 'handler', ts('Handler Class'), $this->getOptionsFor('handlers'), true);
+        $this->add('textarea', 'description', ts('Description'), ['rows' => '4', 'cols' => '60'], true);
         if (!is_null($this->id)) {
-            $this->add("hidden", "id");
+            $this->add('hidden', 'id');
         }
         if (!is_null($this->webhook) && !is_null($this->webhook['query_string'])) {
             $this->assign('hook_url', CRM_Core_Config::singleton()->extensionsURL.'webhook-admin/external/listener.php?listener='.$this->webhook['query_string']);
@@ -132,17 +134,17 @@ class CRM_Webhook_Form_WebhookForm extends CRM_Webhook_Form_WebhookBase
         $this->addButtons(
             [
                 [
-                    "type" => "done",
-                    "name" => ts("Save"),
-                    "isDefault" => true,
+                    'type' => 'done',
+                    'name' => ts('Save'),
+                    'isDefault' => true,
                 ],
                 [
-                    "type" => "cancel",
-                    "name" => ts("Cancel"),
+                    'type' => 'cancel',
+                    'name' => ts('Cancel'),
                 ],
             ]
         );
-        $this->setTitle(ts("Webhook Form"));
+        $this->setTitle(ts('Webhook Form'));
     }
 
     /**
@@ -151,7 +153,7 @@ class CRM_Webhook_Form_WebhookForm extends CRM_Webhook_Form_WebhookBase
     public function addRules(): void
     {
         $this->addFormRule(
-            ["CRM_Webhook_Form_WebhookForm", "validateQueryString"],
+            ['CRM_Webhook_Form_WebhookForm', 'validateQueryString'],
         );
     }
 
@@ -168,7 +170,7 @@ class CRM_Webhook_Form_WebhookForm extends CRM_Webhook_Form_WebhookBase
      */
     public function validateQueryString($values, $files, $options)
     {
-        $current = \Civi\Api4\Webhook::get(false)
+        $current = Webhook::get(false)
             ->addWhere('query_string', '=', $values['query_string'])
             ->setLimit(1)
             ->execute();
@@ -195,16 +197,16 @@ class CRM_Webhook_Form_WebhookForm extends CRM_Webhook_Form_WebhookBase
     {
         parent::postProcess();
         if (!is_null($this->id)) {
-            $upgrader = \Civi\Api4\Webhook::update(false);
+            $upgrader = Webhook::update(false);
             $upgrader = $upgrader->addWhere('id', '=', $this->id);
         } else {
-            $upgrader = \Civi\Api4\Webhook::create(false);
+            $upgrader = Webhook::create(false);
         }
         foreach ($this->_submitValues as $k => $v) {
             $upgrader = $upgrader->addValue($k, $v);
         }
         $upgrader->execute();
 
-        CRM_Core_Session::setStatus(ts("Webhook Saved."), "Webhook", "success", ["expires" => 5000]);
+        CRM_Core_Session::setStatus(ts('Webhook Saved.'), 'Webhook', 'success', ['expires' => 5000]);
     }
 }

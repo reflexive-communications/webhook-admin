@@ -8,15 +8,15 @@ use CRM_Webhook_ExtensionUtil as E;
  */
 class CRM_Webhook_Upgrader extends CRM_Extension_Upgrader_Base
 {
-    const DEFAULT_HOOK_NAME = "Logger webhook";
+    const DEFAULT_HOOK_NAME = 'Logger webhook';
 
-    const DEFAULT_HOOK_DESC = "This webhook could be used for testing purposes. It logs the received data.";
+    const DEFAULT_HOOK_DESC = 'This webhook could be used for testing purposes. It logs the received data.';
 
-    const DEFAULT_HOOK_HANDLER = "CRM_Webhook_Handler_Logger";
+    const DEFAULT_HOOK_HANDLER = 'CRM_Webhook_Handler_Logger';
 
-    const DEFAULT_HOOK_QUERY_STRING = "logger-hook";
+    const DEFAULT_HOOK_QUERY_STRING = 'logger-hook';
 
-    const DEFAULT_HOOK_PROCESSOR = "CRM_Webhook_Processor_Dummy";
+    const DEFAULT_HOOK_PROCESSOR = 'CRM_Webhook_Processor_Dummy';
 
     /**
      * Install process. Init database.

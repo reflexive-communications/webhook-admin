@@ -1,5 +1,7 @@
 <?php
 
+use Civi\Api4\Webhook;
+
 /**
  * Main webhook Dispatcher
  */
@@ -41,17 +43,17 @@ class CRM_Webhook_Dispatcher
     {
         // Get the listener param from the get object
         // listener has to be a get param.
-        if (!isset($_GET["listener"])) {
+        if (!isset($_GET['listener'])) {
             http_response_code(400);
-            throw new Exception("Missing listener.");
+            throw new Exception('Missing listener.');
         }
-        $current = \Civi\Api4\Webhook::get(false)
-            ->addWhere('query_string', '=', $_GET["listener"])
+        $current = Webhook::get(false)
+            ->addWhere('query_string', '=', $_GET['listener'])
             ->setLimit(1)
             ->execute();
         if (count($current) === 0) {
             http_response_code(400);
-            throw new Exception("Invalid listener.");
+            throw new Exception('Invalid listener.');
         }
         $hook = $current->first();
         // Instantiate Processor & Handler
