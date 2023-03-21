@@ -27,29 +27,29 @@ cv en webhook
 
 Go to the `Administer > Webhooks` menu. It will lead you to the `civicrm/admin/webhooks/settings` form.
 
-![webhooks settings](./assets/webhook-settings.png)
+![webhooks settings](images/webhook-settings.png)
 
 Click to the `Add New Webhook` button. On the popup fill in the form. The selector has to be uniq. Save your changes with clicking to the `Save` button.
 
-![webhooks form new](./assets/webhook-form-new.png)
+![webhooks form new](images/webhook-form-new.png)
 
 ### Edit hook
 
 Go to the `Administer > Webhooks` menu. It will lead you to the `civicrm/admin/webhooks/settings` form. Find the hook that you want to change and click to the `Edit` link in the actions block. On the popup make your changes and save it with clicking to the `Save` button. On this form the link of the webhook listener application is also visible.
 
-![webhooks form edit](./assets/webhook-form-edit.png)
+![webhooks form edit](images/webhook-form-edit.png)
 
 ### Delete hook
 
 Go to the `Administer > Webhooks` menu. It will lead you to the `civicrm/admin/webhooks/settings` form. Find the hook that you want to delete and click to the `Delete` link in the actions block. On the popup click `Delete` button to remove it.
 
-![webhooks delete](./assets/webhook-delete.png)
+![webhooks delete](images/webhook-delete.png)
 
 ### Check logs
 
 Go to the `Administer > Webhooks` menu. It will lead you to the `civicrm/admin/webhooks/settings` form. If you have logs in the log database the `Check Logs` button is visible next to the new hook button. Click the `Check Logs` button. It will lead you to the `civicrm/admin/webhooks/logs` page, where the existing logs are shown.
 
-![webhooks logs](./assets/webhook-logs.png)
+![webhooks logs](images/webhook-logs.png)
 
 ### Delete logs
 
