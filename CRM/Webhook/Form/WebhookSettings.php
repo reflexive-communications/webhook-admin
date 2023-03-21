@@ -47,7 +47,7 @@ class CRM_Webhook_Form_WebhookSettings extends CRM_Webhook_Form_WebhookBase
         $this->setTitle(ts('Webhook Settings'));
 
         // Add js functions. It seems the jquery $ sign and the smarty template $ sign conflicts.
-        Civi::resources()->addScriptFile(E::LONG_NAME, 'js/Form/popup.js');
+        Civi::resources()->addScriptFile(E::LONG_NAME, 'js/popup.js');
     }
 
     /**
