@@ -18,7 +18,6 @@
             <!-- Skip generated files -->
             <file>./webhook.php</file>
             <file>./webhook.civix.php</file>
-            <file>./CRM/Webhook/Upgrader/Base.php</file>
             <!-- Skip generated files within generated directories -->
             <directory>./CRM/Webhook/BAO</directory>
             <directory>./CRM/Webhook/DAO</directory>
