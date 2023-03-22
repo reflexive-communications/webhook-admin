@@ -9,9 +9,10 @@ The extension is licensed under [AGPL-3.0](LICENSE.txt).
 ## Requirements
 
 -   PHP v7.3+
--   CiviCRM 5.37+
+-   CiviCRM v5.38+
+-   rc-base
 
-## Installation (CLI, Git)
+## Installation
 
 Sysadmins and developers may clone the [Git](https://en.wikipedia.org/wiki/Git) repo for this extension and
 install it with the command-line tool [cv](https://github.com/civicrm/cv).
