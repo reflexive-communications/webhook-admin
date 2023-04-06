@@ -2,6 +2,9 @@
 
 namespace Civi\Webhook\Processor;
 
+use Exception;
+use SimpleXMLElement;
+
 /**
  * Webhook XML Processor
  */

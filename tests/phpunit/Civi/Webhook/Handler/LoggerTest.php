@@ -6,6 +6,7 @@ use Civi\Webhook\Config;
 use Civi\Webhook\HeadlessTestCase;
 use Civi\Webhook\Processor\Dummy;
 use CRM_Webhook_ExtensionUtil as E;
+use Exception;
 
 /**
  * @group headless

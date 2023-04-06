@@ -4,6 +4,7 @@ namespace Civi\Webhook\Handler;
 
 use Civi\Webhook\HeadlessTestCase;
 use Civi\Webhook\Processor\Dummy;
+use Exception;
 
 /**
  * @group headless
