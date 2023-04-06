@@ -1,5 +1,6 @@
 <?php
 
+use Civi\Webhook\Config;
 use CRM_Webhook_ExtensionUtil as E;
 
 /**
@@ -12,7 +13,7 @@ class CRM_Webhook_Form_LogTable extends CRM_Core_Form
     /**
      * Configdb
      *
-     * @var CRM_Webhook_Config
+     * @var Config
      */
     protected $config;
 
@@ -23,7 +24,7 @@ class CRM_Webhook_Form_LogTable extends CRM_Core_Form
     public function preProcess(): void
     {
         // Get current settings
-        $this->config = new CRM_Webhook_Config(E::LONG_NAME);
+        $this->config = new Config(E::LONG_NAME);
         $this->config->load();
     }
 

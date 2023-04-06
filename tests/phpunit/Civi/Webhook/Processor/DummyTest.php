@@ -1,11 +1,13 @@
 <?php
 
-use Civi\WebhookAdmin\HeadlessTestCase;
+namespace Civi\Webhook\Processor;
+
+use Civi\Webhook\HeadlessTestCase;
 
 /**
  * @group headless
  */
-class CRM_Webhook_Processor_DummyTest extends HeadlessTestCase
+class DummyTest extends HeadlessTestCase
 {
     /**
      * @return void
@@ -16,7 +18,7 @@ class CRM_Webhook_Processor_DummyTest extends HeadlessTestCase
         $_GET = [];
         $_SERVER['HTTP_REFERER'] = 'v1';
         $_SERVER['HTTP_USER_AGENT'] = 'v2';
-        $dummy = new CRM_Webhook_Processor_Dummy();
+        $dummy = new Dummy();
         $input = $dummy->input();
         self::assertEquals(['raw' => '', 'get' => [], 'post' => [], 'header' => ['REFERER' => 'v1', 'USER_AGENT' => 'v2']], $input, 'Input supposed to be empty in this case.');
     }

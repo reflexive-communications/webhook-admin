@@ -1,6 +1,7 @@
 <?php
 
 use Civi\Api4\Webhook;
+use Civi\Webhook\Config;
 use CRM_Webhook_ExtensionUtil as E;
 
 /**
@@ -12,11 +13,11 @@ class CRM_Webhook_Upgrader extends CRM_Extension_Upgrader_Base
 
     const DEFAULT_HOOK_DESC = 'This webhook could be used for testing purposes. It logs the received data.';
 
-    const DEFAULT_HOOK_HANDLER = 'CRM_Webhook_Handler_Logger';
+    const DEFAULT_HOOK_HANDLER = 'Civi\Webhook\Handler\Logger';
 
     const DEFAULT_HOOK_QUERY_STRING = 'logger-hook';
 
-    const DEFAULT_HOOK_PROCESSOR = 'CRM_Webhook_Processor_Dummy';
+    const DEFAULT_HOOK_PROCESSOR = 'Civi\Webhook\Processor\Dummy';
 
     /**
      * Install process. Init database.
@@ -25,7 +26,7 @@ class CRM_Webhook_Upgrader extends CRM_Extension_Upgrader_Base
      */
     public function install(): void
     {
-        $config = new CRM_Webhook_Config(E::LONG_NAME);
+        $config = new Config(E::LONG_NAME);
         // Create default configs
         if (!$config->create()) {
             throw new CRM_Core_Exception(E::LONG_NAME.ts(' could not create configs in database'));
@@ -59,7 +60,7 @@ class CRM_Webhook_Upgrader extends CRM_Extension_Upgrader_Base
      */
     public function uninstall(): void
     {
-        $config = new CRM_Webhook_Config(E::LONG_NAME);
+        $config = new Config(E::LONG_NAME);
         // delete current configs
         if (!$config->remove()) {
             throw new CRM_Core_Exception(E::LONG_NAME.ts(' could not remove configs from database'));

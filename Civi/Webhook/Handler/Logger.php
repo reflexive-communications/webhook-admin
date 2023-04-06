@@ -1,11 +1,14 @@
 <?php
 
+namespace Civi\Webhook\Handler;
+
+use Civi\Webhook\Config;
 use CRM_Webhook_ExtensionUtil as E;
 
 /**
  * Webhook Handler for Logger
  */
-class CRM_Webhook_Handler_Logger extends CRM_Webhook_Handler_Base
+class Logger extends Base
 {
     /**
      * Authenticate request
@@ -34,7 +37,7 @@ class CRM_Webhook_Handler_Logger extends CRM_Webhook_Handler_Base
     public function handle(): void
     {
         parent::handle();
-        $config = new CRM_Webhook_Config(E::LONG_NAME);
+        $config = new Config(E::LONG_NAME);
         $config->insertLog($this->data);
     }
 }

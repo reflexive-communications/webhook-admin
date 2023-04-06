@@ -1,6 +1,7 @@
 <?php
 
-use Civi\WebhookAdmin\HeadlessTestCase;
+use Civi\Webhook\Config;
+use Civi\Webhook\HeadlessTestCase;
 use CRM_Webhook_ExtensionUtil as E;
 
 /**
@@ -29,7 +30,7 @@ class CRM_Webhook_Form_LogTableTest extends HeadlessTestCase
     public function testPreProcessMissingConfig()
     {
         $form = new CRM_Webhook_Form_LogTable();
-        $config = new CRM_Webhook_Config(E::LONG_NAME);
+        $config = new Config(E::LONG_NAME);
         $config->remove();
         self::expectException(CRM_Core_Exception::class);
         self::expectExceptionMessage(E::LONG_NAME.'_config config invalid.');
@@ -60,7 +61,7 @@ class CRM_Webhook_Form_LogTableTest extends HeadlessTestCase
     public function testBuildQuickFormWithLogs()
     {
         $this->setupTestConfig();
-        $config = new CRM_Webhook_Config(E::LONG_NAME);
+        $config = new Config(E::LONG_NAME);
         $config->insertLog(['raw' => '', 'get' => [], 'post' => [], 'header' => []]);
         $form = new CRM_Webhook_Form_LogTable();
         self::assertEmpty($form->preProcess(), 'PreProcess supposed to be empty.');
@@ -80,7 +81,7 @@ class CRM_Webhook_Form_LogTableTest extends HeadlessTestCase
     {
         $this->setupTestConfig();
         $form = new CRM_Webhook_Form_LogTable();
-        $config = new CRM_Webhook_Config(E::LONG_NAME);
+        $config = new Config(E::LONG_NAME);
         $config->insertLog(['raw' => '', 'get' => [], 'post' => [], 'header' => []]);
         $config->load();
         self::assertEquals(1, count($config->get()['logs']), 'Invalid number of log entries.');

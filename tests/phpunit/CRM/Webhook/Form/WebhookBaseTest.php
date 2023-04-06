@@ -1,6 +1,7 @@
 <?php
 
-use Civi\WebhookAdmin\HeadlessTestCase;
+use Civi\Webhook\Config;
+use Civi\Webhook\HeadlessTestCase;
 use CRM_Webhook_ExtensionUtil as E;
 
 /**
@@ -28,7 +29,7 @@ class CRM_Webhook_Form_WebhookBaseTest extends HeadlessTestCase
     public function testPreProcessMissingConfig()
     {
         $form = new CRM_Webhook_Form_WebhookBase();
-        $config = new CRM_Webhook_Config(E::LONG_NAME);
+        $config = new Config(E::LONG_NAME);
         $config->remove();
         try {
             self::assertEmpty($form->preProcess(), 'PreProcess supposed to be empty.');

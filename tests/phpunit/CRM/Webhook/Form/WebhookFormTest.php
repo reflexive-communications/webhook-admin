@@ -1,7 +1,7 @@
 <?php
 
 use Civi\Api4\Webhook;
-use Civi\WebhookAdmin\HeadlessTestCase;
+use Civi\Webhook\HeadlessTestCase;
 
 /**
  * @group headless
@@ -38,8 +38,8 @@ class CRM_Webhook_Form_WebhookFormTest extends HeadlessTestCase
             ->addValue('query_string', 'valid_listener_build')
             ->addValue('name', 'validName')
             ->addValue('description', 'valid-description')
-            ->addValue('handler', 'CRM_Webhook_Handler_Logger')
-            ->addValue('processor', 'CRM_Webhook_Processor_Dummy')
+            ->addValue('handler', 'Civi\Webhook\Handler\Logger')
+            ->addValue('processor', 'Civi\Webhook\Processor\Dummy')
             ->execute()
             ->first();
         $this->setGlobals('id', $hook['id']);
@@ -80,8 +80,8 @@ class CRM_Webhook_Form_WebhookFormTest extends HeadlessTestCase
             ->addValue('query_string', 'valid_listener_not_existing_id')
             ->addValue('name', 'validName')
             ->addValue('description', 'valid-description')
-            ->addValue('handler', 'CRM_Webhook_Handler_Logger')
-            ->addValue('processor', 'CRM_Webhook_Processor_Dummy')
+            ->addValue('handler', 'Civi\Webhook\Handler\Logger')
+            ->addValue('processor', 'Civi\Webhook\Processor\Dummy')
             ->execute()
             ->first();
         $this->setGlobals('id', $hook['id'].$hook['id']);
@@ -103,8 +103,8 @@ class CRM_Webhook_Form_WebhookFormTest extends HeadlessTestCase
             ->addValue('query_string', 'valid_listener_valid_id')
             ->addValue('name', 'validName')
             ->addValue('description', 'valid-description')
-            ->addValue('handler', 'CRM_Webhook_Handler_Logger')
-            ->addValue('processor', 'CRM_Webhook_Processor_Dummy')
+            ->addValue('handler', 'Civi\Webhook\Handler\Logger')
+            ->addValue('processor', 'Civi\Webhook\Processor\Dummy')
             ->execute()
             ->first();
         unset($hook['custom']);
@@ -144,8 +144,8 @@ class CRM_Webhook_Form_WebhookFormTest extends HeadlessTestCase
             ->addValue('query_string', 'valid_listener_config')
             ->addValue('name', 'validName')
             ->addValue('description', 'valid-description')
-            ->addValue('handler', 'CRM_Webhook_Handler_Logger')
-            ->addValue('processor', 'CRM_Webhook_Processor_Dummy')
+            ->addValue('handler', 'Civi\Webhook\Handler\Logger')
+            ->addValue('processor', 'Civi\Webhook\Processor\Dummy')
             ->execute()
             ->first();
         $testData = [
@@ -187,16 +187,16 @@ class CRM_Webhook_Form_WebhookFormTest extends HeadlessTestCase
             ->addValue('query_string', 'valid_listener_duplicated')
             ->addValue('name', 'validName')
             ->addValue('description', 'valid-description')
-            ->addValue('handler', 'CRM_Webhook_Handler_Logger')
-            ->addValue('processor', 'CRM_Webhook_Processor_Dummy')
+            ->addValue('handler', 'Civi\Webhook\Handler\Logger')
+            ->addValue('processor', 'Civi\Webhook\Processor\Dummy')
             ->execute()
             ->first();
         $this->setGlobals('id', null);
         $_POST['name'] = 'validName';
         $_POST['description'] = 'valid-description';
-        $_POST['handler'] = 'CRM_Webhook_Handler_Logger';
+        $_POST['handler'] = 'Civi\Webhook\Handler\Logger';
         $_POST['query_string'] = 'valid_listener_duplicated';
-        $_POST['processor'] = 'CRM_Webhook_Processor_Dummy';
+        $_POST['processor'] = 'Civi\Webhook\Processor\Dummy';
         $form = new CRM_Webhook_Form_WebhookForm();
         self::assertEmpty($form->preProcess(), 'PreProcess supposed to be empty.');
         self::expectException(PEAR_Exception::class);
@@ -217,9 +217,9 @@ class CRM_Webhook_Form_WebhookFormTest extends HeadlessTestCase
         $this->setGlobals('id', null);
         $_POST['name'] = 'validName';
         $_POST['description'] = 'valid-description';
-        $_POST['handler'] = 'CRM_Webhook_Handler_Logger';
+        $_POST['handler'] = 'Civi\Webhook\Handler\Logger';
         $_POST['query_string'] = 'valid_listener_input';
-        $_POST['processor'] = 'CRM_Webhook_Processor_Dummy';
+        $_POST['processor'] = 'Civi\Webhook\Processor\Dummy';
         $form = new CRM_Webhook_Form_WebhookForm();
         self::assertEmpty($form->preProcess(), 'PreProcess supposed to be empty.');
         try {
@@ -245,8 +245,8 @@ class CRM_Webhook_Form_WebhookFormTest extends HeadlessTestCase
             ->addValue('query_string', 'valid_listener_edit')
             ->addValue('name', 'validName')
             ->addValue('description', 'valid-description')
-            ->addValue('handler', 'CRM_Webhook_Handler_Logger')
-            ->addValue('processor', 'CRM_Webhook_Processor_Dummy')
+            ->addValue('handler', 'Civi\Webhook\Handler\Logger')
+            ->addValue('processor', 'Civi\Webhook\Processor\Dummy')
             ->execute()
             ->first();
         $currentNumber = Webhook::get(false)
@@ -255,9 +255,9 @@ class CRM_Webhook_Form_WebhookFormTest extends HeadlessTestCase
         $this->setGlobals('id', $hook['id']);
         $_POST['name'] = 'validName';
         $_POST['description'] = 'valid-description';
-        $_POST['handler'] = 'CRM_Webhook_Handler_Logger';
+        $_POST['handler'] = 'Civi\Webhook\Handler\Logger';
         $_POST['query_string'] = 'valid_listener_edited';
-        $_POST['processor'] = 'CRM_Webhook_Processor_Dummy';
+        $_POST['processor'] = 'Civi\Webhook\Processor\Dummy';
         $form = new CRM_Webhook_Form_WebhookForm();
         self::assertEmpty($form->preProcess(), 'PreProcess supposed to be empty.');
         try {
