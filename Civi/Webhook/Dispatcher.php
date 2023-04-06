@@ -1,20 +1,24 @@
 <?php
 
+namespace Civi\Webhook;
+
 use Civi\Api4\Webhook;
+use Civi\Webhook\Handler\Base;
+use Exception;
 
 /**
  * Main webhook Dispatcher
  */
-class CRM_Webhook_Dispatcher
+class Dispatcher
 {
     /**
      * Instantiate Processor
      *
      * @param string $processor_class Processor class name
      *
-     * @return \CRM_Webhook_Processor_Base
+     * @return \Civi\Webhook\Processor\Base
      */
-    protected function createProcessor(string $processor_class): CRM_Webhook_Processor_Base
+    protected function createProcessor(string $processor_class): Processor\Base
     {
         return new $processor_class();
     }
@@ -23,12 +27,12 @@ class CRM_Webhook_Dispatcher
      * Instantiate Handler
      *
      * @param string $handler_class Handler class name
-     * @param \CRM_Webhook_Processor_Base $processor Webhook Processor
+     * @param \Civi\Webhook\Processor\Base $processor Webhook Processor
      * @param array $options additional options to handler
      *
-     * @return \CRM_Webhook_Handler_Base
+     * @return \Civi\Webhook\Handler\Base
      */
-    protected function createHandler(string $handler_class, CRM_Webhook_Processor_Base $processor, array $options = []): CRM_Webhook_Handler_Base
+    protected function createHandler(string $handler_class, Processor\Base $processor, array $options = []): Base
     {
         return new $handler_class($processor, $options);
     }
