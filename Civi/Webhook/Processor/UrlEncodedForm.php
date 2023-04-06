@@ -1,9 +1,11 @@
 <?php
 
+namespace Civi\Webhook\Processor;
+
 /**
  * Webhook URL encoded form Processor
  */
-class CRM_Webhook_Processor_UrlEncodedForm extends CRM_Webhook_Processor_Base
+class UrlEncodedForm extends Base
 {
     /**
      * Process input

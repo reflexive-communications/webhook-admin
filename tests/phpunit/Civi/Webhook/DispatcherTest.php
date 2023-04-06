@@ -1,12 +1,14 @@
 <?php
 
+namespace Civi\Webhook;
+
 use Civi\Api4\Webhook;
-use Civi\WebhookAdmin\HeadlessTestCase;
+use Exception;
 
 /**
  * @group headless
  */
-class CRM_Webhook_DispatcherTest extends HeadlessTestCase
+class DispatcherTest extends HeadlessTestCase
 {
     /**
      * @return void
@@ -17,7 +19,7 @@ class CRM_Webhook_DispatcherTest extends HeadlessTestCase
         if (isset($_GET['listener'])) {
             unset($_GET['listener']);
         }
-        $d = new CRM_Webhook_Dispatcher();
+        $d = new Dispatcher();
         self::expectException(Exception::class);
         self::expectExceptionMessage('Missing listener.');
         self::assertEmpty($d->run(), 'Run supposed to be empty.');
@@ -30,7 +32,7 @@ class CRM_Webhook_DispatcherTest extends HeadlessTestCase
     public function testRunInvalidListener()
     {
         $_GET['listener'] = 'not-existing-listener';
-        $d = new CRM_Webhook_Dispatcher();
+        $d = new Dispatcher();
         self::expectException(Exception::class);
         self::expectExceptionMessage('Invalid listener.');
         self::assertEmpty($d->run(), 'Run supposed to be empty.');
@@ -47,11 +49,11 @@ class CRM_Webhook_DispatcherTest extends HeadlessTestCase
             ->addValue('query_string', 'valid_listener')
             ->addValue('name', 'validName')
             ->addValue('description', 'valid-description')
-            ->addValue('handler', 'CRM_Webhook_Handler_Logger')
-            ->addValue('processor', 'CRM_Webhook_Processor_Dummy')
+            ->addValue('handler', 'Civi\Webhook\Handler\Logger')
+            ->addValue('processor', 'Civi\Webhook\Processor\Dummy')
             ->execute();
         $_GET['listener'] = 'valid_listener';
-        $d = new CRM_Webhook_Dispatcher();
+        $d = new Dispatcher();
         try {
             self::assertEmpty($d->run(), 'Run supposed to be empty.');
         } catch (Exception $e) {
@@ -70,12 +72,12 @@ class CRM_Webhook_DispatcherTest extends HeadlessTestCase
             ->addValue('query_string', 'valid_listener_with_options')
             ->addValue('name', 'validName')
             ->addValue('description', 'valid-description')
-            ->addValue('handler', 'CRM_Webhook_Handler_Logger')
-            ->addValue('processor', 'CRM_Webhook_Processor_Dummy')
+            ->addValue('handler', 'Civi\Webhook\Handler\Logger')
+            ->addValue('processor', 'Civi\Webhook\Processor\Dummy')
             ->addValue('options', ['k' => 'v'])
             ->execute();
         $_GET['listener'] = 'valid_listener_with_options';
-        $d = new CRM_Webhook_Dispatcher();
+        $d = new Dispatcher();
         try {
             self::assertEmpty($d->run(), 'Run supposed to be empty.');
         } catch (Exception $e) {

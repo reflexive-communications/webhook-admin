@@ -64,11 +64,11 @@ class CRM_Webhook_Form_WebhookForm extends CRM_Webhook_Form_WebhookBase
             ])
         );
 
-        $optionValues['processors']['CRM_Webhook_Processor_Dummy'] = 'Dummy processor for testing';
-        $optionValues['processors']['CRM_Webhook_Processor_JSON'] = 'JSON';
-        $optionValues['processors']['CRM_Webhook_Processor_UrlEncodedForm'] = 'Url Encoded Form';
-        $optionValues['processors']['CRM_Webhook_Processor_XML'] = 'XML';
-        $optionValues['handlers']['CRM_Webhook_Handler_Logger'] = 'DB Logger';
+        $optionValues['processors']['Civi\Webhook\Processor\Dummy'] = 'Dummy processor for testing';
+        $optionValues['processors']['Civi\Webhook\Processor\JSON'] = 'JSON';
+        $optionValues['processors']['Civi\Webhook\Processor\UrlEncodedForm'] = 'Url Encoded Form';
+        $optionValues['processors']['Civi\Webhook\Processor\XML'] = 'XML';
+        $optionValues['handlers']['Civi\Webhook\Handler\Logger'] = 'DB Logger';
         $this->optionValues = $optionValues;
     }
 

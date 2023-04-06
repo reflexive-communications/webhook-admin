@@ -1,19 +1,23 @@
 <?php
 
-use Civi\WebhookAdmin\HeadlessTestCase;
+namespace Civi\Webhook\Handler;
+
+use Civi\Webhook\HeadlessTestCase;
+use Civi\Webhook\Processor\Dummy;
+use Exception;
 
 /**
  * @group headless
  */
-class CRM_Webhook_Handler_BaseTest extends HeadlessTestCase
+class BaseTest extends HeadlessTestCase
 {
     /**
      * @return void
      */
     public function testHandle()
     {
-        $processor = new CRM_Webhook_Processor_Dummy();
-        $stub = $this->getMockForAbstractClass('CRM_Webhook_Handler_Base', [$processor]);
+        $processor = new Dummy();
+        $stub = $this->getMockForAbstractClass('Civi\Webhook\Handler\Base', [$processor]);
         $stub->method('authenticate')->willReturn(true);
         $stub->method('validate')->willReturn(true);
         try {

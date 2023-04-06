@@ -1,9 +1,11 @@
 <?php
 
+namespace Civi\Webhook\Processor;
+
 /**
  * Webhook JSON input Processor
  */
-class CRM_Webhook_Processor_JSON extends CRM_Webhook_Processor_Base
+class JSON extends Base
 {
     /**
      * Process input

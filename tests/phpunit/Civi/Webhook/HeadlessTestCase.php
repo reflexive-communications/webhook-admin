@@ -1,10 +1,9 @@
 <?php
 
-namespace Civi\WebhookAdmin;
+namespace Civi\Webhook;
 
 use Civi\Test;
 use Civi\Test\HeadlessInterface;
-use CRM_Webhook_Config;
 use CRM_Webhook_ExtensionUtil as E;
 use PHPUnit\Framework\TestCase;
 
@@ -41,7 +40,7 @@ class HeadlessTestCase extends TestCase implements HeadlessInterface
 
     protected function setupTestConfig()
     {
-        $config = new CRM_Webhook_Config(E::LONG_NAME);
+        $config = new Config(E::LONG_NAME);
         $config->create();
         self::assertTrue($config->update(self::TEST_SETTINGS), 'Config update has to be successful.');
     }

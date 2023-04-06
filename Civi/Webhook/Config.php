@@ -1,6 +1,10 @@
 <?php
 
-class CRM_Webhook_Config extends CRM_RcBase_Config
+namespace Civi\Webhook;
+
+use CRM_RcBase_Config;
+
+class Config extends CRM_RcBase_Config
 {
     /**
      * Provides a default configuration object.

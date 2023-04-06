@@ -1,18 +1,21 @@
 <?php
 
-use Civi\WebhookAdmin\HeadlessTestCase;
+namespace Civi\Webhook\Processor;
+
+use Civi\Webhook\HeadlessTestCase;
+use CRM_Core_Exception_PrematureExitException;
 
 /**
  * @group headless
  */
-class CRM_Webhook_Processor_BaseTest extends HeadlessTestCase
+class BaseTest extends HeadlessTestCase
 {
     /**
      * @return void
      */
     public function testOutput()
     {
-        $stub = $this->getMockForAbstractClass('CRM_Webhook_Processor_Base');
+        $stub = $this->getMockForAbstractClass('Civi\Webhook\Processor\Base');
         $testData = ['key' => 'value'];
         self::expectException(CRM_Core_Exception_PrematureExitException::class);
         self::assertEmpty($stub->output($testData), 'Output supposed to be empty.');

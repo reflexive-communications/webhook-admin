@@ -1,11 +1,17 @@
 <?php
 
+namespace Civi\Webhook\Processor;
+
+use CRM_Core_Error;
+use CRM_Utils_JSON;
+use CRM_Utils_System;
+use CRM_Webhook_ExtensionUtil;
 use Psr\Log\LogLevel;
 
 /**
  * Base Input Processor Class
  */
-abstract class CRM_Webhook_Processor_Base
+abstract class Base
 {
     /**
      * Process input

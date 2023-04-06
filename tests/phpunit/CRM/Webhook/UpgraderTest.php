@@ -1,7 +1,7 @@
 <?php
 
 use Civi\Api4\Webhook;
-use Civi\WebhookAdmin\HeadlessTestCase;
+use Civi\Webhook\HeadlessTestCase;
 
 /**
  * @group headless

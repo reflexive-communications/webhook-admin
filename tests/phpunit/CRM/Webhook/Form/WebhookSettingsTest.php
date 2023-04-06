@@ -1,6 +1,6 @@
 <?php
 
-use Civi\WebhookAdmin\HeadlessTestCase;
+use Civi\Webhook\HeadlessTestCase;
 
 /**
  * @group headless

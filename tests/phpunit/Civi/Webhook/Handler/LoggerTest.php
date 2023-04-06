@@ -1,12 +1,17 @@
 <?php
 
-use Civi\WebhookAdmin\HeadlessTestCase;
+namespace Civi\Webhook\Handler;
+
+use Civi\Webhook\Config;
+use Civi\Webhook\HeadlessTestCase;
+use Civi\Webhook\Processor\Dummy;
 use CRM_Webhook_ExtensionUtil as E;
+use Exception;
 
 /**
  * @group headless
  */
-class CRM_Webhook_Handler_LoggerTest extends HeadlessTestCase
+class LoggerTest extends HeadlessTestCase
 {
     /**
      * @return void
@@ -14,14 +19,14 @@ class CRM_Webhook_Handler_LoggerTest extends HeadlessTestCase
      */
     public function testHandle()
     {
-        $processor = new CRM_Webhook_Processor_Dummy();
-        $handler = new CRM_Webhook_Handler_Logger($processor);
+        $processor = new Dummy();
+        $handler = new Logger($processor);
         try {
             self::assertEmpty($handler->handle(), 'It should be empty.');
         } catch (Exception $e) {
             self::fail("Shouldn't throw exception. ".$e->getMessage());
         }
-        $config = new CRM_Webhook_Config(E::LONG_NAME);
+        $config = new Config(E::LONG_NAME);
         $config->load();
         self::assertEquals(1, count($config->get()['logs']), 'Invalid number of log entries.');
     }

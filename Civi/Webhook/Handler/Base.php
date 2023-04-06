@@ -1,14 +1,16 @@
 <?php
 
+namespace Civi\Webhook\Handler;
+
 /**
  * Webhook Handler Base
  */
-abstract class CRM_Webhook_Handler_Base
+abstract class Base
 {
     /**
      * Webhook Processor
      *
-     * @var \CRM_Webhook_Processor_Base
+     * @var \Civi\Webhook\Processor\Base
      */
     protected $processor;
 
@@ -27,10 +29,10 @@ abstract class CRM_Webhook_Handler_Base
     protected $data;
 
     /**
-     * @param \CRM_Webhook_Processor_Base $processor Webhook Processor
+     * @param \Civi\Webhook\Processor\Base $processor Webhook Processor
      * @param array $options Webhook options
      */
-    public function __construct(CRM_Webhook_Processor_Base $processor, array $options = [])
+    public function __construct(\Civi\Webhook\Processor\Base $processor, array $options = [])
     {
         $this->processor = $processor;
         $this->options = $options;

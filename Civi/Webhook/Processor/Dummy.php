@@ -1,9 +1,11 @@
 <?php
 
+namespace Civi\Webhook\Processor;
+
 /**
  * Webhook Dummy input Processor
  */
-class CRM_Webhook_Processor_Dummy extends CRM_Webhook_Processor_Base
+class Dummy extends Base
 {
     /**
      * @return array
