@@ -3,7 +3,7 @@
 namespace Civi\Api4;
 
 /**
- * Webhook entity.
+ * Webhooks.
  *
  * Provided by webhook-admin extension.
  *
