@@ -2,6 +2,8 @@
 
 [![CI](https://github.com/reflexive-communications/webhook-admin/actions/workflows/main.yml/badge.svg)](https://github.com/reflexive-communications/webhook-admin/actions/workflows/main.yml)
 
+**THIS IS A LEGACY EXTENSION. CURRENTLY UNDER FEATURE FREEZE!**
+
 This extension provides a public API endpoint as listener for webhooks and an administrator interface for setting up handler applications for processing the incoming messages.
 Currently it can process JSON, XML and standard URL encoded form data messages.
 This extension provides an example handler that saves the request details to database but you need to implement your own handlers.

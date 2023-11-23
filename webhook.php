@@ -33,7 +33,7 @@ function webhook_civicrm_entityTypes(&$entityTypes): void
 function webhook_civicrm_navigationMenu(&$menu): void
 {
     _webhook_civix_insert_navigation_menu($menu, 'Administer', [
-        'label' => E::ts('Webhooks'),
+        'label' => E::ts('Webhooks (Legacy)'),
         'name' => 'webhooks',
         'url' => 'civicrm/admin/webhooks/settings',
         'permission' => 'administer CiviCRM',
