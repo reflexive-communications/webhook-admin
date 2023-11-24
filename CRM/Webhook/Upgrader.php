@@ -66,4 +66,36 @@ class CRM_Webhook_Upgrader extends CRM_Extension_Upgrader_Base
             throw new CRM_Core_Exception(E::LONG_NAME.ts(' could not remove configs from database'));
         }
     }
+
+    /**
+     * Migrate data from civicrm_webhook table to civicrm_webhook_legacy table
+     *
+     * @return bool
+     * @throws \Civi\RcBase\Exception\DataBaseException
+     */
+    public function upgrade_3010(): bool
+    {
+        $sql = "CREATE TABLE IF NOT EXISTS `civicrm_webhook_legacy` (
+                  `id` int unsigned NOT NULL AUTO_INCREMENT COMMENT 'Unique Webhook ID',
+                  `name` varchar(255) NULL DEFAULT NULL COMMENT 'Webhook name',
+                  `description` text NULL DEFAULT NULL COMMENT 'Webhook description',
+                  `handler` varchar(255) NULL DEFAULT NULL COMMENT 'Handler class',
+                  `query_string` varchar(255) NULL DEFAULT NULL COMMENT 'Webhook query parameter',
+                  `processor` varchar(255) NULL DEFAULT NULL COMMENT 'Processor class',
+                  `options` text NULL DEFAULT NULL COMMENT 'Custom serialized data for PHP',
+                  PRIMARY KEY (`id`),
+                  UNIQUE INDEX `index_query`(query_string)
+                )";
+        \Civi\RcBase\Utils\DB::query($sql);
+
+        $sql = 'TRUNCATE TABLE civicrm_webhook_legacy';
+        \Civi\RcBase\Utils\DB::query($sql);
+
+        $sql = 'INSERT INTO civicrm_webhook_legacy (id, name, description, handler, query_string, processor, options)
+                    SELECT id, name, description, handler, query_string, processor, options
+                    FROM civicrm_webhook';
+        \Civi\RcBase\Utils\DB::query($sql);
+
+        return true;
+    }
 }
