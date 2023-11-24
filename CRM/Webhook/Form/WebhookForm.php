@@ -1,6 +1,6 @@
 <?php
 
-use Civi\Api4\Webhook;
+use Civi\Api4\WebhookLegacy;
 
 /**
  * Form controller class
@@ -39,7 +39,7 @@ class CRM_Webhook_Form_WebhookForm extends CRM_Webhook_Form_WebhookBase
      */
     public function getWebhook(int $id): ?array
     {
-        return Webhook::get(false)
+        return WebhookLegacy::get(false)
             ->addWhere('id', '=', $id)
             ->setLimit(1)
             ->execute()
@@ -170,7 +170,7 @@ class CRM_Webhook_Form_WebhookForm extends CRM_Webhook_Form_WebhookBase
      */
     public function validateQueryString($values, $files, $options)
     {
-        $current = Webhook::get(false)
+        $current = WebhookLegacy::get(false)
             ->addWhere('query_string', '=', $values['query_string'])
             ->setLimit(1)
             ->execute();
@@ -197,10 +197,10 @@ class CRM_Webhook_Form_WebhookForm extends CRM_Webhook_Form_WebhookBase
     {
         parent::postProcess();
         if (!is_null($this->id)) {
-            $upgrader = Webhook::update(false);
+            $upgrader = WebhookLegacy::update(false);
             $upgrader = $upgrader->addWhere('id', '=', $this->id);
         } else {
-            $upgrader = Webhook::create(false);
+            $upgrader = WebhookLegacy::create(false);
         }
         foreach ($this->_submitValues as $k => $v) {
             $upgrader = $upgrader->addValue($k, $v);

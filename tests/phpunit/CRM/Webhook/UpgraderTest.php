@@ -1,6 +1,6 @@
 <?php
 
-use Civi\Api4\Webhook;
+use Civi\Api4\WebhookLegacy;
 use Civi\Webhook\HeadlessTestCase;
 
 /**
@@ -46,14 +46,14 @@ class CRM_Webhook_UpgraderTest extends HeadlessTestCase
     {
         $installer = new CRM_Webhook_Upgrader();
         // delete the first id as it is the one that was inserted.
-        Webhook::delete(false)
+        WebhookLegacy::delete(false)
             ->addWhere('id', '=', 1)
             ->execute();
-        $currentNumber = Webhook::get(false)
+        $currentNumber = WebhookLegacy::get(false)
             ->selectRowCount()
             ->execute();
         $this->assertEmpty($installer->postInstall());
-        $newNumber = Webhook::get(false)
+        $newNumber = WebhookLegacy::get(false)
             ->selectRowCount()
             ->execute();
         self::assertSame(count($currentNumber) + 1, count($newNumber));

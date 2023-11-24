@@ -1,6 +1,6 @@
 <?php
 
-use Civi\Api4\Webhook;
+use Civi\Api4\WebhookLegacy;
 use CRM_Webhook_ExtensionUtil as E;
 
 /**
@@ -24,7 +24,7 @@ class CRM_Webhook_Form_WebhookSettings extends CRM_Webhook_Form_WebhookBase
         $this->assign('newItemForm', $newItemForm);
         $this->assign('logTable', CRM_Utils_System::url('civicrm/admin/webhooks/logs'));
 
-        $webhooks = Webhook::get(false)
+        $webhooks = WebhookLegacy::get(false)
             ->execute();
         // Add actions links
         foreach ($webhooks as $k => $hook) {

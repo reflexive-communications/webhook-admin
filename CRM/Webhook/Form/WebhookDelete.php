@@ -1,6 +1,6 @@
 <?php
 
-use Civi\Api4\Webhook;
+use Civi\Api4\WebhookLegacy;
 
 /**
  * Form controller class
@@ -31,7 +31,7 @@ class CRM_Webhook_Form_WebhookDelete extends CRM_Webhook_Form_WebhookBase
                 ],
             ]
         );
-        $webhook = Webhook::get(false)
+        $webhook = WebhookLegacy::get(false)
             ->addWhere('id', '=', $this->id)
             ->setLimit(1)
             ->execute()
@@ -50,7 +50,7 @@ class CRM_Webhook_Form_WebhookDelete extends CRM_Webhook_Form_WebhookBase
     public function postProcess(): void
     {
         parent::postProcess();
-        Webhook::delete(false)
+        WebhookLegacy::delete(false)
             ->addWhere('id', '=', $this->id)
             ->setLimit(1)
             ->execute();

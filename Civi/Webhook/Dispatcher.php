@@ -2,7 +2,7 @@
 
 namespace Civi\Webhook;
 
-use Civi\Api4\Webhook;
+use Civi\Api4\WebhookLegacy;
 use Civi\Webhook\Handler\Base;
 use Exception;
 
@@ -51,7 +51,7 @@ class Dispatcher
             http_response_code(400);
             throw new Exception('Missing listener.');
         }
-        $current = Webhook::get(false)
+        $current = WebhookLegacy::get(false)
             ->addWhere('query_string', '=', $_GET['listener'])
             ->setLimit(1)
             ->execute();

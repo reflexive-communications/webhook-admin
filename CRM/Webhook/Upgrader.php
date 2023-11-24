@@ -1,6 +1,6 @@
 <?php
 
-use Civi\Api4\Webhook;
+use Civi\Api4\WebhookLegacy;
 use Civi\Webhook\Config;
 use CRM_Webhook_ExtensionUtil as E;
 
@@ -44,7 +44,7 @@ class CRM_Webhook_Upgrader extends CRM_Extension_Upgrader_Base
      */
     public function postInstall(): void
     {
-        Webhook::create(false)
+        WebhookLegacy::create(false)
             ->addValue('name', self::DEFAULT_HOOK_NAME)
             ->addValue('description', self::DEFAULT_HOOK_DESC)
             ->addValue('handler', self::DEFAULT_HOOK_HANDLER)

@@ -1,6 +1,6 @@
 <?php
 
-use Civi\Api4\Webhook;
+use Civi\Api4\WebhookLegacy;
 use Civi\Webhook\Config;
 use Civi\Webhook\HeadlessTestCase;
 use CRM_Webhook_ExtensionUtil as E;
@@ -18,7 +18,7 @@ class CRM_Webhook_Form_WebhookDeleteTest extends HeadlessTestCase
      */
     public function testBuildQuickFormWithId()
     {
-        $hook = Webhook::create(false)
+        $hook = WebhookLegacy::create(false)
             ->addValue('query_string', 'valid_listener')
             ->addValue('name', 'validName')
             ->addValue('description', 'valid-description')
@@ -45,7 +45,7 @@ class CRM_Webhook_Form_WebhookDeleteTest extends HeadlessTestCase
      */
     public function testPostProcessValidId()
     {
-        $hook = Webhook::create(false)
+        $hook = WebhookLegacy::create(false)
             ->addValue('query_string', 'valid_listener_post_process')
             ->addValue('name', 'validName')
             ->addValue('description', 'valid-description')
@@ -62,7 +62,7 @@ class CRM_Webhook_Form_WebhookDeleteTest extends HeadlessTestCase
         } catch (Exception $e) {
             self::fail("It shouldn't throw exception. ".$e->getMessage());
         }
-        $deletedHook = Webhook::get(false)
+        $deletedHook = WebhookLegacy::get(false)
             ->addWhere('id', '=', $hook['id'])
             ->execute();
         self::assertEquals(0, count($deletedHook), 'The webhook supposed to be deleted.');
