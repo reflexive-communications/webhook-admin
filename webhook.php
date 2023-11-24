@@ -15,17 +15,6 @@ function webhook_civicrm_config(&$config): void
 }
 
 /**
- * Implements hook_civicrm_entityTypes().
- * Declare entity types provided by this module.
- *
- * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_entityTypes
- */
-function webhook_civicrm_entityTypes(&$entityTypes): void
-{
-    _webhook_civix_civicrm_entityTypes($entityTypes);
-}
-
-/**
  * Implements hook_civicrm_navigationMenu().
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_navigationMenu
