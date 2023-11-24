@@ -98,4 +98,18 @@ class CRM_Webhook_Upgrader extends CRM_Extension_Upgrader_Base
 
         return true;
     }
+
+    /**
+     * Drop civicrm_webhook table
+     *
+     * @return bool
+     * @throws \Civi\RcBase\Exception\DataBaseException
+     */
+    public function upgrader_4000(): bool
+    {
+        $sql = 'DROP TABLE IF EXISTS civicrm_webhook';
+        \Civi\RcBase\Utils\DB::query($sql);
+
+        return true;
+    }
 }
