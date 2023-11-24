@@ -26,7 +26,7 @@
     <version>3.0.2</version>
     <develStage>beta</develStage>
     <compatibility>
-        <ver>5.38</ver>
+        <ver>5.61</ver>
     </compatibility>
     <requires>
         <ext>rc-base</ext>
