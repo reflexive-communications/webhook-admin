@@ -12,6 +12,7 @@ use CRM_Webhook_ExtensionUtil as E;
 
 /**
  * Database access object for the Webhook entity.
+ * @deprecated
  */
 class CRM_Webhook_DAO_Webhook extends CRM_Core_DAO
 {
