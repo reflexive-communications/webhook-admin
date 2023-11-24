@@ -22,11 +22,11 @@
         <url desc="Support">https://github.com/reflexive-communications/webhook-admin/issues</url>
         <url desc="Licensing">https://www.gnu.org/licenses/agpl-3.0.html</url>
     </urls>
-    <releaseDate>2023-11-23</releaseDate>
-    <version>3.0.2</version>
+    <releaseDate>2023-11-24</releaseDate>
+    <version>3.2.0</version>
     <develStage>beta</develStage>
     <compatibility>
-        <ver>5.38</ver>
+        <ver>5.61</ver>
     </compatibility>
     <requires>
         <ext>rc-base</ext>
@@ -37,10 +37,12 @@
     </classloader>
     <mixins>
         <mixin>menu-xml@1.0.0</mixin>
+        <mixin>smarty-v2@1.0.1</mixin>
+        <mixin>entity-types-php@1.0.0</mixin>
     </mixins>
     <upgrader>CRM_Webhook_Upgrader</upgrader>
     <civix>
         <namespace>CRM/Webhook</namespace>
-        <format>22.12.1</format>
+        <format>23.02.1</format>
     </civix>
 </extension>

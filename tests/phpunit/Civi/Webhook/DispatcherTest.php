@@ -2,7 +2,7 @@
 
 namespace Civi\Webhook;
 
-use Civi\Api4\Webhook;
+use Civi\Api4\WebhookLegacy;
 use Exception;
 
 /**
@@ -45,7 +45,7 @@ class DispatcherTest extends HeadlessTestCase
      */
     public function testRunValidListener()
     {
-        Webhook::create(false)
+        WebhookLegacy::create(false)
             ->addValue('query_string', 'valid_listener')
             ->addValue('name', 'validName')
             ->addValue('description', 'valid-description')
@@ -68,7 +68,7 @@ class DispatcherTest extends HeadlessTestCase
      */
     public function testRunValidListenerWithOptions()
     {
-        Webhook::create(false)
+        WebhookLegacy::create(false)
             ->addValue('query_string', 'valid_listener_with_options')
             ->addValue('name', 'validName')
             ->addValue('description', 'valid-description')

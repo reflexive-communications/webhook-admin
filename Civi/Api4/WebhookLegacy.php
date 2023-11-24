@@ -3,13 +3,12 @@
 namespace Civi\Api4;
 
 /**
- * Webhooks.
+ * WebhookLegacy entity.
  *
  * Provided by webhook-admin extension.
  *
- * @deprecated
  * @package Civi\Api4
  */
-class Webhook extends Generic\DAOEntity
+class WebhookLegacy extends Generic\DAOEntity
 {
 }

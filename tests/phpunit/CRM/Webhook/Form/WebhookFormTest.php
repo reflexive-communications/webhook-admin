@@ -1,6 +1,6 @@
 <?php
 
-use Civi\Api4\Webhook;
+use Civi\Api4\WebhookLegacy;
 use Civi\Webhook\HeadlessTestCase;
 
 /**
@@ -34,7 +34,7 @@ class CRM_Webhook_Form_WebhookFormTest extends HeadlessTestCase
      */
     public function testBuildQuickFormWithId()
     {
-        $hook = Webhook::create(false)
+        $hook = WebhookLegacy::create(false)
             ->addValue('query_string', 'valid_listener_build')
             ->addValue('name', 'validName')
             ->addValue('description', 'valid-description')
@@ -76,7 +76,7 @@ class CRM_Webhook_Form_WebhookFormTest extends HeadlessTestCase
      */
     public function testSetDefaultValuesNotExistingId()
     {
-        $hook = Webhook::create(false)
+        $hook = WebhookLegacy::create(false)
             ->addValue('query_string', 'valid_listener_not_existing_id')
             ->addValue('name', 'validName')
             ->addValue('description', 'valid-description')
@@ -99,7 +99,7 @@ class CRM_Webhook_Form_WebhookFormTest extends HeadlessTestCase
      */
     public function testSetDefaultValuesGoodId()
     {
-        $hook = Webhook::create(false)
+        $hook = WebhookLegacy::create(false)
             ->addValue('query_string', 'valid_listener_valid_id')
             ->addValue('name', 'validName')
             ->addValue('description', 'valid-description')
@@ -140,7 +140,7 @@ class CRM_Webhook_Form_WebhookFormTest extends HeadlessTestCase
      */
     public function testConfigValidator()
     {
-        $hook = Webhook::create(false)
+        $hook = WebhookLegacy::create(false)
             ->addValue('query_string', 'valid_listener_config')
             ->addValue('name', 'validName')
             ->addValue('description', 'valid-description')
@@ -183,7 +183,7 @@ class CRM_Webhook_Form_WebhookFormTest extends HeadlessTestCase
      */
     public function testPostProcessDuplicatedInput()
     {
-        $hook = Webhook::create(false)
+        $hook = WebhookLegacy::create(false)
             ->addValue('query_string', 'valid_listener_duplicated')
             ->addValue('name', 'validName')
             ->addValue('description', 'valid-description')
@@ -211,7 +211,7 @@ class CRM_Webhook_Form_WebhookFormTest extends HeadlessTestCase
      */
     public function testPostProcessValidInput()
     {
-        $currentNumber = Webhook::get(false)
+        $currentNumber = WebhookLegacy::get(false)
             ->selectRowCount()
             ->execute();
         $this->setGlobals('id', null);
@@ -227,7 +227,7 @@ class CRM_Webhook_Form_WebhookFormTest extends HeadlessTestCase
         } catch (Exception $e) {
             self::fail("It shouldn't throw exception.");
         }
-        $newNumber = Webhook::get(false)
+        $newNumber = WebhookLegacy::get(false)
             ->selectRowCount()
             ->execute();
         self::assertSame(count($currentNumber) + 1, count($newNumber));
@@ -241,7 +241,7 @@ class CRM_Webhook_Form_WebhookFormTest extends HeadlessTestCase
      */
     public function testPostProcessValidInputEdition()
     {
-        $hook = Webhook::create(false)
+        $hook = WebhookLegacy::create(false)
             ->addValue('query_string', 'valid_listener_edit')
             ->addValue('name', 'validName')
             ->addValue('description', 'valid-description')
@@ -249,7 +249,7 @@ class CRM_Webhook_Form_WebhookFormTest extends HeadlessTestCase
             ->addValue('processor', 'Civi\Webhook\Processor\Dummy')
             ->execute()
             ->first();
-        $currentNumber = Webhook::get(false)
+        $currentNumber = WebhookLegacy::get(false)
             ->selectRowCount()
             ->execute();
         $this->setGlobals('id', $hook['id']);
@@ -265,7 +265,7 @@ class CRM_Webhook_Form_WebhookFormTest extends HeadlessTestCase
         } catch (Exception $e) {
             self::fail("It shouldn't throw exception.");
         }
-        $newNumber = Webhook::get(false)
+        $newNumber = WebhookLegacy::get(false)
             ->selectRowCount()
             ->execute();
         self::assertSame(count($currentNumber), count($newNumber));
