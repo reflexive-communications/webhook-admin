@@ -15,6 +15,7 @@
 
 SET FOREIGN_KEY_CHECKS=0;
 
+DROP TABLE IF EXISTS `civicrm_webhook_legacy`;
 DROP TABLE IF EXISTS `civicrm_webhook`;
 
 SET FOREIGN_KEY_CHECKS=1;
