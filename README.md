@@ -13,9 +13,9 @@ The extension is licensed under [AGPL-3.0](LICENSE.txt).
 
 ## Requirements
 
--   PHP v7.3+
--   CiviCRM v5.76+
--   rc-base
+- PHP v7.3+
+- CiviCRM v5.76+
+- rc-base
 
 ## Installation
 
@@ -40,7 +40,7 @@ If the selector is `my-hook-handler`, then the endpoint of the listener applicat
 
 The extension does not provide upgrader process for v1 -> v2 migration. The supported way is the following:
 
--   Uninstall v1
--   Install v2
+- Uninstall v1
+- Install v2
 
 The v1 configurations will be lost in this process.
