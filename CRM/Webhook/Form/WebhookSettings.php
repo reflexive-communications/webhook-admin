@@ -37,7 +37,7 @@ class CRM_Webhook_Form_WebhookSettings extends CRM_Webhook_Form_WebhookBase
                 ts('more'),
                 false,
                 'view.webhook.row',
-                'Webhook',
+                'WebhookLegacy',
                 $hook['id'],
             );
         }
@@ -64,6 +64,7 @@ class CRM_Webhook_Form_WebhookSettings extends CRM_Webhook_Form_WebhookBase
                 'qs' => 'id=%%id%%',
                 'title' => ts('Edit webhook'),
                 'class' => 'crm-popup webhook-action',
+                'weight' => 0,
             ],
             CRM_Core_Action::DELETE => [
                 'name' => ts('Delete'),
@@ -71,6 +72,7 @@ class CRM_Webhook_Form_WebhookSettings extends CRM_Webhook_Form_WebhookBase
                 'qs' => 'id=%%id%%',
                 'title' => ts('Delete webhook'),
                 'class' => 'crm-popup webhook-action',
+                'weight' => 1,
             ],
         ];
     }
