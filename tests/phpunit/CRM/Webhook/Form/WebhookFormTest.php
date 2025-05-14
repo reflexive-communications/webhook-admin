@@ -148,18 +148,15 @@ class CRM_Webhook_Form_WebhookFormTest extends HeadlessTestCase
             ->addValue('processor', 'Civi\Webhook\Processor\Dummy')
             ->execute()
             ->first();
+
         $testData = [
             [
-                'data' => [
-                    'query_string' => 'new-selector',
-                ],
+                'data' => ['query_string' => 'new-selector'],
                 'expectedResult' => true,
             ],
             [
-                'data' => [
-                    'query_string' => $hook['query_string'],
-                ],
-                'expectedResult' => ['query_string' => "The query string '".$hook['query_string']."' already set for the '".$hook['name']."' webhook."],
+                'data' => ['query_string' => $hook['query_string']],
+                'expectedResult' => false,
             ],
             [
                 'data' => [
@@ -169,9 +166,12 @@ class CRM_Webhook_Form_WebhookFormTest extends HeadlessTestCase
                 'expectedResult' => true,
             ],
         ];
-        $form = new CRM_Webhook_Form_WebhookForm();
         foreach ($testData as $t) {
-            self::assertEquals($t['expectedResult'], $form->validateQueryString($t['data'], null, null), 'Should return the expected value.');
+            $form = new CRM_Webhook_Form_WebhookForm();
+            $form->_flagSubmitted = true;
+            $form->addRules();
+            $form->_submitValues = $t['data'];
+            self::assertSame($t['expectedResult'], $form->validate(), 'Invalid validation result.');
         }
     }
 
