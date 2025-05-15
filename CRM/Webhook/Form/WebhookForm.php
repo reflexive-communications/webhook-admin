@@ -168,7 +168,7 @@ class CRM_Webhook_Form_WebhookForm extends CRM_Webhook_Form_WebhookBase
      * @throws \API_Exception
      * @throws \Civi\API\Exception\UnauthorizedException
      */
-    public function validateQueryString($values, $files, $options)
+    protected static function validateQueryString($values, $files, $options)
     {
         $current = WebhookLegacy::get(false)
             ->addWhere('query_string', '=', $values['query_string'])
