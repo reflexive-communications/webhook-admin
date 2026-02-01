@@ -19,15 +19,12 @@ class HeadlessTestCase extends TestCase implements HeadlessInterface
     /**
      * Apply a forced rebuild of DB, thus
      * create a clean DB before running tests
-     *
-     * @throws \CRM_Extension_Exception_ParseException
      */
     public static function setUpBeforeClass(): void
     {
         // Resets DB
         Test::headless()
-            ->install('rc-base')
-            ->installMe(__DIR__)
+            ->install(['rc-base', 'webhook-admin'])
             ->apply(true);
     }
 
